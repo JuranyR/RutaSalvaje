@@ -4,11 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ruta Salvaje</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <section>Sobre Nosotros</section>
     <section>Misión</section>
-    <section>Visión</section>
+<section class="about-section">
+
+  <div class="tabs">
+    <span onclick="cambiarTab('sobre', event)" class="tab active">Sobre Nosotros</span>
+    <span onclick="cambiarTab('mision', event)" class="tab">Misión</span>
+    <span onclick="cambiarTab('vision', event)" class="tab">Visión</span>
+  </div>
+
+  <div>
+
+    <div id="mision" class="tab-content active">
+
+      <div class="hero">
+
+        <div class="hero-texto hero-contenido">
+          <h2>
+            Nuestra misión es ser la puerta de entrada a experiencias de aventura únicas.
+          </h2>
+        </div>
+
+      </div>
+
+      <p class="descripcion">
+        En Ruta Salvaje, buscamos conectar a las personas con experiencias de turismo de aventura a través de una plataforma web segura, práctica y fácil de usar.
+      </p>
+
+    </div>
+
+    <div id="sobre" class="tab-content">
+      <div class="bloque">
+        <h2>Contenido Sobre Nosotros</h2>
+      </div>
+    </div>
+
+    <div id="vision" class="tab-content">
+      <div class="bloque">
+        <h2>Contenido Visión</h2>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<script src="app.js"></script>
+    <section></section>
     <footer></footer>
 </body>
 </html>
