@@ -1,0 +1,65 @@
+.navbar-salvaje {
+    background-color: #ffffff;
+    padding: 0.8rem 0;
+    transition: all 0.3s ease;
+}
+
+.navbar-salvaje .navbar-brand {
+    color: #1b4332;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+}
+
+.navbar-salvaje .navbar-brand i {
+    color: #ff8c00;
+}
+
+.navbar-salvaje .nav-link {
+    color: #444;
+    font-weight: 500;
+    margin: 0 5px;
+    text-decoration: none;
+}
+
+.navbar-salvaje .nav-link:hover,
+.navbar-salvaje .nav-link.active {
+    color: #ff8c00;
+}
+
+.navbar-salvaje .btn-login {
+    background-color: #ff8c00;
+    color: white;
+    border-radius: 50px;
+    font-weight: 600;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.navbar-salvaje .btn-login:hover {
+    background-color: #1b4332;
+    color: white;
+    transform: scale(1.05);
+}
+
+body {
+    padding-top: 75px; 
+}
+.nav-underline .nav-link {
+    color: #1b4332 !important; 
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 10px 20px;
+}
+
+.nav-underline .nav-link.active {
+    color: #ff8c00 !important; 
+    border-bottom-color: #ff8c00 !important;
+}
+
+.nav-underline .nav-link:hover {
+    color: #ff8c00 !important;
+}
