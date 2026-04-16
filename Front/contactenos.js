@@ -18,6 +18,11 @@ btnContacto.addEventListener("submit", function (validacion) {
         return;
     }
 
+    if (/\d/.test(entradaNombre)) {
+        mensajesError.textContent = "El nombre no puede ser numerico";
+        return;
+    }
+
     if (isNaN(entradaTelefono)) {
         mensajesError.style.color = "red";
         mensajesError.textContent = "El telefono debe ser numerico";
