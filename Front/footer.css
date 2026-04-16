@@ -4,6 +4,7 @@
     --a65d39: #A65D39;
     --212121: #212121;
 }
+
 footer {
     background-color: #1b4332; 
     color: #ffffff;
@@ -21,17 +22,30 @@ footer h5 {
 
 
 footer ul li {
-    margin-bottom: 8px;
     transition: all 0.3s ease;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 footer ul li:hover {
     color: #ff8c00; 
-    padding-left: 5px; 
+    transform: translateX(8px);
+
+}
+
+footer i {
+    transition: transform 0.3s ease;
+}
+
+footer i:hover {
+    transform: scale(1.3) rotate(15deg);
+    color: #ff8c00;
+}
 
 footer p {
-    color: #d1d1d1;}
+    color: #d1d1d1;
     line-height: 1.6;
 }
 
