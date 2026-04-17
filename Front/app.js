@@ -1,3 +1,4 @@
+
 function cambiarTab(tabId, event) {
 
  
@@ -23,10 +24,22 @@ document.addEventListener("DOMContentLoaded", function() {
             document.body.insertAdjacentHTML('beforeend', data);
         });
 });
+
 document.addEventListener("DOMContentLoaded", function() {
     fetch('nav.html')
         .then(response => response.text())
         .then(data => {
             document.body.insertAdjacentHTML('beforeend', data);
+            agregarColorLink()
         });
 });
+
+function agregarColorLink() {
+  const currentPath = window.location.pathname;
+  const items = document.querySelectorAll('li a')
+  items.forEach(item=> {
+    if(currentPath.includes(item.getAttribute('href'))) {
+      item.classList.add('active');
+    }
+  })
+}

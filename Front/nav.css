@@ -1,6 +1,19 @@
+
+.logo {
+
+    transition: transform 0.3s ease;
+    margin-right: 15px;
+}
+.logo:hover {
+    transform: scale(1.20);
+}
+
+
 .navbar-salvaje {
     background-color: #ffffff;
-    padding: 0.8rem 0;
+    background-position: center;
+    border-bottom: 3px solid #ff8c00;
+    padding: 0.5rem 0;
     transition: all 0.3s ease;
 }
 
@@ -9,7 +22,7 @@
     font-size: 1.4rem;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     text-decoration: none;
 }
 
@@ -18,15 +31,21 @@
 }
 
 .navbar-salvaje .nav-link {
+    font-size: 15px;
     color: #444;
     font-weight: 500;
-    margin: 0 5px;
+    margin: 0 10px;
     text-decoration: none;
+    position: relative;
+    
+    transition: color 0.3s ease, transform 0.2s ease;
 }
 
 .navbar-salvaje .nav-link:hover,
 .navbar-salvaje .nav-link.active {
-    color: #ff8c00;
+    color: #ff8c00 !important;
+    cursor: pointer;
+    transform: translateY(-2px);
 }
 
 .navbar-salvaje .btn-login {
