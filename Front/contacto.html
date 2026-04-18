@@ -17,9 +17,10 @@
 
                 <section class="col-12 col-lg-6 pt-4">
 
-                    <h1 class="pt-2" id="titulo-contacto">NUESTRO CONTACTO</h1>
 
-                    <div class="mb-4 my-5">
+                <h2 id="titulo-contacto" class="text-center py-4 fs-2 fw-bold">NUESTRO CONTACTO</h2>
+                    <div class="mb-4 mt-2">
+
                         <div class="d-flex gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff8c00"
                                 class="bi bi-telephone-fill" viewBox="0 0 16 16">
@@ -91,37 +92,38 @@
 
                         <form id="contacto" action="https://formspree.io/f/mqewpyvv" method="POST" novalidate>
 
-                            <div class="form-floating mb-3">
+                            <div class="form-floating mb-1">
                                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre">
                                 <label for="nombre">Nombre completo</label>
                             </div>
-                            
-                            <div class="form-floating mb-3">
+                            <span id="errorNombre" class="error-mensaje"></span>  
+
+                            <div class="form-floating mb-1">
                                 <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo">
                                 <label for="correo">Correo electrónico</label>
                             </div>
+                            <span id="errorCorreo" class="error-mensaje"></span>
 
-                            <div class="form-floating mb-3">
-                                <input type="tel" class="form-control" id="telefono" name="telefono"
-                                    placeholder="Teléfono">
+                            <div class="form-floating mb-1">
+                                <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
                                 <label for="telefono">Teléfono</label>
                             </div>
+                            <span id="errorTelefono" class="error-mensaje"></span>
 
-                            <div class="form-floating mb-3">
-                                <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Mensaje"
-                                    style="height: 120px"></textarea>
+                            <div class="form-floating mb-1">
+                                <textarea class="form-control" id="mensaje" name="mensaje" placeholder="Mensaje" style="height: 120px"></textarea>
                                 <label for="mensaje">Mensaje</label>
                             </div>
+                            <span id="errorMensaje" class="error-mensaje"></span>
 
-                            <span id="mensajesError" class="small d-block mb-3" role="alert" aria-live="polite"></span>
+                            <div id="alertaExito" class="alert alert-success d-none text-center mb-3" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 10px; border-radius: 5px;">¡Formulario enviado correctamente!.</div>
 
-                            <button type="submit" id="btn-formulario"
-                                class="btn btn-contacto w-50 mt-3 my-0 mx-auto">Enviar mensaje
-                            </button>
+                            <button type="submit" id="btn-formulario" class="btn btn-contacto w-50 mt-3 my-0 mx-auto d-block">Enviar mensaje</button>
 
                         </form>
                     </div>
                 </section>
+
             </div>
         </div>
     </main>

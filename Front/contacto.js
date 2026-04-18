@@ -1,74 +1,64 @@
-const btnContacto = document.getElementById("contacto");
-const mensajesError = document.getElementById("mensajesError");
 
-btnContacto.addEventListener("submit", function (validacion) {
+const entradaNombre = document.getElementById("nombre");
+const entradaCorreo = document.getElementById("correo");
+const entradaTelefono = document.getElementById("telefono");
+const entradaMensaje = document.getElementById("mensaje");
 
+const errorNombre = document.getElementById("errorNombre");
+const errorCorreo = document.getElementById("errorCorreo");
+const errorTelefono = document.getElementById("errorTelefono");
+const errorMensaje = document.getElementById("errorMensaje");
+
+const formulario = document.getElementById("contacto");
+
+formulario.addEventListener("submit", function(validacion) {
     validacion.preventDefault();
 
-    mensajesError.textContent = "";
+    errorNombre.textContent = "";
+    errorCorreo.textContent = "";
+    errorTelefono.textContent = "";
+    errorMensaje.textContent = "";
 
-    const entradaNombre = document.getElementById("nombre");
-    const entradaCorreo = document.getElementById("correo");
-    const entradaTelefono = document.getElementById("telefono");
-    const entradaMensaje = document.getElementById("mensaje")
+    let sonValidos = true;
 
-    const LimpiarError = document.querySelector(".error-mensaje");
-    if (LimpiarError) {
-        LimpiarError.remove();
-    }
     if (entradaNombre.value.trim() === "") {
-        const htmlError = '<span class="error-mensaje" style="color: red; font-size: 12px;">El nombre es obligatorio</span>';        
-        entradaNombre.parentElement.insertAdjacentHTML('afterend', htmlError);
-        return;
-    }
-
-    if (/\d/.test(entradaNombre.value.trim())) {
-        const htmlError = '<span class="error-mensaje" style="color: red; font-size: 12px;">El nombre no debe contener numeros</span>';        
-        entradaNombre.parentElement.insertAdjacentHTML('afterend', htmlError);
-        return;
+        errorNombre.textContent = "El campo nombre no puede estar vacio";
+        sonValidos = false;
+    } else if (/\d/.test(entradaNombre.value.trim())) {
+        errorNombre.textContent = "El nombre solo puede contener letras";
+        sonValidos = false;
     }
 
     if (entradaCorreo.value.trim() === "") {
-        const htmlError = '<span class="error-mensaje" style="color: red; font-size: 12px;">El correo es obligatorio</span>';        
-        entradaCorreo.parentElement.insertAdjacentHTML('afterend', htmlError);
-        return;
-    }
-
-    if (!entradaCorreo.value.trim().includes("@") && entradaCorreo.value.trim() !== "") {
-        const htmlError = '<span class="error-mensaje" style="color: red; font-size: 12px;">Correo no valido</span>';        
-        entradaCorreo.parentElement.insertAdjacentHTML('afterend', htmlError);
-        return;
+        errorCorreo.textContent = "El campo Correo no puede estar vacio";
+        sonValidos = false;
+    } else if (!entradaCorreo.value.trim().includes("@")) {
+        errorCorreo.textContent = "El correo debe incluir un @";
+        sonValidos = false;
     }
 
     if (entradaTelefono.value.trim() === "") {
-        const htmlError = '<span class="error-mensaje" style="color: red; font-size: 12px;">El telefono es obligatorio</span>';        
-        entradaTelefono.parentElement.insertAdjacentHTML('afterend', htmlError);
-        return;
-    }
-
-    if (isNaN(entradaTelefono.value.trim()) && entradaTelefono.value.trim() !== "") {
-        const htmlError = '<span class="error-mensaje" style="color: red; font-size: 12px;">El telefono debe ser numerico</span>';        
-        entradaTelefono.parentElement.insertAdjacentHTML('afterend', htmlError);
-        return;
+        errorTelefono.textContent = "El campo Teléfono no puede estar vacio";
+        sonValidos = false;
+    } else if (isNaN(entradaTelefono.value.trim())) {
+        errorTelefono.textContent = "Debe contener solo numeros";
+        sonValidos = false;
+    } else if (entradaTelefono.value.trim().length !== 10) {
+        errorTelefono.textContent = "El número debe tener exactamente 10 dígitos";
+        sonValidos = false;
     }
 
     if (entradaMensaje.value.trim() === "") {
-        const htmlError = '<span class="error-mensaje" style="color: red; font-size: 12px;">El mensaje es obligatorio</span>';        
-        entradaMensaje.parentElement.insertAdjacentHTML('afterend', htmlError);
-        return;
+        errorMensaje.textContent = "El campo Mensaje no puede estar vacio";
+        sonValidos = false;
     }
 
-    mensajesError.style.color = "green";
-    mensajesError.textContent = "Formulario enviado correctamente";
-    
-    btnContacto.submit();
-    btnContacto.reset();
+    if (sonValidos) {
+        const alertaEnvio = document.getElementById("alertaExito");
+        alertaEnvio.classList.remove("d-none");
 
-});
-
-document.querySelectorAll("#contacto input, #contacto textarea")
-    .forEach(campo => {
-        campo.addEventListener("input", () => {
-            mensajesError.textContent = "";
-        });
+        setTimeout(function() {
+            formulario.submit();
+        }, 1500);
+    }
 });

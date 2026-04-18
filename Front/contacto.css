@@ -65,11 +65,6 @@ button:active {
     transform: translateY(-4px);
 }
 
-#mensajesError {
-    margin-top: 10px;
-    text-align: center;
-    font-size: 13px;
-}
 
 .d-flex a svg {
     transition: transform 0.2s ease, fill 0.2s ease;
@@ -82,7 +77,12 @@ button:active {
 }
 
 .error-mensaje {
-    display: block;
-    margin-top: 1px;
-    margin-bottom: 15px;
+    color: #ff0000;     
+    font-size: 12px;     
+    display: block;      
+    height: 18px;       
+    margin-top: 2px;    
+    margin-bottom: 10px; 
+    font-weight: 500;     
+
 }
