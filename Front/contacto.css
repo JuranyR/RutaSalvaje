@@ -1,0 +1,87 @@
+:root {
+    --color-primario: #F9F9F9;
+    --color-secundario: #3A5A40;
+    --color-tercero: #A65D39;
+    --color-cuarto: #212121;
+    --color-quinto: #ff8c00;
+    --color-sexto: #8d847e;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+section #titulo-contacto {
+    color: var(--color-quinto);
+    text-align: left !important;
+}
+
+
+section h3 {
+    color: var(--color-secundario);
+}
+
+.formulario {
+    margin: 50px auto;
+    padding: 30px 20px;
+    background-color: var(--color-primario);
+    border-radius: 10px;
+    border: 1px solid var(--color-secundario);
+    box-shadow: 0 10px 40px rgba(166, 93, 57, 0.20),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.formulario:hover {
+    transform: translateY(-4px);
+}
+
+.formulario form {
+    display: flex;
+    flex-direction: column;
+
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+    color: var(--color-sexto);
+}
+
+button:active {
+    transform: scale(0.85);
+}
+
+#btn-formulario {
+    background-color: var(--color-quinto);
+    font-size: 18px;
+    color: white;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+#btn-formulario:hover {
+    background-color: var(--color-secundario);
+    transform: translateY(-4px);
+}
+
+
+.d-flex a svg {
+    transition: transform 0.2s ease, fill 0.2s ease;
+    cursor: pointer;
+}
+
+.d-flex a:hover svg {
+    transform: scale(1.2);
+    fill: var(--color-secundario)
+}
+
+.error-mensaje {
+    color: #ff0000;     
+    font-size: 12px;     
+    display: block;      
+    height: 18px;       
+    margin-top: 2px;    
+    margin-bottom: 10px; 
+    font-weight: 500;     
+}
