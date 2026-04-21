@@ -1,0 +1,167 @@
+:root {
+    --color-primario: #F9F9F9;
+    --color-secundario: #3A5A40;
+    --color-tercero: #A65D39;
+    --color-cuarto: #212121;
+    --color-quinto: #ff8c00;
+    --color-sexto: #8d847e;
+    --color-septimo: #aca4a4;
+    --color-octavo: rgb(72, 175, 79);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.logo {
+    transition: transform 0.25s ease;
+}
+
+.logo:hover {
+    transform: scale(1.15);
+}
+
+.offcanvas-title {
+    transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.offcanvas-title:hover {
+    color: var(--color-quinto);
+    transform: translateX(2px);
+
+}
+
+.offcanvas{
+    transition: transform 0.3s ease-in-out;
+}
+
+.navbar {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.navbar .btn {
+    padding: 5px 12px;
+    font-size: .82rem;
+}
+
+
+.navbar .nav-link {
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.navbar .nav-link:hover {
+    color: var(--color-quinto);
+    transform: translateY(-1px);
+}
+
+.dropdown-menu .dropdown-item {
+    transition: background-color 0.2s ease, padding-left 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 140, 0, 0.1);
+    color: var(--color-secundario);
+    padding-left: 18px;
+}
+
+
+.form-control {
+    font-size: .82rem;
+    padding: 5px 10px;
+}
+
+.nav-link{
+    display: flex;
+    align-items: center;
+    gap: 10px
+
+}
+
+.nav .nav-link.active {
+    background-color: var(--color-quinto);
+    color: #fff;
+    font-weight: 600;
+}
+
+.btn-panel {
+    background-color: var(--color-quinto);
+    color: var(--color-primario);
+    border-radius: 20px;
+    font-weight: 500;
+    
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+
+}
+
+.btn-panel:hover {
+    background-color: var(--color-secundario);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+
+.btn:hover {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+}
+
+.input-group input{
+    border-radius: 20px;
+}
+
+#btnFormAct {
+    background-color: var(--color-quinto);
+    color: var(--color-primario);
+}
+
+#btnFormAct svg{
+    stroke: #3A5A40; 
+    stroke-width: 2px;
+}
+
+.input-group-text{
+    border-radius: 20px 0 0 20px;
+}
+
+.input-group .btn{
+    border-radius: 10px;
+}
+
+.tabla-actividades{
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.tabla-actividades thead{
+    background-color: #f5f5f5;
+}
+
+.tabla-actividades th{
+    text-align: left;
+    padding: 12px;
+    font-weight: 700;
+    color: var(--color-cuarto)
+}
+
+
+.btn-guardar{
+    background-color: #3A5A40;
+    color: white;
+    border: none;
+    transition: all .2s ease;
+}
+
+.btn-guardar:hover{
+    background-color: var(--color-quinto);
+    color:white;
+    transform: translateY(-2px);
+
+}

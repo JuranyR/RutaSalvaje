@@ -22,7 +22,7 @@ formulario.addEventListener("submit", function(validacion) {
     let sonValidos = true;
 
     if (entradaNombre.value.trim() === "") {
-        errorNombre.textContent = "El campo nombre no puede estar vacio";
+        errorNombre.textContent = "El campo Nombre no puede estar vacio";
         sonValidos = false;
     } else if (/\d/.test(entradaNombre.value.trim())) {
         errorNombre.textContent = "El nombre solo puede contener letras";
