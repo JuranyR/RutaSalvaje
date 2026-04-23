@@ -4,6 +4,7 @@ flatpickr("#btn-reservar", {
     minDate: "today" // Evita que reserven en el pasado
 });
 
-import { mostrarPlanes } from "./panel-de-control";
-
-console.log(mostrarPlanes);
+useEffect(() => {
+  const planes = JSON.parse(localStorage.getItem("planes")) || [];
+  setPlanes(planes);
+}, []);

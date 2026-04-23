@@ -22,7 +22,7 @@ html, body {
 .card-body .card-title {
     color: var(--color-secundario);
     font-weight: bold;
-    text-align: center;
+    text-align: left;
     min-height: 48px;
 }
 
