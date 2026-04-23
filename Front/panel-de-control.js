@@ -30,17 +30,29 @@ categoria.addEventListener("change", () => {
 form.addEventListener("submit", (evento) => {
   evento.preventDefault();
 
+  const fileInput = document.getElementById("imagen");
+  const file = fileInput.files[0];
+
+  if (!file) {
+    alert("Selecciona una imagen");
+    return;
+  }
+
   let categoriaFinal = categoria.value;
 
   if (categoria.value === "nueva") {
     categoriaFinal = document.getElementById("nuevaCategoria").value;
   }
 
+  const reader = new FileReader();
+
+  reader.onload = function () {
+
   const nuevoPlan = {
     id: Date.now(),
     nombre: document.getElementById("nombre").value,
     descripcion: document.getElementById("descripcion").value,
-    imagen: document.getElementById("imagen").value,
+    imagen: reader.result
     categoria: categoriaFinal,
     dificultad: document.getElementById("dificultad").value,
     precio: document.getElementById("precio").value,
@@ -51,6 +63,7 @@ form.addEventListener("submit", (evento) => {
   planes.push(nuevoPlan);
 
   localStorage.setItem("planes", JSON.stringify(planes));
+  alert("¡Plan agregado!");
 
   form.reset();
   formContainer.style.display = "none";
@@ -58,8 +71,9 @@ form.addEventListener("submit", (evento) => {
   mostrarPlanes();
 
 });
-
-function mostrarPlanes() {
+reader.readAsDataURL(file); 
+});
+export function mostrarPlanes() {
 
   lista.innerHTML = "";
 

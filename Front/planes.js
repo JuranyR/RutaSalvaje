@@ -4,3 +4,6 @@ flatpickr("#btn-reservar", {
     minDate: "today" // Evita que reserven en el pasado
 });
 
+import { mostrarPlanes } from "./panel-de-control";
+
+console.log(mostrarPlanes);
