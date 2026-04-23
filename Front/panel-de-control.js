@@ -1,44 +1,142 @@
-const btnMostrarForm = document.getElementById("btnFormAct")
-const formContainer = document.getElementById("formContainer")
-const form = document.getElementById("formActividad")
+const btnMostrarForm = document.getElementById("btnFormAct");
+const formContainer = document.getElementById("formContainer");
+const form = document.getElementById("formActividad");
+const categoria = document.getElementById("categoria");
+const nuevaCategoriaContainer = document.getElementById("nuevaCategoriaContainer");
+const lista = document.getElementById("listaActividades");
 
-const actividades = [];
+let planes = JSON.parse(localStorage.getItem("planes")) || [];
 
-// Mostrar / ocultar formulario
+
 btnMostrarForm.addEventListener("click", () => {
-  formContainer.style.display =
-    formContainer.style.display === "none" ? "block" : "none";
+  if (formContainer.style.display === "none") {
+    formContainer.style.display = "block";
+  } else {
+    formContainer.style.display = "none";
+  }
 });
 
-//Agregar actividad
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
 
-  const nuevaActividad = {
+categoria.addEventListener("change", () => {
+
+  if (categoria.value === "nueva") {
+    nuevaCategoriaContainer.style.display = "block";
+  } else {
+    nuevaCategoriaContainer.style.display = "none";
+  }
+});
+
+
+form.addEventListener("submit", (evento) => {
+  evento.preventDefault();
+
+  let categoriaFinal = categoria.value;
+
+  if (categoria.value === "nueva") {
+    categoriaFinal = document.getElementById("nuevaCategoria").value;
+  }
+
+  const nuevoPlan = {
     id: Date.now(),
     nombre: document.getElementById("nombre").value,
     descripcion: document.getElementById("descripcion").value,
-    categoria: document.getElementById("categoria").value,
+    imagen: document.getElementById("imagen").value,
+    categoria: categoriaFinal,
     dificultad: document.getElementById("dificultad").value,
     precio: document.getElementById("precio").value,
-    estado: document.getElementById("estado").value
+    estado: document.getElementById("estado").value,
+    actividades: document.getElementById("actividades").value.split(",")
   };
 
-  actividades.push(nuevaActividad);
+  planes.push(nuevoPlan);
 
-  console.log(JSON.stringify(actividades, null, 2));
+  localStorage.setItem("planes", JSON.stringify(planes));
 
   form.reset();
   formContainer.style.display = "none";
 
-  mostrarActividad()
+  mostrarPlanes();
 
 });
 
-function mostrarActividad() {
+function mostrarPlanes() {
+
+  lista.innerHTML = "";
+
+  planes.forEach(plan => {
+    
+    let actividades;
+
+    if (plan.actividades) {
+      actividades = plan.actividades.join(", ");
+    } else {
+      actividades = "No especificadas";
+    }
+
+
+      lista.innerHTML += `
+        <div class="col-md-4">
+          <div class="card shadow-sm h-100">
+          <img src="${plan.imagen}">
+            <div class="card-body">
+              <h5>${plan.nombre}</h5>
+              <p>${plan.descripcion}</p>
+              <p><strong>Incluye:</strong> ${actividades}</p>
+              <span class="badge bg-success">${plan.categoria}</span>
+              <br><br>
+              <strong>Dificultad:</strong> ${plan.dificultad}<br><strong>Precio:</strong> $${plan.precio}
+            </div>
+          </div>
+        </div>`;
+    });
+}
+
+mostrarPlanes();
+
+
+
+
+// const btnMostrarForm = document.getElementById("btnFormAct")
+// const formContainer = document.getElementById("formContainer")
+// const form = document.getElementById("formActividad")
+
+// const actividades = [];
+
+// // Mostrar / ocultar formulario
+// btnMostrarForm.addEventListener("click", () => {
+//   formContainer.style.display =
+//     formContainer.style.display === "none" ? "block" : "none";
+// });
+
+// //Agregar actividad
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
+
+//   const nuevaActividad = {
+//     id: Date.now(),
+//     nombre: document.getElementById("nombre").value,
+//     descripcion: document.getElementById("descripcion").value,
+//     categoria: document.getElementById("categoria").value,
+//     dificultad: document.getElementById("dificultad").value,
+//     precio: document.getElementById("precio").value,
+//     estado: document.getElementById("estado").value
+//   };
+
+//   actividades.push(nuevaActividad);
+
+//   console.log(JSON.stringify(actividades, null, 2));
+
+//   form.reset();
+//   formContainer.style.display = "none";
+
+//   mostrarActividad()
+
+// });
+
+// function mostrarActividad() {
 
     
-}
+// }
 
 
 

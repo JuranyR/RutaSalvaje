@@ -143,8 +143,87 @@
             </div>
         </div>
         </div class="card-gestionarAtividades">
+
+        <section class="container px-3 mt-4">
+
+            <h3 class="mb-3">Gestionar Planes</h3>
+
+            <button id="btnFormAct" class="btn mb-3" type="button">Añadir Nuevo Plan</button>
+
+            <div id="formContainer" style="display:none;">
+
+                <form id="formActividad" class="card card-body">
+                    <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <input type="text" id="nombre" class="form-control" placeholder="Nombre del plan" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="text" id="descripcion" class="form-control"placeholder="Descripción del plan" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="text" id="imagen" class="form-control" placeholder="URL imagen del plan" required>
+                    </div>
+
+                    <div class="col-md-6">
+                        <select id="categoria" class="form-select" required>
+                            <option value="">Tipo de plan</option>
+                            <option value="Adrenalina">Plan Adrenalina</option>
+                            <option value="Familiar">Plan Familiar</option>
+                            <option value="Extremo">Plan Extremo</option>
+                            <option value="Romántico">Plan Romántico</option>
+                            <option value="Corporativo">Plan Corporativo</option>
+                            <option value="nueva">+ Nueva categoría</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6" id="nuevaCategoriaContainer" style="display:none;">
+                        <input type="text" id="nuevaCategoria" class="form-control" placeholder="Nueva categoría">
+                    </div>
+
+                    <div class="col-md-6">
+                        <input type="text" id="actividades" class="form-control" placeholder="Actividades incluidas Ej: Rafting, Canopy, Escalada">
+                    </div>
+
+                    <div class="col-md-4">
+                        <select id="dificultad" class="form-select" required>
+                            <option value="">Dificultad</option>
+                            <option value="Baja">Baja</option>
+                            <option value="Media">Media</option>
+                            <option value="Alta">Alta</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="number" id="precio" class="form-control"placeholder="Precio del plan" required>
+                    </div>
+
+                    <div class="col-md-4">
+                        <select id="estado" class="form-select" required>
+                            <option value="">Estado</option>
+                            <option value="Activa">Activa</option>
+                            <option value="Inactiva">Inactiva</option>
+                        </select>
+                    </div>
+
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-guardar">Guardar Plan</button>
+                    </div>
+
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-4">
+                <h5>Planes creados</h5>
+                <div id="listaActividades" class="row g-3"></div>
+            </div>
+
+        </section>
         
-       <section class="container px-3 mt-4">
+       <!-- <section class="container px-3 mt-4">
             <h3 class="mb-3">Gestionar Actividades / Deportes</h3>
 
             <button id="btnFormAct" class="btn mb-3" type="button"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#3A5A40" class="bi bi-plus-lg" viewBox="0 0 16 16">
@@ -161,7 +240,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <input type="text" id="descripcion" class="form-control" placeholder="Descripción" required>
+                            <textarea type="text" id="descripcion" class="form-control" placeholder="Descripción" required></textarea>
                         </div>
 
                         <div class="col-md-4">
@@ -205,7 +284,7 @@
                     </div>
                 </form>
             </div>
-        </section>
+        </section> -->
     </main>
         
         

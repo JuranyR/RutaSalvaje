@@ -1,0 +1,45 @@
+:root {
+    --color-primario: #F9F9F9;
+    --color-secundario: #3A5A40;
+    --color-tercero: #A65D39;
+    --color-cuarto: #212121;
+    --color-quinto: #ff8c00;
+    --color-sexto: #8d847e;
+    --color-septimo: #aca4a4;
+    --color-octavo: rgb(72, 175, 79);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.precio{
+    color: var(--color-quinto);
+    font-weight: bold;
+}
+
+.card-body .card-title {
+    color: var(--color-secundario);
+    font-weight: bold;
+    text-align: center;
+    min-height: 48px;
+}
+
+.planes .card {
+    border: 1px solid var(--color-secundario);
+}
+
+.planes  .card-body .btn-agregar, .modal  .modal-body .btn-agregar {
+    background-color: var(--color-quinto);
+    color: var(--color-primario);
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.planes  .card-body .btn-info {
+    background-color: var(--color-primario);
+    border: 1px solid var(--color-secundario);
+}
