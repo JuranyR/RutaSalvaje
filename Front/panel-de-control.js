@@ -93,11 +93,6 @@ function mostrarPlanes() {
 
 mostrarPlanes();
 
-window.location.href = 'planes.html';
-
-
-
-
 // const btnMostrarForm = document.getElementById("btnFormAct")
 // const formContainer = document.getElementById("formContainer")
 // const form = document.getElementById("formActividad")
