@@ -93,6 +93,8 @@ function mostrarPlanes() {
 
 mostrarPlanes();
 
+window.location.href = 'planes.html';
+
 
 
 

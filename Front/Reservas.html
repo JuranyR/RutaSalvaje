@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel de Control</title>
+    <title>Reservas</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="panel-de-control.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
+   
 </head>
 
 <body>
@@ -142,13 +143,12 @@
                 </ul>
             </div>
         </div>
-        
 
         <section class="container px-3 mt-4">
 
-            <h3 class="mb-3">Gestionar Planes</h3>
+            <h3 class="mb-3">Reservas</h3>
 
-            <button id="btnFormAct" class="btn mb-3" type="button">➕ Añadir Nuevo Plan</button>
+            <button id="btnFormAct" class="btn mb-3" type="button">➕ Añadir Nueva Reserva</button>
 
             <div id="formContainer" style="display:none;">
 
@@ -156,38 +156,35 @@
                     <div class="row g-3">
 
                         <div class="col-md-6">
-                            <input type="text" id="nombre" class="form-control" placeholder="Nombre del plan" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <textarea id="descripcion" class="form-control" placeholder="Descripción del plan"
-                                required></textarea>
-                        </div>
-
-                        <div class="col-md-6">
-                            <input type="text" id="imagen" class="form-control" placeholder="URL imagen del plan"
+                            <input type="text" id="nombre" class="form-control" placeholder="Nombre del Cliente"
                                 required>
                         </div>
+
 
                         <div class="col-md-6">
                             <select id="categoria" class="form-select" required>
                                 <option value="">Tipo de plan</option>
+                                <option value="Ruta Salvaje Signature">Plan Ruta Salvaje Signature</option>
+                                <option value="Desafío Total">Plan Desafío Total</option>
+                                <option value="Explorador de las nubes">Plan Explorador de las nubes</option>
+                                <option value="Ruta del vértigo">Plan Ruta del vértigo</option>
+                                <option value="Agua y roca">Plan Agua y roca</option>
+                                <option value="Travesía del horizonte">Plan Travesía del horizonte</option>
+                                <option value="Caminos colgantes">Plan Caminos colgantes</option>
+                                <option value="Supervivencia extrema">Plan Supervivencia extrema</option>
+                                <option value="Aventura en el bosque">Plan Aventura en el bosque</option>
+                                <option value="El salto del caminante">Plan El salto del caminante</option>
                                 <option value="Adrenalina">Plan Adrenalina</option>
                                 <option value="Familiar">Plan Familiar</option>
                                 <option value="Extremo">Plan Extremo</option>
                                 <option value="Romántico">Plan Romántico</option>
                                 <option value="Corporativo">Plan Corporativo</option>
-                                <option value="nueva">+ Nueva categoría</option>
                             </select>
                         </div>
 
-                        <div class="col-md-6" id="nuevaCategoriaContainer" style="display:none;">
-                            <input type="text" id="nuevaCategoria" class="form-control" placeholder="Nueva categoría">
-                        </div>
-
-                        <div class="col-md-6">
-                            <input type="text" id="actividades" class="form-control"
-                                placeholder="Actividades incluidas Ej: Rafting, Canopy, Escalada">
+                        <div class="col-md-4">
+                            <input type="number" id="personas" class="form-control" placeholder="Cantidad de Personas"
+                                required>
                         </div>
 
                         <div class="col-md-4">
@@ -205,15 +202,11 @@
                         </div>
 
                         <div class="col-md-4">
-                            <select id="estado" class="form-select" required>
-                                <option value="">Estado</option>
-                                <option value="Activa">Activa</option>
-                                <option value="Inactiva">Inactiva</option>
-                            </select>
+                            <input type="date" id="fecha" class="form-control" required>
                         </div>
 
                         <div class="col-12">
-                            <button type="submit" class="btn btn-guardar">Guardar Plan</button>
+                            <button type="submit" class="btn btn-guardar">Guardar Reserva</button>
                         </div>
 
                     </div>
@@ -221,81 +214,19 @@
             </div>
 
             <div class="mt-4">
-                <h5>Planes creados</h5>
-                <div id="listaActividades" class="row g-3"></div>
+                <h5>Lista de Reservas </h5>
+                <div id="listaReservas" class="row g-3"></div>
             </div>
 
         </section>
 
-        <!-- <section class="container px-3 mt-4">
-            <h3 class="mb-3">Gestionar Actividades / Deportes</h3>
-
-            <button id="btnFormAct" class="btn mb-3" type="button"> <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#3A5A40" class="bi bi-plus-lg" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
-                    </svg> Añadir Nueva Actividad</button>
-
-            <div id="formContainer" class="collapse">
-                <form id="formActividad" class="card card-body">
-
-                    <div class="row g-3">
-
-                        <div class="col-md-6">
-                            <input type="text" id="nombre" class="form-control" placeholder="Nombre actividad" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <textarea type="text" id="descripcion" class="form-control" placeholder="Descripción" required></textarea>
-                        </div>
-
-                        <div class="col-md-4">
-                            <select id="categoria" class="form-select" required>
-                                <option value="">Selecciona categoría</option>
-                                <option value="Aire">Aire</option>
-                                <option value="Agua">Agua</option>
-                                <option value="Tierra">Tierra</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-4">
-                            <select id="dificultad" class="form-select" required>
-                                <option value="">Dificultad</option>
-                                <option value="Baja">Baja</option>
-                                <option value="Media">Media</option>
-                                <option value="Alta">Alta</option>
-                            </select>
-                        </div>
-
-                        <div class="col-md-4">
-                            <input type="number" id="precio" class="form-control" placeholder="Precio" required>
-                        </div>
-
-                        <div class="col-md-6">
-                            <select id="estado" class="form-select" required>
-                                <option value="">Estado</option>
-                                <option value="Activa">Activa</option>
-                                <option value="Inactiva">Inactiva</option>
-                            </select>
-                        </div>
-
-                        <div class="col-12">
-                            <button type="submit" class="btn btn-guardar">Guardar</button>
-                        </div>
-
-                        <div id="listaActividades">
-                            
-                        </div>
-
-                    </div>
-                </form>
-            </div>
-        </section> -->
     </main>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
-    <script src="panel-de-control.js"></script>
+    <script src="Reservas.js"></script>
 </body>
 
 </html>
