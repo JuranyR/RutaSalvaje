@@ -64,7 +64,7 @@ form.addEventListener("submit", (evento) => {
     formContainer.style.display = "none";
 
     mostrarPlanes();
-  };
+  }
 
   reader.readAsDataURL(file);
 });
