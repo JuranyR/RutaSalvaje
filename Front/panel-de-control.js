@@ -102,3 +102,4 @@ function mostrarPlanes() {
 }
 
 mostrarPlanes();
+console.log(mostrarPlanes())

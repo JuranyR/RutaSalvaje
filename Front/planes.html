@@ -6,244 +6,224 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Planes</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
   <link rel="stylesheet" href="planes.css">
 </head>
 
 <body>
-  <main id="contenedor" class="planes my-5">
-    <h2 class="text-center fw-bold mb-4" style="color: var(--color-quinto)">
-      Nuestros Planes
-    </h2>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-4 g-4 justify-content-center">
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/Plan-RutaSalvajeSignature.png" class="card-img-top" alt="Colombia" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "Ruta del vértigo"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b> Puente tibetano, Bungee Jumping, Canopy. <br>
-              <b>Ideal para:</b> Superar el miedo a las alturas en un solo día.</p>
-            <p class="card-text"><b>Precio:</b> $310.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/Plan-DesafioTotal.png" class="card-img-top" alt="rio" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "Desafío Total"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b> Canotaje, Bungee Jumping. <br>
-              <b>Ideal para:</b> Adictos a la adrenalina pura que quieran conquistar nuevos retos.</p>
-            <p class="card-text"><b>Precio:</b> $380.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalSalvajeSignature">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/Plan-ExploradordelasNubes.png" class="card-img-top" alt="Colombia" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "Explorador de las nubes"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b> Parapente, Canopy. <br>
-             <b>Ideal para:</b> Quienes aman las alturas y las vistas panorámicas.</p>
-            <p class="card-text"><b>Precio:</b> $420.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/Plan-RutaDelVertigo.png" class="card-img-top" alt="Colombia" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "Ruta del vértigo"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b> Puente tibetano, Bungee Jumping, Canopy. <br>
-              <b>Ideal para:</b> Superar el miedo a las alturas en un solo día.</p>
-            <p class="card-text"><b>Precio:</b> $310.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/Plan-AguayRoca.png" class="card-img-top" alt="Colombia" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "Agua y roca"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b> Canotaje, Torrentismo, Nado en río, Exploración de cascadas. <br>
-              <b>Ideal para:</b> Quienes quieran refrescarse y sentir la fuerza del río en una aventura líquida, emocionante y segura.</p>
-            <p class="card-text"><b>Precio:</b> $290.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/Plan-TravesiaDelHorizonte.png" class="card-img-top" alt="Colombia" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "Travesía del horizonte"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b> Senderismo de alta montaña, Camping, Parapente, Avistamiento de fauna. <br>
-              <b>Ideal para:</b> Toda una jornada de conquista, comienza con una caminata intensa que termina con un vuelo relajante.</p>
-            <p class="card-text"><b>Precio:</b> $460.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/Plan-CaminosColgantes.png" class="card-img-top" alt="Colombia" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "Caminos colgantes"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b> Senderos en altura, Cruce de puentes colgantes, Circuito de equilibrio, Exploración de zonas elevadas. <br>
-              <b>Ideal para:</b> Familias que buscan aventura pero con seguridad. </p>
-            <p class="card-text"><b>Precio:</b> $160.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/Plan-SupervivenciaExtrema.png" class="card-img-top" alt="Colombia" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "Supervivencia extrema"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b> Supervivencia básica, Construcción de refugios, Senderismo, Orientación con brújula. <br>
-               <b>Ideal para:</b> Un día completo de expedición en el río y la montaña.</p>
-            <p class="card-text"><b>Precio:</b> $340.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/Plan-AventuraEnElBosque.png" class="card-img-top" alt="Colombia" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "Aventura en el bosque"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b> Caminatas ecológicas, Exploración de flora, Juegos de aventura. <br>
-              <b>Ideal para:</b> Grupos de amigos que quieren diversión rápida en los árboles.</p>
-            <p class="card-text"><b>Precio:</b> $195.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="./imagenes/planes/plan-tsignature.jpg" class="card-img-top" alt="Colombia" />
-          <div class="card-body d-flex flex-column">
-            <h5 class="card-title">Plan "El salto del caminante"</h5>
-            <p class="card-text descripcion"><b>Actividades:</b>  Trekking de montaña, Ascenso a miradores, Bungee Jumping, Descenso por rappel. <br>
-              <b>Ideal para:</b>Caminar por la naturaleza y cerrar con un salto épico.</p>
-            <p class="card-text"><b>Precio:</b> $245.000</p>
-            <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar">
-                📅 Reservar
-              </button>
-              <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
-                ℹ️ Ver más
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-  </main>
+  <main>
+    <!-- <div="contenedor" class="planes my-5"> -->
+    <div id="contenedorPlanes" class="row">
 
-<!-- MODALES -->
-
-<div class="modal fade" id="modalSalvajeSignature" tabindex="-1">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div class="modal-header border-0">
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <div class="row">
-              <img
-                src="./imagenes/planes/plan-tsignature.jpg"
-                class="img-fluid rounded mb-3 col-12 col-lg-6 w-lg-50"
-                alt="rio"
-              />
-              <div class="col-12 col-lg-6">
-                <h4 class="fw-bold">Plan "Ruta Salvaje Signature"</h4>
-                <p id="descripcion" name="descripcion">Nuestra experiencia más completa y premiada. Una combinación técnica que incluye descenso por cuerda en agua, vuelo sobre el cañón y cruce de puentes de alta suspensión. ¡El paquete total!</p>
-                <button class="btn btn-agregar" id="btn-reservar">
-                📅 Reservar
-              </button>
+      <h2 class="text-center fw-bold mb-4" style="color: var(--color-quinto)">
+        Nuestros Planes
+      </h2>
+      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-4 g-4 justify-content-center">
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/plan-tsignature.jpg" class="card-img-top" alt="Colombia" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "Ruta del vértigo"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Puente tibetano, Bungee Jumping, Canopy. <br>
+                <b>Ideal para:</b> Superar el miedo a las alturas en un solo día.
+              </p>
+              <p class="card-text"><b>Precio:</b> $310.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
+                  ℹ️ Ver más
+                </button>
               </div>
             </div>
-            <hr />
-            <div class="d-flex justify-content-around align-items-center">
-              <div>
-                <p class="mb-0 text-muted">Precio:</p>
-                <h4 class="fw-bold precio">$ 280.000</h4>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/plan-desafio.jpg" class="card-img-top" alt="rio" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "Desafío Total"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Canotaje, Bungee Jumping. <br>
+                <b>Ideal para:</b> Adictos a la adrenalina pura que quieran conquistar nuevos retos.
+              </p>
+              <p class="card-text"><b>Precio:</b> $380.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalSalvajeSignature">
+                  ℹ️ Ver más
+                </button>
               </div>
-              <div class="text-end">
-                <p class="text-warning mb-0">⭐⭐⭐⭐ 4.5/5</p>
-                <small class="text-decoration-underline">20 opiniones</small>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/plan-vertigo.jpg" class="card-img-top" alt="Colombia" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "Explorador de las nubes"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Parapente, Canopy. <br>
+                <b>Ideal para:</b> Quienes aman las alturas y las vistas panorámicas.
+              </p>
+              <p class="card-text"><b>Precio:</b> $420.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
+                  ℹ️ Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/Plan-RutaDelVertigo.png" class="card-img-top" alt="Colombia" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "Ruta del vértigo"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Puente tibetano, Bungee Jumping, Canopy. <br>
+                <b>Ideal para:</b> Superar el miedo a las alturas en un solo día.
+              </p>
+              <p class="card-text"><b>Precio:</b> $310.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
+                  ℹ️ Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/Plan-AguayRoca.png" class="card-img-top" alt="Colombia" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "Agua y roca"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Canotaje, Torrentismo, Nado en río, Exploración de
+                cascadas. <br>
+                <b>Ideal para:</b> Quienes quieran refrescarse y sentir la fuerza del río en una aventura líquida,
+                emocionante y segura.
+              </p>
+              <p class="card-text"><b>Precio:</b> $290.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
+                  ℹ️ Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/Plan-TravesiaDelHorizonte.png" class="card-img-top" alt="Colombia" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "Travesía del horizonte"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Senderismo de alta montaña, Camping, Parapente,
+                Avistamiento de fauna. <br>
+                <b>Ideal para:</b> Toda una jornada de conquista, comienza con una caminata intensa que termina con un
+                vuelo relajante.
+              </p>
+              <p class="card-text"><b>Precio:</b> $460.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
+                  ℹ️ Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/Plan-CaminosColgantes.png" class="card-img-top" alt="Colombia" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "Caminos colgantes"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Senderos en altura, Cruce de puentes colgantes,
+                Circuito de equilibrio, Exploración de zonas elevadas. <br>
+                <b>Ideal para:</b> Familias que buscan aventura pero con seguridad.
+              </p>
+              <p class="card-text"><b>Precio:</b> $160.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
+                  ℹ️ Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/Plan-SupervivenciaExtrema.png" class="card-img-top" alt="Colombia" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "Supervivencia extrema"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Supervivencia básica, Construcción de refugios,
+                Senderismo, Orientación con brújula. <br>
+                <b>Ideal para:</b> Un día completo de expedición en el río y la montaña.
+              </p>
+              <p class="card-text"><b>Precio:</b> $340.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
+                  ℹ️ Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/Plan-AventuraEnElBosque.png" class="card-img-top" alt="Colombia" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "Aventura en el bosque"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Caminatas ecológicas, Exploración de flora, Juegos de
+                aventura. <br>
+                <b>Ideal para:</b> Grupos de amigos que quieren diversión rápida en los árboles.
+              </p>
+              <p class="card-text"><b>Precio:</b> $195.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
+                  ℹ️ Ver más
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100">
+            <img src="./imagenes/planes/plan-tsignature.jpg" class="card-img-top" alt="Colombia" />
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Plan "El salto del caminante"</h5>
+              <p class="card-text descripcion"><b>Actividades:</b> Trekking de montaña, Ascenso a miradores, Bungee
+                Jumping, Descenso por rappel. <br>
+                <b>Ideal para:</b>Caminar por la naturaleza y cerrar con un salto épico.
+              </p>
+              <p class="card-text"><b>Precio:</b> $245.000</p>
+              <div class="mt-auto">
+                <button class="btn btn-agregar btn-reservar">
+                  📅 Reservar
+                </button>
+                <button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#modalColombia">
+                  ℹ️ Ver más
+                </button>
               </div>
             </div>
           </div>
@@ -251,7 +231,49 @@
       </div>
     </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+  </main>
+
+  <!-- MODALES -->
+
+  <div class="modal fade" id="modalSalvajeSignature" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header border-0">
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <img src="./imagenes/planes/plan-tsignature.jpg" class="img-fluid rounded mb-3 col-12 col-lg-6 w-lg-50"
+              alt="rio" />
+            <div class="col-12 col-lg-6">
+              <h4 class="fw-bold">Plan "Ruta Salvaje Signature"</h4>
+              <p id="descripcion" name="descripcion">Nuestra experiencia más completa y premiada. Una combinación
+                técnica que incluye descenso por cuerda en agua, vuelo sobre el cañón y cruce de puentes de alta
+                suspensión. ¡El paquete total!</p>
+              <button class="btn btn-agregar" id="btn-reservar">
+                📅 Reservar
+              </button>
+            </div>
+          </div>
+          <hr />
+          <div class="d-flex justify-content-around align-items-center">
+            <div>
+              <p class="mb-0 text-muted">Precio:</p>
+              <h4 class="fw-bold precio">$ 280.000</h4>
+            </div>
+            <div class="text-end">
+              <p class="text-warning mb-0">⭐⭐⭐⭐ 4.5/5</p>
+              <small class="text-decoration-underline">20 opiniones</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="planes.js"></script>
   <script src="app.js"></script>
