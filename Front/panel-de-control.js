@@ -5,8 +5,8 @@ const categoria = document.getElementById("categoria");
 const nuevaCategoriaContainer = document.getElementById("nuevaCategoriaContainer");
 const lista = document.getElementById("listaActividades");
 
-let planes = JSON.parse(localStorage.getItem("planes")) || [];
-
+const planes = JSON.parse(localStorage.getItem("planes")) || [];
+let editarPlan = null;
 
 btnMostrarForm.addEventListener("click", () => {
   if (formContainer.style.display === "none") {
@@ -55,10 +55,22 @@ form.addEventListener("submit", (evento) => {
       actividades: document.getElementById("actividades").value.split(",")
     };
 
-    planes.push(nuevoPlan);
+    if (editarPlan) {
+
+      const index = planes.findIndex(p => p.id === editarPlan);
+      planes[index] = nuevoPlan;
+      editarPlan = null;
+
+      alert("Plan actualizado");
+
+    } else {
+
+      planes.push(nuevoPlan);
+      alert("Plan agregado");
+
+    }
 
     localStorage.setItem("planes", JSON.stringify(planes));
-    alert("¡Plan agregado!");
 
     form.reset();
     formContainer.style.display = "none";
@@ -68,6 +80,7 @@ form.addEventListener("submit", (evento) => {
 
   reader.readAsDataURL(file);
 });
+
 
 function mostrarPlanes() {
 
@@ -94,12 +107,48 @@ function mostrarPlanes() {
               <p><strong>Incluye:</strong> ${actividades}</p>
               <span class="badge bg-success">${plan.categoria}</span>
               <br><br>
-              <strong>Dificultad:</strong> ${plan.dificultad}<br><strong>Precio:</strong> $${plan.precio}
+              <strong>Dificultad:</strong> ${plan.dificultad}<br>
+              <strong>Precio:</strong> $${plan.precio}
+              <hr>
+              <button class="btn btn-warning btn-sm"onclick="editandoPlan(${plan.id})">Editar</button>
+              <button class="btn btn-danger btn-sm"onclick="eliminarPlan(${plan.id})">Eliminar</button>
             </div>
           </div>
         </div>`;
     });
 }
 
+
+function eliminarPlan(id) {
+
+  const confirmar = confirm("¿Eliminar este plan?");
+  if (!confirmar) return;
+
+  const index = planes.findIndex(p => p.id === id);
+
+  planes.splice(index, 1);
+
+  localStorage.setItem("planes", JSON.stringify(planes));
+
+  mostrarPlanes();
+}
+
+
+function editandoPlan(id) {
+
+  const plan = planes.find(p => p.id === id);
+
+  document.getElementById("nombre").value = plan.nombre;
+  document.getElementById("descripcion").value = plan.descripcion;
+  document.getElementById("precio").value = plan.precio;
+  document.getElementById("categoria").value = plan.categoria;
+  document.getElementById("dificultad").value = plan.dificultad;
+  document.getElementById("estado").value = plan.estado;
+  document.getElementById("actividades").value = plan.actividades.join(",");
+
+  formContainer.style.display = "block";
+
+  editarPlan = id;
+}
+
 mostrarPlanes();
-console.log(mostrarPlanes())

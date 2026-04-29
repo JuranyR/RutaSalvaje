@@ -43,3 +43,6 @@ html, body {
     background-color: var(--color-primario);
     border: 1px solid var(--color-secundario);
 }
+main {
+  padding-top: 80px;
+}
