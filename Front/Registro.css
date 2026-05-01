@@ -1,0 +1,119 @@
+:root {
+    --color-primario: #F9F9F9;
+    --color-secundario: #3A5A40;
+    --color-tercero: #A65D39;
+    --color-cuarto: #212121;
+    --color-quinto: #ff8c00;
+    --color-sexto: #8d847e;
+    --color-septimo: #aca4a4;
+    --color-octavo: rgb(72, 175, 79);
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+.contacto-titulo{
+    color: var(--color-cuarto);
+    font-weight: bold;
+}
+
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    
+}
+
+main {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('./imagenes/registro.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+#form {
+    background-color: rgba(243, 243, 243, 0.4);
+    border: 3px solid var(--color-quinto);
+    margin: 60px;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+.form-control{
+    border-radius: 10px;
+}
+
+.btn-primary{
+    background-color: var(--color-secundario)!important;
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+}
+
+.error-mensaje{
+    color: #ee0b0b;
+    font-size: 0.9rem;
+}
+
+.alert{
+    border-radius: 10px;
+}
+
+.formulario{
+    animation: aparecer 0.8s ease;
+}
+
+.formulario h5{
+    color: var(--color-cuarto);
+    font-weight: 700;
+    margin-top: 20px;
+    padding-left: 10px;
+}
+
+.btn-registro {
+    border: none;
+    background-color: var(--color-secundario)!important;
+}
+
+.btn-registro:hover{
+    background-color: var(--color-quinto) !important;
+}
+
+input:valid{
+    border: 2px solid green;
+}
+
+input:valid:focus{
+    border: 2px solid red;
+}
+
+.btn.btn-outline-secondary {
+    background-color: white;
+    border: none;
+}
+
+.btn.btn-outline-secondary:hover{
+    background-color: white;
+}
+
+#togglePassword i, #togglePassword2 i {
+    color: #007bff;
+    font-size: 1.2rem; 
+}
+
+#togglePassword:hover i, #togglePassword2:hover i {
+    color: #0056b3;
+}
+
+#togglePassword, #togglePassword2 {
+    display: none !important; 
+}
+
+#togglePassword.mostrar, #togglePassword2.mostrar {
+    display: flex !important;
+}
+
+
+
+
+
