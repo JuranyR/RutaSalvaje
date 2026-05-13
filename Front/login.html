@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio de Sesión</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <main class="container min-vh-100 d-flex align-items-center justify-content-center">
+        <section class="card shadow-sm p-4" style="max-width: 400px; width: 100%;">
+            
+            <header class="text-center mb-4">
+                <h2 class="h3">Iniciar Sesión</h2>
+                <p class="text-muted">Ingresa tus credenciales para continuar</p>
+            </header>
+
+            <form id="loginForm" novalidate>
+                
+                <div class="mb-3">
+                    <label for="loginCorreo" class="form-label">Correo electrónico</label>
+                    <input type="email" class="form-control" id="loginCorreo" required>
+                    <div id="errorLoginCorreo" class="text-danger small mt-1"></div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="loginPassword" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="loginPassword" required>
+                    <div id="errorLoginPassword" class="text-danger small mt-1"></div>
+                </div>
+
+                <div id="alertaError" class="alert alert-danger d-none text-center py-2" role="alert">Usuario o contraseña incorrectos</div>
+
+                <div id="alertaExito" class="alert alert-success d-none text-center py-2" role="alert"></div>
+
+                <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+
+                <div class="text-center mt-3">
+                    <small>¿No tienes cuenta? <a href="registro.html">Regístrate</a></small>
+                </div>
+
+            </form>
+        </section>
+    </main>
+
+    <script src="login.js"></script>
+</body>
+</html>
