@@ -40,6 +40,14 @@ body {
     padding: 8px !important;
 }
 
+#form .form-control {
+    background-color: #F0F4F1 !important;
+}
+
+#form .form-control:focus {
+    background-color: #FFF4EB !important; 
+}
+
 #registro .form-control {
     height: calc(2rem + 2px) !important; 
     min-height: calc(2rem + 2px) !important;
