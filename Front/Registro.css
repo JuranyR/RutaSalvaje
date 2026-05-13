@@ -15,8 +15,9 @@ html, body {
 }
 
 .contacto-titulo{
-    color: var(--color-cuarto);
+    color: var(--color-secundario);
     font-weight: bold;
+    font-size: 22px;
 }
 
 
@@ -25,23 +26,47 @@ body {
     
 }
 
-main {
-    background-image: url('./imagenes/registro.jpg');
-    background-size: cover;
-    background-position: center;
-    background-color: rgb(0, 0, 0, 0.7);
-    background-blend-mode: darken;
-}
-
 #form {
-    background-color: rgba(243, 243, 243, 0.4);
-    margin: 60px;
-    padding: 30px;
+    align-self: baseline;
+    background-color: rgb(0, 0, 0, 0.1);
+    margin: 40px auto;
+    padding: 20px;
     border-radius: 15px;
+    max-width: 500px;
 }
 
 .form-control{
     border-radius: 10px;
+    padding: 8px !important;
+}
+
+#registro .form-control {
+    height: calc(2rem + 2px) !important; 
+    min-height: calc(2rem + 2px) !important;
+    padding-top: 1.2rem !important; 
+    padding-bottom: 0.4rem !important;
+    font-size: 12px;
+    line-height: 1;
+}
+
+#registro .form-floating > label {
+    padding: 5px;
+    font-size: 12px;
+}
+
+#registro .form-floating > .form-control:focus ~ label,
+#registro .form-floating > .form-control:not(:placeholder-shown) ~ label {
+    transform: scale(0.85) translateY(-0.35rem) translateX(0.15rem);
+}
+
+#registro .form-floating>.form-control:not(:placeholder-shown)~label::after {
+    height: 0.5em;
+}
+
+#registro .form-control:focus {
+    outline: none !important; 
+    box-shadow: none !important;
+    border-color: #ced4da; 
 }
 
 .btn-primary{
@@ -65,8 +90,9 @@ main {
 }
 
 .formulario h5{
-    color: var(--color-cuarto);
+    color: var(--color-secundario);
     font-weight: 700;
+    font-size: 18px;
     margin-top: 20px;
     padding-left: 10px;
 }
@@ -78,6 +104,35 @@ main {
 
 .btn-registro:hover{
     background-color: var(--color-quinto) !important;
+}
+
+
+#image {
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+    align-items: flex-end;
+}
+
+#image::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(46, 38, 38, 0.85) 0%, rgba(31, 21, 21, 0.3) 50%, transparent 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+.img-registro {
+    width: 100%;
+    height: 100%;
+    max-height: 100vh;
+    object-fit: cover;
+    display: block;
+    z-index: 0;
 }
 
 input:valid{
