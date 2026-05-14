@@ -38,7 +38,7 @@ loginForm.addEventListener("submit", function (evento) {
             alertaExito.classList.remove("d-none");
 
             setTimeout(function () {
-                window.location.href = "index.html"; 
+                window.location.href = "inicio.html"; 
             }, 1500);
 
         } else {
