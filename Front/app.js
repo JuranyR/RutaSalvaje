@@ -46,8 +46,12 @@ function agregarColorLink() {
   })
 }
 
+function haySesion() {
+  return JSON.parse(localStorage.getItem("sesionActiva"));
+}
+
 function verificarSesion(type) {
-  const sesionActiva = JSON.parse(localStorage.getItem("sesionActiva"));
+  const sesionActiva = haySesion();
 
   if(type === 'nav') {
     const planes = document.getElementById("planes");

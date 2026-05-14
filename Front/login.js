@@ -5,8 +5,9 @@ const inputPassword = document.getElementById("loginPassword");
 const alertaError = document.getElementById("alertaError");
 const alertaExito = document.getElementById("alertaExito");
 const loginForm = document.getElementById("loginForm");
+const togglePassword = document.getElementById("togglePassword");
 
-let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 
 loginForm.addEventListener("submit", function (evento) {
 
@@ -30,20 +31,46 @@ loginForm.addEventListener("submit", function (evento) {
     }
 
     if (esValido) {
-        const usuarioEncontrado = usuarios.find(user => user.correo === inputCorreo.value.trim() && user.password === inputPassword.value.trim());
+        const correo = inputCorreo.value.trim();
+        const password = inputPassword.value.trim();
+
+        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+
+        const usuarioEncontrado = usuarios.find(user => user.correo.toLowerCase() === correo.toLowerCase() && user.password === password
+        );
 
         if (usuarioEncontrado) {
             localStorage.setItem("sesionActiva", JSON.stringify(usuarioEncontrado));
-            
+
             alertaExito.classList.remove("d-none");
 
             setTimeout(function () {
-                window.location.href = "inicio.html"; 
+                window.location.href = "inicio.html";
             }, 1500);
 
         } else {
             alertaError.classList.remove("d-none");
             alertaError.textContent = "Correo o contraseña incorrectos";
         }
+    }
+});
+
+togglePassword.addEventListener("click", function () {
+
+    const tipo = inputPassword.getAttribute("type");
+
+    if (tipo === "password") {
+
+        inputPassword.setAttribute("type", "text");
+
+        togglePassword.classList.remove("bi-eye-slash");
+        togglePassword.classList.add("bi-eye");
+
+    } else {
+
+        inputPassword.setAttribute("type", "password");
+
+        togglePassword.classList.remove("bi-eye");
+        togglePassword.classList.add("bi-eye-slash");
     }
 });

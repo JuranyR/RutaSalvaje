@@ -12,6 +12,8 @@
 html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    overflow-x: hidden;
 }
 
 .contacto-titulo{
@@ -32,6 +34,7 @@ body {
     margin: 40px auto;
     padding: 20px;
     border-radius: 15px;
+    width: 100%;
     max-width: 500px;
 }
 
@@ -147,12 +150,31 @@ input:valid{
     border: 2px solid green;
 }
 
-input:valid:focus{
+input:invalid:focus{
     border: 2px solid red;
 }
 
+.cursor-pointer{
+    cursor: pointer;
+}
 
+.texto-ayuda{
+    font-size: 12px;
+    color: var(--color-tercero);
+    margin-bottom: 10px;
+    padding-top: 5px;
+    padding-left: 5px;
+}
 
-
-
+/*Activar la animación*/
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 

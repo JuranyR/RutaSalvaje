@@ -15,7 +15,6 @@ html, body {
     box-sizing: border-box;
 }
 
-
 body {
     font-family: 'Montserrat', sans-serif;
     
@@ -34,7 +33,6 @@ body {
     background-color: #FFF4EB !important; 
 }
 
-
 .btn-primary{
     background-color: var(--color-secundario)!important;
     border: none;
@@ -50,11 +48,6 @@ body {
 
 .alert{
     border-radius: 10px;
-}
-
-.btn-registro {
-    border: none;
-    background-color: var(--color-secundario)!important;
 }
 
 .btn-ingreso:hover{
@@ -77,6 +70,10 @@ input:valid{
     border: 2px solid green;
 }
 
-input:valid:focus{
+input:invalid:focus{
     border: 2px solid red;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }
