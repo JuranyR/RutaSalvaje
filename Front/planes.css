@@ -26,24 +26,30 @@ html, body {
     min-height: 48px;
 }
 
-.planes .card {
-    border: 1px solid var(--color-secundario);
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--color-secundario); 
 }
 
-.planes  .card-body .btn-agregar, .modal  .modal-body .btn-agregar {
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.card-body .btn-agregar, .modal .modal-body .btn-agregar {
     background-color: var(--color-quinto);
     color: var(--color-primario);
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
-    
 }
 
-.planes  .card-body .btn-info {
+.card-body .btn-info {
     background-color: var(--color-primario);
     border: 1px solid var(--color-secundario);
 }
+
 main {
   padding-top: 80px;
 }

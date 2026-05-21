@@ -12,7 +12,6 @@ footer {
     border-top: 5px solid #ff8c00;
 }
 
-
 footer h5 {
     color: #ff8c00; 
     text-transform: uppercase;
@@ -25,12 +24,15 @@ footer ul {
     margin: 0;
 }
 
+/* RETOQUE: Ajustamos tamaño y peso para que la navegación se vea fina */
 footer ul li {
     list-style: none;
     margin-bottom: 6px;
     transition: 0.3s;
     cursor: pointer;
     text-align: center;
+    font-size: 0.9rem;       /* Un pelín más pequeño */
+    font-weight: 300;       /* Más delgado y estilizado */
 }
 
 footer ul li:hover {
@@ -47,11 +49,13 @@ footer i:hover {
     color: #ff8c00;
 }
 
+/* RETOQUE: Reducimos un toque el tamaño del texto descriptivo */
 footer p {
     color: #d1d1d1;
     line-height: 1.6;
+    font-size: 0.9rem;       /* Equilibra el tamaño con la lista */
+    font-weight: 300;       /* Hace que el título resalte más por jerarquía */
 }
-
 
 footer hr {
     background-color: #ff8c00;
@@ -59,15 +63,14 @@ footer hr {
     margin: 2rem 0 1.5rem 0;
 }
 
-
+/* RETOQUE: El copyright más discreto abajo */
 footer small {
     color: #adb5bd;
     font-weight: 300;
+    font-size: 0.8rem;       /* Un toque más compacto abajo */
 }
-
 
 footer i {
     color: #ff8c00;
     margin-right: 10px;
 }
-

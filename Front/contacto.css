@@ -1,70 +1,55 @@
 :root {
-    --color-primario: #F9F9F9;
+    --color-primario:   #F9F9F9;
     --color-secundario: #3A5A40;
-    --color-tercero: #A65D39;
-    --color-cuarto: #212121;
-    --color-quinto: #ff8c00;
-    --color-sexto: #8d847e;
+    --color-tercero:    #A65D39;
+    --color-cuarto:     #212121;
+    --color-quinto:     #ff8c00;
+    --color-sexto:      #8d847e;
+    --gris-borde:       #ddd;
 }
 
 body {
     font-family: 'Montserrat', sans-serif;
+    background-color: var(--color-primario);
 }
 
 section #titulo-contacto {
     color: var(--color-quinto);
-    text-align: left !important;
+    text-align: left;
+    font-size: 1.4rem;
+    letter-spacing: 0.03em;
+    margin-bottom: 28px;
 }
 
-
-section h3 {
+section h3.contacto-titulo {
     color: var(--color-secundario);
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    font-weight: 700;
 }
 
-.formulario {
-    margin: 50px auto;
-    padding: 30px 20px;
-    background-color: var(--color-primario);
-    border-radius: 10px;
-    border: 1px solid var(--color-secundario);
-    box-shadow: 0 10px 40px rgba(166, 93, 57, 0.20),
-        0 2px 8px rgba(0, 0, 0, 0.08);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+.d-flex.gap-2 h4 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-cuarto);
+    margin: 0;
+    align-self: center;
 }
 
-.formulario:hover {
-    transform: translateY(-4px);
-}
-
-.formulario form {
-    display: flex;
-    flex-direction: column;
-
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 14px;
+.mb-4 p {
+    font-size: 0.88rem;
     color: var(--color-sexto);
+    line-height: 1.6;
 }
 
-button:active {
-    transform: scale(0.85);
+.mb-4 h4.mt-5 {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: var(--color-cuarto);
+    margin-bottom: 0;
 }
-
-#btn-formulario {
-    background-color: var(--color-quinto);
-    font-size: 18px;
-    color: white;
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-#btn-formulario:hover {
-    background-color: var(--color-secundario);
-    transform: translateY(-4px);
-}
-
 
 .d-flex a svg {
     transition: transform 0.2s ease, fill 0.2s ease;
@@ -73,16 +58,87 @@ button:active {
 
 .d-flex a:hover svg {
     transform: scale(1.2);
-    fill: var(--color-secundario)
+    fill: var(--color-secundario);
+}
+
+.formulario {
+    margin: 40px auto;
+    padding: 32px 28px;
+    background-color: #fff;
+    border-radius: 10px;
+    border: 1px solid var(--gris-borde);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.formulario:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+}
+
+.formulario form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-floating .form-control {
+    border: 1px solid var(--gris-borde);
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    background: #fafafa;
+    transition: border-color 0.2s, background 0.2s;
+}
+
+.form-floating .form-control:focus {
+    border-color: var(--color-quinto);
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(255,140,0,0.10);
+}
+
+.form-floating label {
+    font-size: 0.85rem;
+    color: var(--color-sexto);
+    margin-bottom: 0;
+}
+
+.form-floating textarea.form-control {
+    resize: none;
 }
 
 .error-mensaje {
-    color: #ff0000;     
-    font-size: 12px;     
-    display: block;      
-    height: 18px;       
-    margin-top: 2px;    
-    margin-bottom: 10px; 
-    font-weight: 500;     
+    color: #c0392b;
+    font-size: 0.75rem;
+    display: block;
+    height: 18px;
+    margin-top: 2px;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
 
+#alertaExito {
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+#btn-formulario {
+    background-color: var(--color-quinto);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#btn-formulario:hover {
+    background-color: var(--color-secundario);
+    transform: translateY(-2px);
+}
+
+#btn-formulario:active {
+    transform: scale(0.96);
 }

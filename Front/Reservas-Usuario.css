@@ -1,40 +1,255 @@
+
 :root {
-    --color-primario: #F9F9F9;
-    --color-secundario: #3A5A40;
-    --color-tercero: #A65D39;
-    --color-cuarto: #212121;
-    --color-quinto: #ff8c00;
-    --color-sexto: #8d847e;
-    --color-septimo: #aca4a4;
-    --color-octavo: rgb(72, 175, 79);
+  --verde:       #3A5A40;
+  --verde-oscuro:#2e4732;
+  --naranja:     #F97316;
+  --fondo:       #F5F5F0;
+  --blanco:      #ffffff;
+  --gris-claro:  #f0f0ec;
+  --gris-texto:  #6b6b6b;
+  --gris-borde:  #ddd;
+  --negro:       #212121;
 }
 
+* { box-sizing: border-box; }
+
 html, body {
-    margin: 0;
-    padding: 0;
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--fondo);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-h2 {
-    color: var(--color-quinto);
+#navbar    { flex-shrink: 0; }
+.page-wrapper { flex: 1 0 auto; }
+#footer    { flex-shrink: 0; margin-top: auto; }
+
+.carrito-main {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 40px 24px 48px;
 }
 
-.contenedor {
-    display: flex;
-    flex-direction: column;
-    align-items: end;
-    justify-content: start;
-    min-height: 100vh;
-    padding-right: 50px;
+.carrito-titulo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--naranja);
+  margin: 0 0 4px;
+  text-align: left;
 }
 
-h3 {
-    color: var(--color-quinto);
+.carrito-subtitulo {
+  color: var(--gris-texto);
+  font-size: 0.85rem;
+  margin: 0 0 24px;
+  text-align: left;
 }
 
-btn {
-  background-color: var(--color-secundario);  
+.alerta-inline {
+  display: none;
+  padding: 10px 16px;
+  border-radius: 7px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+.alerta-inline.ok    { background:#e6f4ea; color:#2d6a4f; border:1px solid #b7dfc8; }
+.alerta-inline.error { background:#fdecea; color:#c0392b; border:1px solid #f5c6c2; }
+.alerta-inline.visible { display: block; }
+
+.carrito-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 20px;
+  align-items: start;
+}
+
+.carrito-lista-col {
+  background: var(--blanco);
+  border-radius: 10px;
+  border: 1px solid var(--gris-borde);
+  overflow: hidden;
+}
+
+.tabla-header {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  background: var(--gris-claro);
+  border-bottom: 1px solid var(--gris-borde);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--gris-texto);
+}
+
+.th-reserva { flex: 3; }
+.th-dato    { flex: 1; text-align: center; }
+
+#lista-reservas {
+  padding: 8px 20px;
+  min-height: 90px;
+}
+
+#lista-reservas .item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--gris-claro);
+}
+#lista-reservas .item:last-child { border-bottom: none; }
+
+#lista-reservas .item img {
+  width: 68px;
+  height: 68px;
+  object-fit: cover;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+#lista-reservas .item .plan-info { flex: 2; }
+#lista-reservas .item .plan-info p {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--negro);
+  margin: 0;
+}
+
+#lista-reservas .item .celda {
+  flex: 1;
+  text-align: center;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--negro);
+}
+
+#lista-reservas .texto-vacio {
+  color: #aaa;
+  font-size: 0.88rem;
+  padding: 24px 0;
+}
+
+.carrito-resumen-col {
+  position: sticky;
+  top: 24px;
+}
+
+.resumen-card {
+  background: var(--blanco);
+  border-radius: 10px;
+  border: 1px solid var(--gris-borde);
+  padding: 20px;
+}
+
+.campo-grupo { margin-bottom: 14px; }
+
+.campo-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--gris-texto);
+  margin-bottom: 5px;
+}
+
+.campo-input {
+  width: 100%;
+  border: 1px solid var(--gris-borde);
+  border-radius: 7px;
+  padding: 9px 12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--negro);
+  background: #fafafa;
+  transition: border-color 0.2s;
+}
+.campo-input:focus { outline: none; border-color: var(--naranja); background: var(--blanco); }
+
+.personas-control { display: flex; align-items: center; gap: 8px; }
+
+.personas-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 7px;
+  border: 1px solid var(--gris-borde);
+  background: var(--gris-claro);
+  color: var(--negro);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.personas-btn:hover { background: var(--gris-borde); }
+
+.personas-input { flex: 1; text-align: center; }
+.personas-input::-webkit-inner-spin-button,
+.personas-input::-webkit-outer-spin-button { -webkit-appearance: none; }
+.personas-input { -moz-appearance: textfield; }
+
+.resumen-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-top: 1px solid var(--gris-borde);
+  margin: 16px 0 14px;
+  padding-top: 14px;
+}
+.resumen-total span:first-child { font-size: 0.85rem; font-weight: 600; color: var(--gris-texto); }
+.total-monto { font-size: 1.3rem; font-weight: 700; color: var(--negro); }
+
+.resumen-acciones { display: flex; flex-direction: column; gap: 8px; }
+
+.btn-confirmar {
+  width: 100%;
+  padding: 12px;
+  background: var(--verde);
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-confirmar:hover  { background: var(--verde-oscuro); }
+.btn-confirmar:active { opacity: 0.85; }
+
+.btn-vaciar {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  color: var(--gris-texto);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  border: 1px solid var(--gris-borde);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.btn-vaciar:hover { border-color: #999; color: var(--negro); }
+
+@media (max-width: 900px) {
+  .carrito-grid { grid-template-columns: 1fr; }
+  .carrito-resumen-col { position: static; }
+  .carrito-titulo { font-size: 1.3rem; }
 }

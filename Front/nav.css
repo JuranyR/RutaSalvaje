@@ -1,13 +1,10 @@
-
 .logo {
-
     transition: transform 0.3s ease;
     margin-right: 15px;
 }
 .logo:hover {
     transform: scale(1.20);
 }
-
 
 .navbar-salvaje {
     background-color: #ffffff;
@@ -24,6 +21,11 @@
     align-items: center;
     gap: 10px;
     text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.navbar-salvaje .navbar-brand:hover {
+    transform: scale(1.05);
 }
 
 .navbar-salvaje .navbar-brand i {
@@ -37,7 +39,6 @@
     margin: 0 10px;
     text-decoration: none;
     position: relative;
-    
     transition: color 0.3s ease, transform 0.2s ease;
 }
 
@@ -69,6 +70,7 @@
 body {
     padding-top: 75px; 
 }
+
 .nav-underline .nav-link {
     color: #1b4332; 
     font-weight: 500;
@@ -81,14 +83,56 @@ body {
     border-bottom-color: #ff8c00;
 }
 
-.navbar-salvaje .navbar-brand {
+.nav-underline .nav-link:hover {
+    color: #ff8c00;
+}
+
+/* ==========================================================================
+   LO QUE SE AGREGÓ: Iniciales del Avatar y Botón Cerrar Sesión
+   ========================================================================== */
+
+/* El círculo con las iniciales del usuario (Haciendo juego con tu verde oscuro) */
+.avatar-iniciales {
+    width: 40px;
+    height: 40px;
+    background-color: #1b4332; /* Tu color verde característico */
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 50%; /* Círculo perfecto */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-transform: uppercase;
+    border: 2px solid #ffffff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
     transition: transform 0.3s ease;
 }
 
-.navbar-salvaje .navbar-brand:hover {
-    transform: scale(1.05);
+.avatar-iniciales:hover {
+    transform: scale(1.1);
 }
 
-.nav-underline .nav-link:hover {
-    color: #ff8c00;
+/* ==========================================================================
+   BOTÓN CERRAR SESIÓN (IDÉNTICO A INICIAR SESIÓN)
+   ========================================================================== */
+.navbar-salvaje .btn-logout {
+    background-color: #ff8c00; /* Tu naranja característico en estado normal */
+    color: white !important; /* Texto blanco siempre */
+    border-radius: 50px; /* Bordes redondeados idénticos */
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Tu misma transición fluida */
+    display: inline-block;
+}
+
+/* Al pasar el mouse, hace exactamente lo mismo que el botón de login */
+.navbar-salvaje .btn-logout:hover {
+    background-color: #1b4332; /* Cambia al verde oscuro de Ruta Salvaje */
+    color: white !important;
+    transform: scale(1.05); /* El sutil crecimiento que ya usas */
+    box-shadow: 0 5px 15px rgba(255, 140, 0, 0.3); /* Tu reflejo naranja */
+    cursor: pointer;
 }

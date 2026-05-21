@@ -7,10 +7,7 @@ const alertaExito = document.getElementById("alertaExito");
 const loginForm = document.getElementById("loginForm");
 const togglePassword = document.getElementById("togglePassword");
 
-const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
 loginForm.addEventListener("submit", function (evento) {
-
     evento.preventDefault();
 
     errorCorreo.textContent = "";
@@ -31,21 +28,31 @@ loginForm.addEventListener("submit", function (evento) {
     }
 
     if (esValido) {
-        const correo = inputCorreo.value.trim();
+        const correo = inputCorreo.value.trim().toLowerCase();
         const password = inputPassword.value.trim();
 
-        const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+        const adminFijo = { correo: "admin@correo.com", password: "admin123", rol: "ADMIN" };
+        let usuarioEncontrado = null;
 
-        const usuarioEncontrado = usuarios.find(user => user.correo.toLowerCase() === correo.toLowerCase() && user.password === password
-        );
+        if (correo === adminFijo.correo.toLowerCase() && password === adminFijo.password) {
+            usuarioEncontrado = adminFijo;
+        } else {
+            const usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
+            usuarioEncontrado = usuarios.find(user => user.correo.toLowerCase() === correo && user.password === password);
+        }
 
         if (usuarioEncontrado) {
             localStorage.setItem("sesionActiva", JSON.stringify(usuarioEncontrado));
 
             alertaExito.classList.remove("d-none");
+            alertaExito.textContent = "¡Inicio de sesión exitoso! Redireccionando...";
 
             setTimeout(function () {
-                window.location.href = "inicio.html";
+                if (usuarioEncontrado.rol === "ADMIN") {
+                    window.location.href = "panel-de-control.html"; 
+                } else {
+                    window.location.href = "inicio.html"; 
+                }
             }, 1500);
 
         } else {
@@ -56,20 +63,13 @@ loginForm.addEventListener("submit", function (evento) {
 });
 
 togglePassword.addEventListener("click", function () {
-
     const tipo = inputPassword.getAttribute("type");
-
     if (tipo === "password") {
-
         inputPassword.setAttribute("type", "text");
-
         togglePassword.classList.remove("bi-eye-slash");
         togglePassword.classList.add("bi-eye");
-
     } else {
-
         inputPassword.setAttribute("type", "password");
-
         togglePassword.classList.remove("bi-eye");
         togglePassword.classList.add("bi-eye-slash");
     }

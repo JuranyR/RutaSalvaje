@@ -1,12 +1,12 @@
 :root {
-    --color-primario: #F9F9F9;
+    --color-primario:   #F9F9F9;
     --color-secundario: #3A5A40;
-    --color-tercero: #A65D39;
-    --color-cuarto: #212121;
-    --color-quinto: #ff8c00;
-    --color-sexto: #8d847e;
-    --color-septimo: #aca4a4;
-    --color-octavo: rgb(72, 175, 79);
+    --color-tercero:    #A65D39;
+    --color-cuarto:     #212121;
+    --color-quinto:     #ff8c00;
+    --color-sexto:      #8d847e;
+    --color-septimo:    #aca4a4;
+    --color-octavo:     rgb(72, 175, 79);
 }
 
 html, body {
@@ -16,34 +16,31 @@ html, body {
 
 body {
     font-family: 'Montserrat', sans-serif;
-
+    background-color: #f0f2f0;
 }
+
 
 .logo {
+    border-radius: 50%;
     transition: transform 0.25s ease;
 }
-
 .logo:hover {
     transform: scale(1.15);
 }
 
+
 .offcanvas-title {
     transition: color 0.25s ease, transform 0.25s ease;
 }
-
 .offcanvas-title:hover {
     color: var(--color-quinto);
     transform: translateX(2px);
-
-}
-
-.offcanvas{
-    transition: transform 0.3s ease-in-out;
 }
 
 .navbar {
     padding-top: 5px;
     padding-bottom: 5px;
+    background-color: #ffffff !important;
 }
 
 .navbar .btn {
@@ -51,20 +48,21 @@ body {
     font-size: .82rem;
 }
 
-
 .navbar .nav-link {
     transition: color 0.2s ease, transform 0.2s ease;
 }
-
 .navbar .nav-link:hover {
     color: var(--color-quinto);
     transform: translateY(-1px);
 }
 
+.dropdown-menu {
+    border-radius: 10px;
+    font-size: .84rem;
+}
 .dropdown-menu .dropdown-item {
     transition: background-color 0.2s ease, padding-left 0.2s ease, color 0.2s ease;
 }
-
 .dropdown-menu .dropdown-item:hover {
     background-color: rgba(255, 140, 0, 0.1);
     color: var(--color-secundario);
@@ -72,96 +70,263 @@ body {
 }
 
 
+
 .form-control {
     font-size: .82rem;
     padding: 5px 10px;
 }
-
-.nav-link{
-    display: flex;
-    align-items: center;
-    gap: 10px
-
+.input-group input {
+    border-radius: 20px;
+}
+.input-group-text {
+    border-radius: 20px 0 0 20px;
+}
+.input-group .btn {
+    border-radius: 10px;
 }
 
-.nav .nav-link.active {
-    background-color: var(--color-quinto);
-    color: #fff;
-    font-weight: 600;
-}
 
 .btn-panel {
     background-color: var(--color-quinto);
     color: var(--color-primario);
     border-radius: 20px;
     font-weight: 500;
-    
     transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-
 }
-
 .btn-panel:hover {
     background-color: var(--color-secundario);
+    color: white;
     transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
 
-.btn:hover {
-    background-color: var(--color-secundario);
-    color: var(--color-primario);
+.offcanvas-body .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: .88rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
 }
-
-.input-group input{
-    border-radius: 20px;
+.offcanvas-body .nav-link:not(.active):not(.text-danger):hover {
+    background-color: rgba(255, 140, 0, 0.08);
+    color: var(--color-quinto) !important;
+    padding-left: 22px;
 }
-
-#btnFormAct {
+.offcanvas-body .nav .nav-link.active {
     background-color: var(--color-quinto);
-    color: var(--color-primario);
+    color: #fff;
+    font-weight: 600;
+}
+.offcanvas-body .nav-link.text-danger:hover {
+    background-color: rgba(220, 53, 69, 0.07);
 }
 
-#btnFormAct svg{
-    stroke: #3A5A40; 
-    stroke-width: 2px;
+
+section {
+    padding-bottom: 40px;
 }
 
-.input-group-text{
-    border-radius: 20px 0 0 20px;
-}
 
-.input-group .btn{
+.btn-agregar {
+    background-color: var(--color-quinto);
+    color: #fff;
+    border: none;
     border-radius: 10px;
+    font-size: .84rem;
+    font-weight: 600;
+    padding: 8px 18px;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-.tabla-actividades{
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.9rem;
-}
-
-.tabla-actividades thead{
-    background-color: #f5f5f5;
-}
-
-.tabla-actividades th{
-    text-align: left;
-    padding: 12px;
-    font-weight: 700;
-    color: var(--color-cuarto)
+.btn-agregar:hover {
+    background-color: var(--color-secundario);
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(0,0,0,0.12);
 }
 
 
-.btn-guardar{
-    background-color: #3A5A40;
+.form-card {
+    border-radius: 14px !important;
+    background-color: #ffffff;
+    padding: 24px !important;
+    border-left: 4px solid var(--color-quinto) !important;
+}
+
+.form-card .form-control,
+.form-card .form-select {
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    font-size: .84rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-card .form-control:focus,
+.form-card .form-select:focus {
+    border-color: var(--color-quinto);
+    box-shadow: 0 0 0 3px rgba(255, 140, 0, 0.1);
+}
+
+
+.btn-guardar {
+    background-color: var(--color-secundario);
     color: white;
     border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: .84rem;
+    padding: 8px 22px;
     transition: all .2s ease;
 }
-
-.btn-guardar:hover{
+.btn-guardar:hover {
     background-color: var(--color-quinto);
-    color:white;
+    color: white;
     transform: translateY(-2px);
-
 }
+
+.btn-cancelar {
+    background-color: transparent;
+    color: var(--color-sexto);
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-size: .84rem;
+    padding: 8px 22px;
+    transition: all .2s ease;
+}
+.btn-cancelar:hover {
+    background-color: #f5f5f5;
+    color: var(--color-cuarto);
+}
+
+
+#listaActividades .card {
+    border: none !important;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+    background-color: #ffffff;
+}
+#listaActividades .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.11);
+}
+
+#listaActividades .card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+}
+
+#listaActividades .card-body {
+    padding: 16px 18px;
+}
+#listaActividades .card-body h5 {
+    font-size: .95rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: var(--color-cuarto);
+}
+#listaActividades .card-body > p {
+    font-size: .80rem;
+    color: var(--color-sexto);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+#listaActividades .badge.bg-success {
+    background-color: rgba(58, 90, 64, 0.12) !important;
+    color: var(--color-secundario);
+    font-size: .72rem;
+    font-weight: 600;
+    border-radius: 6px;
+    padding: 4px 9px;
+}
+
+#listaActividades .card-body strong {
+    color: var(--color-cuarto);
+    font-size: .82rem;
+}
+#listaActividades .card-body hr {
+    margin: 12px 0;
+    border-color: #f0f0f0;
+}
+
+#listaActividades .btn-warning {
+    background-color: var(--color-quinto);
+    border: none;
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 5px 14px;
+    transition: opacity .2s, transform .2s;
+}
+#listaActividades .btn-warning:hover {
+    opacity: .85;
+    transform: translateY(-1px);
+    color: #fff;
+}
+#listaActividades .btn-danger {
+    font-size: .78rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 5px 14px;
+    transition: opacity .2s, transform .2s;
+}
+#listaActividades .btn-danger:hover {
+    opacity: .85;
+    transform: translateY(-1px);
+}
+
+
+
+#listaActividades .card-body .d-flex {
+    gap: 8px;
+}
+
+#listaActividades .card-body .btn-warning {
+    background-color: rgba(255, 140, 0, 0.1); 
+    border: 1px solid rgba(255, 140, 0, 0.25);
+    color: var(--color-quinto); 
+    font-size: .78rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+#listaActividades .card-body .btn-warning:hover {
+    background-color: var(--color-quinto); /* Cambia a tu naranja sólido */
+    border-color: var(--color-quinto);
+    color: #ffffff;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 140, 0, 0.2);
+}
+
+#listaActividades .card-body .btn-danger {
+    background-color: #f1f3f5; /* Gris ultra suave para que no compita visualmente */
+    border: 1px solid #e2e8f0;
+    color: #64748b; /* Texto/ícono gris neutral */
+    font-size: .78rem;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 6px 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+}
+
+#listaActividades .card-body .btn-danger:hover {
+    background-color: #fee2e2; /* Fondo rojo suave */
+    border-color: #fca5a5;
+    color: #ef4444; /* Texto rojo elegante */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.15);
+}
+
+

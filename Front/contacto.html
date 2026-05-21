@@ -5,22 +5,22 @@
     <meta charset="UTF-8">
     <title>Formulario de Contacto</title>
     <link rel="stylesheet" href="contacto.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet"/>
 </head>
 
 <body>
-    <main class="min-vh-100 d-flex align-items-center justify-content-center">
+    <div id="navbar"></div>
 
+    <main class="min-vh-100 d-flex align-items-center justify-content-center py-5">
         <div class="container">
             <div class="row g-5 align-items-start justify-content-center">
 
-                <section class="col-12 col-lg-6 pt-4">
+                <section class="col-12 col-lg-6 pt-4 order-2 order-lg-1">
 
+                    <h2 id="titulo-contacto" class="py-4 fs-2 fw-bold">NUESTRO CONTACTO</h2>
 
-                <h2 id="titulo-contacto" class="text-center py-4 fs-2 fw-bold">NUESTRO CONTACTO</h2>
                     <div class="mb-4 mt-2">
-
                         <div class="d-flex gap-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#ff8c00"
                                 class="bi bi-telephone-fill" viewBox="0 0 16 16">
@@ -59,7 +59,7 @@
 
                     <div class="mb-4">
                         <h4 class="mt-5">SÍGUENOS</h4>
-                        <div class="d-flex gap-3 pt-3">
+                        <div class="d-flex gap-3 pt-3 mb-5 mb-lg-0">
                             <a href="https://www.facebook.com/?locale=es_LA" target="_blank">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="#ff8c00"
                                     class="bi bi-facebook" viewBox="0 0 16 16">
@@ -85,9 +85,8 @@
                     </div>
                 </section>
 
-                <section class="col-12 col-lg-6">
+                <section class="col-12 col-lg-6 order-1 order-lg-2">
                     <div class="formulario">
-
                         <h3 class="contacto-titulo pb-4 text-center">TU AVENTURA EMPIEZA AQUÍ</h3>
 
                         <form id="contacto" action="https://formspree.io/f/mqewpyvv" method="POST" novalidate>
@@ -96,7 +95,7 @@
                                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre" required>
                                 <label for="nombre">Nombre completo</label>
                             </div>
-                            <span id="errorNombre" class="error-mensaje"></span>  
+                            <span id="errorNombre" class="error-mensaje"></span>
 
                             <div class="form-floating mb-1">
                                 <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo">
@@ -116,9 +115,11 @@
                             </div>
                             <span id="errorMensaje" class="error-mensaje"></span>
 
-                            <div id="alertaExito" class="alert alert-success d-none text-center mb-3" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 10px; border-radius: 5px;">¡Formulario enviado correctamente!.</div>
+                            <div id="alertaExito" class="alert alert-success d-none text-center mb-3 py-2 px-3">
+                                ¡Formulario enviado correctamente!
+                            </div>
 
-                            <button type="submit" id="btn-formulario" class="btn btn-contacto w-50 mt-3 my-0 mx-auto d-block">Enviar mensaje</button>
+                            <button type="submit" id="btn-formulario" class="btn btn-contacto w-50 mt-3 mb-0 mx-auto d-block">Enviar mensaje</button>
 
                         </form>
                     </div>
@@ -128,9 +129,11 @@
         </div>
     </main>
 
+    <div id="footer"></div>
+
     <script src="contacto.js"></script>
     <script src="app.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -13,168 +13,101 @@ html, body {
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow-x: hidden;
+    background-color: #f8f9fa;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.contacto-titulo{
+.contacto-titulo {
     color: var(--color-secundario);
     font-weight: bold;
     font-size: 22px;
 }
 
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    
+.formulario h5 {
+    color: var(--color-secundario);
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 12px;
 }
 
-#form {
-    align-self: baseline;
-    background-color: rgb(0, 0, 0, 0.1);
-    margin: 40px auto;
-    padding: 20px;
+.texto-ayuda {
+    font-size: 11px;
+    color: var(--color-tercero);
+    margin-bottom: 12px;
+}
+
+#formulario-container {
+    max-width: 480px; 
     border-radius: 15px;
+    background-color: #ffffff;
     width: 100%;
-    max-width: 500px;
-}
-
-.form-control{
-    border-radius: 10px;
-    padding: 8px !important;
-}
-
-#form .form-control {
-    background-color: #F0F4F1 !important;
-}
-
-#form .form-control:focus {
-    background-color: #FFF4EB !important; 
 }
 
 #registro .form-control {
-    height: calc(2rem + 2px) !important; 
-    min-height: calc(2rem + 2px) !important;
-    padding-top: 1.2rem !important; 
-    padding-bottom: 0.4rem !important;
-    font-size: 12px;
-    line-height: 1;
+    border-radius: 8px;
+    background-color: #F0F4F1;
+    font-size: 13px;
+    border: 1px solid #ced4da;
+    height: 52px;
+    padding-top: 1.4rem;
+    padding-bottom: 0.4rem;
 }
 
 #registro .form-floating > label {
-    padding: 5px;
+    padding: 0.8rem 0.75rem;
     font-size: 12px;
-}
-
-#registro .form-floating > .form-control:focus ~ label,
-#registro .form-floating > .form-control:not(:placeholder-shown) ~ label {
-    transform: scale(0.85) translateY(-0.35rem) translateX(0.15rem);
-}
-
-#registro .form-floating>.form-control:not(:placeholder-shown)~label::after {
-    height: 0.5em;
 }
 
 #registro .form-control:focus {
-    outline: none !important; 
-    box-shadow: none !important;
-    border-color: #ced4da; 
+    background-color: #FFF4EB;
+    outline: none;
+    box-shadow: none;
+    border-color: var(--color-tercero);
 }
 
-.btn-primary{
-    background-color: var(--color-secundario)!important;
+#registro .input-group-text {
+    background-color: #F0F4F1;
+    border: 1px solid #ced4da;
+    border-left: none;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+
+#registro input:valid {
+    border: 2px solid var(--color-octavo);
+}
+
+#registro input:invalid:focus {
+    border: 2px solid var(--color-quinto);
+}
+
+.error-mensaje {
+    font-size: 11px;
+}
+
+#registro .btn-registro {
     border: none;
-    border-radius: 10px;
-    padding: 12px;
+    background-color: var(--color-secundario);
+    border-radius: 8px;
+    font-size: 15px;
 }
 
-.error-mensaje{
-    color: #ee0b0b;
-    font-size: 0.9rem;
+#registro .btn-registro:hover {
+    background-color: var(--color-quinto);
 }
-
-.alert{
-    border-radius: 10px;
-}
-
-.formulario{
-    animation: aparecer 0.8s ease;
-}
-
-.formulario h5{
-    color: var(--color-secundario);
-    font-weight: 700;
-    font-size: 18px;
-    margin-top: 20px;
-    padding-left: 10px;
-}
-
-.btn-registro {
-    border: none;
-    background-color: var(--color-secundario)!important;
-}
-
-.btn-registro:hover{
-    background-color: var(--color-quinto) !important;
-}
-
 
 #image {
-    position: relative;
-    overflow: hidden;
+    height: 100vh;
     padding: 0;
-    display: flex;
-    align-items: flex-end;
 }
 
-#image::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to top, rgba(46, 38, 38, 0.85) 0%, rgba(31, 21, 21, 0.3) 50%, transparent 100%);
-    z-index: 1;
-    pointer-events: none;
-}
 .img-registro {
     width: 100%;
     height: 100%;
-    max-height: 100vh;
     object-fit: cover;
     display: block;
-    z-index: 0;
 }
 
-input:valid{
-    border: 2px solid green;
-}
-
-input:invalid:focus{
-    border: 2px solid red;
-}
-
-.cursor-pointer{
+.cursor-pointer {
     cursor: pointer;
 }
-
-.texto-ayuda{
-    font-size: 12px;
-    color: var(--color-tercero);
-    margin-bottom: 10px;
-    padding-top: 5px;
-    padding-left: 5px;
-}
-
-/*Activar la animación*/
-@keyframes aparecer {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-

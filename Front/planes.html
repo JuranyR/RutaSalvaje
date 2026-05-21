@@ -6,20 +6,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Planes</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="planes.css">
 </head>
 
 <body>
+
+  <div class="container my-5">
   <main>
-    <!-- <div="contenedor" class="planes my-5"> -->
-    <div id="contenedorPlanes" class="row">
+
+    <div class="w-100">
 
       <h2 class="text-center fw-bold mb-4" style="color: var(--color-quinto)">
         Nuestros Planes
       </h2>
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-4 g-4 justify-content-center">
+      <div id="contenedorPlanes" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-4 g-4 justify-content-center">
         <div class="col">
           <div class="card h-100">
             <img src="./imagenes/planes/Plan-RutaDelVertigo.png" class="card-img-top" alt="Colombia" />
@@ -108,7 +109,7 @@
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan Misión secreta: Operación Selva</h5>
               <p class="card-text descripcion"><b>Actividades:</b>Búsqueda de pistas, retos en equipo, pruebas físicas y mentales. <br>
-                <b>Ideal para:</b>  Grupos que quieren una experiencia tipo juego con historia.
+                <b>Ideal para:</b> Grupos que quieren una experiencia tipo juego con historia.
               </p>
               <p class="card-text"><b>Precio:</b> $310.000</p>
               <div class="mt-auto">
@@ -121,6 +122,7 @@
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Misión secreta: Operación Selva"
                   data-detalle="Participa en una experiencia inmersiva tipo juego donde deberás resolver pistas, trabajar en equipo y superar retos físicos y mentales en un entorno selvático."
+                  data-precio="$310.000"
                   data-imagen="./imagenes/planes/Plan-MisionSecretaOperacionSelva.png"
                 >
                   ℹ️ Ver más
@@ -253,7 +255,7 @@
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "Aventura en el bosque"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Caminatas ecológicas, Exploración de flora, Juegos de
-                aventura. <br>
+                Aventura. <br>
                 <b>Ideal para:</b> Grupos de amigos que quieren diversión rápida en los árboles.
               </p>
               <p class="card-text"><b>Precio:</b> $195.000</p>
@@ -309,8 +311,7 @@
     </div>
 
   </main>
-
-  <!-- MODALES -->
+  </div>
 
   <div class="modal fade" id="modalSalvajeSignature" tabindex="-1">
     <div class="modal-dialog modal-lg">
@@ -330,7 +331,7 @@
                 <h4 id="modalTitulo" class="fw-bold"></h4>
                 <p id="modalDescripcion" class="mt-2"></p>
                 <div class="flex-grow-1"></div>
-                <button class="btn btn-agregar btn-reservar" data-id="11">
+                <button class="btn btn-agregar btn-reservar" data-id="">
                   📅 Reservar
                 </button>
               </div>
@@ -351,9 +352,7 @@
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="planes.js"></script>
   <script src="app.js"></script>

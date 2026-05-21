@@ -17,8 +17,20 @@ html, body {
 
 body {
     font-family: 'Montserrat', sans-serif;
-    
 }
+
+/* ==========================================================================
+   EL ÚNICO CAMBIO: Tu tarjeta con transición y efecto de elevación
+   ========================================================================== */
+#form {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#form:hover {
+    transform: translateY(-5px); /* Eleva la tarjeta sutilmente al pasar el mouse */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.08); /* Añade una sombra suave para acentuar el efecto */
+}
+/* ========================================================================== */
 
 .form-control{
     border-radius: 10px;

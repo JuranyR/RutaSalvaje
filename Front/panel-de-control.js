@@ -8,6 +8,11 @@ const lista = document.getElementById("listaActividades");
 const planes = JSON.parse(localStorage.getItem("planes")) || [];
 let editarPlan = null;
 
+let filtroBuscar = "";
+let filtroCategoria = "";
+let filtroDificultad = "";
+let filtroEstado = "";
+
 btnMostrarForm.addEventListener("click", () => {
   if (formContainer.style.display === "none") {
     formContainer.style.display = "block";
@@ -16,16 +21,13 @@ btnMostrarForm.addEventListener("click", () => {
   }
 });
 
-
 categoria.addEventListener("change", () => {
-
   if (categoria.value === "nueva") {
     nuevaCategoriaContainer.style.display = "block";
   } else {
     nuevaCategoriaContainer.style.display = "none";
   }
 });
-
 
 form.addEventListener("submit", (evento) => {
   evento.preventDefault();
@@ -56,25 +58,18 @@ form.addEventListener("submit", (evento) => {
     };
 
     if (editarPlan) {
-
       const index = planes.findIndex(p => p.id === editarPlan);
       planes[index] = nuevoPlan;
       editarPlan = null;
-
       alert("Plan actualizado");
-
     } else {
-
       planes.push(nuevoPlan);
       alert("Plan agregado");
-
     }
 
     localStorage.setItem("planes", JSON.stringify(planes));
-
     form.reset();
     formContainer.style.display = "none";
-
     mostrarPlanes();
   }
 
@@ -82,60 +77,110 @@ form.addEventListener("submit", (evento) => {
 });
 
 
+const inputBuscar = document.querySelector("input[type='search']");
+const btnBuscar = document.querySelector(".btn-outline-success");
+
+inputBuscar.addEventListener("input", () => {
+  filtroBuscar = inputBuscar.value.toLowerCase();
+  mostrarPlanes();
+});
+
+btnBuscar.addEventListener("click", (e) => {
+  e.preventDefault();
+  filtroBuscar = inputBuscar.value.toLowerCase();
+  mostrarPlanes();
+});
+
+
+document.querySelectorAll(".dropdown-menu .dropdown-item").forEach(item => {
+
+  item.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const valor = item.textContent.trim();
+    const menu = item.closest(".dropdown-menu");
+    const boton = menu.previousElementSibling;
+    const nombreBoton = boton.textContent.trim();
+
+    if (nombreBoton === "Categoria") {
+      filtroCategoria = valor;
+    }
+
+    if (nombreBoton === "Dificultad") {
+      filtroDificultad = valor;
+    }
+
+    if (nombreBoton === "Estado") {
+      filtroEstado = valor;
+    }
+
+    mostrarPlanes();
+  });
+
+});
+
+
 function mostrarPlanes() {
 
   lista.innerHTML = "";
 
-  planes.forEach(plan => {
-    
-    let actividades;
+  let resultado = planes.filter(plan => {
+    let pasaBuscar = plan.nombre.toLowerCase().includes(filtroBuscar);
+    let pasaCategoria = filtroCategoria === "" || plan.categoria === filtroCategoria;
+    let pasaDificultad = filtroDificultad === "" || plan.dificultad === filtroDificultad;
+    let pasaEstado = filtroEstado === "" || plan.estado === filtroEstado;
+    return pasaBuscar && pasaCategoria && pasaDificultad && pasaEstado;
 
+  });
+
+  if (resultado.length === 0) {
+    lista.innerHTML = `<div class="col-12"><p class="text-muted">No se encontraron planes.</p></div>`;
+    return;
+  }
+
+  resultado.forEach(plan => {
+
+    let actividades;
     if (plan.actividades) {
       actividades = plan.actividades.join(", ");
     } else {
       actividades = "No especificadas";
     }
 
-
-      lista.innerHTML += `
-        <div class="col-md-4">
-          <div class="card shadow-sm h-100">
-          <img src="${plan.imagen}">
-            <div class="card-body">
-              <h5>${plan.nombre}</h5>
-              <p>${plan.descripcion}</p>
-              <p><strong>Incluye:</strong> ${actividades}</p>
-              <span class="badge bg-success">${plan.categoria}</span>
-              <br><br>
-              <strong>Dificultad:</strong> ${plan.dificultad}<br>
-              <strong>Precio:</strong> $${plan.precio}
-              <hr>
-              <button class="btn btn-warning btn-sm"onclick="editandoPlan(${plan.id})">Editar</button>
-              <button class="btn btn-danger btn-sm"onclick="eliminarPlan(${plan.id})">Eliminar</button>
-            </div>
+    lista.innerHTML += `
+      <div class="col-md-4">
+        <div class="card shadow-sm h-100">
+          <img src="${plan.imagen}" alt="${plan.nombre}">
+          <div class="card-body">
+            <h5>${plan.nombre}</h5>
+            <p>${plan.descripcion}</p>
+            <p><strong>Incluye:</strong> ${actividades}</p>
+            <span class="badge bg-success">${plan.categoria}</span>
+            <br><br>
+            <strong>Dificultad:</strong> ${plan.dificultad}<br>
+            <strong>Precio:</strong> $${plan.precio}
+            <hr>
+            <button class="btn btn-warning btn-sm me-1" onclick="editandoPlan(${plan.id})">Editar</button>
+            <button class="btn btn-danger btn-sm" onclick="eliminarPlan(${plan.id})">Eliminar</button>
           </div>
-        </div>`;
-    });
+        </div>
+      </div>`;
+  });
 }
 
 
 function eliminarPlan(id) {
-
   const confirmar = confirm("¿Eliminar este plan?");
   if (!confirmar) return;
 
   const index = planes.findIndex(p => p.id === id);
-
   planes.splice(index, 1);
-
   localStorage.setItem("planes", JSON.stringify(planes));
-
   mostrarPlanes();
 }
 
 
 function editandoPlan(id) {
-
   const plan = planes.find(p => p.id === id);
 
   document.getElementById("nombre").value = plan.nombre;
@@ -147,8 +192,8 @@ function editandoPlan(id) {
   document.getElementById("actividades").value = plan.actividades.join(",");
 
   formContainer.style.display = "block";
-
   editarPlan = id;
 }
+
 
 mostrarPlanes();
