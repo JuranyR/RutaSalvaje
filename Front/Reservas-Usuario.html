@@ -14,55 +14,59 @@
   <div id="navbar"></div>
 
   <div class="page-wrapper">
-    <main class="carrito-main">
+    <main class="py-5">
+      <div class="container">
 
-      <h2 class="carrito-titulo">Carrito de Aventuras</h2>
-      <p class="carrito-subtitulo">Revisa tu plan y confirma tu reserva</p>
+        <h2 class="carrito-titulo">Carrito de Aventuras</h2>
+        <p class="carrito-subtitulo">Revisa tu plan y confirma tu reserva</p>
 
-      <div id="alerta" class="alerta-inline"></div>
+        <div id="alerta" class="alerta-inline"></div>
 
-      <div class="carrito-grid">
+        <div class="row g-4 align-items-start">
 
-        <div class="carrito-lista-col">
-          <div class="tabla-header">
-            <span class="th-reserva">Reserva</span>
-            <span class="th-dato">Precio</span>
-            <span class="th-dato">Personas</span>
-            <span class="th-dato">Total</span>
-          </div>
-          <div id="lista-reservas"></div>
-        </div>
-
-        <div class="carrito-resumen-col">
-          <div class="resumen-card">
-
-            <div class="campo-grupo">
-              <label class="campo-label">Fecha</label>
-              <input type="date" class="campo-input" id="fechaReserva"/>
-            </div>
-
-            <div class="campo-grupo">
-              <label class="campo-label">Personas</label>
-              <div class="personas-control">
-                <button class="personas-btn" id="btnMenos">−</button>
-                <input type="number" class="campo-input personas-input" id="numPersonas" value="1" min="1"/>
-                <button class="personas-btn" id="btnMas">+</button>
+          <div class="col-lg-9">
+            <div class="carrito-lista-col">
+              <div class="tabla-header">
+                <span class="th-reserva">Reserva</span>
+                <span class="th-dato">Precio</span>
+                <span class="th-dato">Personas</span>
+                <span class="th-dato">Total</span>
               </div>
+              <div id="lista-reservas"></div>
             </div>
-
-            <div class="resumen-total">
-              <span>Total</span>
-              <span class="total-monto">$ <span id="montoTotal">0</span></span>
-            </div>
-
-            <div class="resumen-acciones">
-              <button id="btnConfirmar" class="btn-confirmar">Confirmar reserva</button>
-              <button id="btnVaciar" class="btn-vaciar">Vaciar carrito</button>
-            </div>
-
           </div>
-        </div>
 
+          <div class="col-lg-3">
+            <div class="resumen-card sticky-top" style="top: 24px;">
+
+              <div class="campo-grupo">
+                <label class="campo-label">Fecha</label>
+                <input type="date" class="campo-input" id="fechaReserva"/>
+              </div>
+
+              <div class="campo-grupo">
+                <label class="campo-label">Personas</label>
+                <div class="personas-control">
+                  <button class="personas-btn" id="btnMenos">−</button>
+                  <input type="number" class="campo-input personas-input" id="numPersonas" value="1" min="1"/>
+                  <button class="personas-btn" id="btnMas">+</button>
+                </div>
+              </div>
+
+              <div class="resumen-total">
+                <span>Total</span>
+                <span class="total-monto">$ <span id="montoTotal">0</span></span>
+              </div>
+
+              <div class="resumen-acciones">
+                <button id="btnConfirmar" class="btn-confirmar">Confirmar reserva</button>
+                <button id="btnVaciar" class="btn-vaciar">Vaciar carrito</button>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
       </div>
     </main>
   </div>
