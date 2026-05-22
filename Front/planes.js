@@ -150,3 +150,4 @@ document.addEventListener("click", function(e) {
   localStorage.setItem("reservaActual", JSON.stringify(plan));
   window.location.href = "Reservas-Usuario.html";
 });
+

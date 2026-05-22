@@ -96,10 +96,6 @@ html, body {
     background-color: var(--color-quinto);
 }
 
-#image {
-    height: 100vh;
-    padding: 0;
-}
 
 .img-registro {
     width: 100%;
