@@ -221,3 +221,18 @@ body {
   border-color: #999;
   color: #212121;
 }
+
+.btn-eliminar {
+  background-color: #3A5A40;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-eliminar:hover {
+  background-color: #2e4732;
+  transform: scale(1.05);
+}

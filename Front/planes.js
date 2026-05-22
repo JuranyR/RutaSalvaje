@@ -23,7 +23,6 @@ function cargarPlanes() {
             </p>
             <p class="card-text"><b>Dificultad:</b> ${plan.dificultad}</p>
             <p class="card-text"><b>Precio:</b> $${Number(plan.precio).toLocaleString("es-CO")}</p>
-
             <div class="mt-auto">
               <button class="btn btn-agregar btn-reservar" data-id="${plan.id}">
                 📅 Reservar
@@ -84,17 +83,16 @@ function buscarPlanDeLaCard(boton) {
   };
 }
 
+// ─── Helper: agrega un plan al array de reservas ───────────────────────────
+function agregarAlCarrito(plan) {
+  const reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+  reservas.push({ ...plan, personas: 1 }); // cada reserva arranca con 1 persona
+  localStorage.setItem("reservas", JSON.stringify(reservas));
+}
+
 cargarPlanes();
 
-document.querySelectorAll(".btn-reservar").forEach(boton => {
-  boton.innerHTML = "📅 Reservar";
-});
-
-document.querySelectorAll(".btn-ver-mas").forEach(boton => {
-  boton.innerHTML = "ℹ️ Ver más";
-});
-
-document.addEventListener("click", function(e) {
+document.addEventListener("click", function (e) {
   const boton = e.target.closest(".btn-ver-mas");
 
   if (boton) {
@@ -122,17 +120,18 @@ document.addEventListener("click", function(e) {
   }
 });
 
-document.addEventListener("click", function(e) {
+document.addEventListener("click", function (e) {
   const boton = e.target.closest(".btn-reservar");
-
   if (!boton) return;
 
+  // Reservar desde el modal
   if (boton.closest("#modalSalvajeSignature") && planDelModal) {
-    localStorage.setItem("reservaActual", JSON.stringify(planDelModal));
+    agregarAlCarrito(planDelModal); // ← antes: setItem("reservaActual")
     window.location.href = "Reservas-Usuario.html";
     return;
   }
 
+  // Reservar desde la card directamente
   let plan = buscarPlanGuardado(boton.dataset.id);
 
   if (!plan) {
@@ -147,7 +146,6 @@ document.addEventListener("click", function(e) {
     return;
   }
 
-  localStorage.setItem("reservaActual", JSON.stringify(plan));
+  agregarAlCarrito(plan); // ← antes: setItem("reservaActual")
   window.location.href = "Reservas-Usuario.html";
 });
-
