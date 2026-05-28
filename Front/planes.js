@@ -8,11 +8,11 @@ function precioNumero(precio) {
 
 function cargarPlanes() {
   const planes = JSON.parse(localStorage.getItem("planes")) || [];
-
+  let contenidoHTML = "";
+  
   planes.forEach(plan => {
     const actividades = plan.actividades ? plan.actividades.join(", ") : "No especificadas";
-
-    contenedor.innerHTML += `
+    contenidoHTML += `
       <div class="col">
         <div class="card h-100">
           <img src="${plan.imagen}" class="card-img-top" alt="${plan.nombre}">
@@ -45,6 +45,7 @@ function cargarPlanes() {
       </div>
     `;
   });
+  contenedor.innerHTML = contenidoHTML;
 }
 
 function buscarPlanGuardado(id) {
@@ -92,60 +93,61 @@ function agregarAlCarrito(plan) {
 
 cargarPlanes();
 
+// Manejador de eventos único para todos los clics (Delegación de eventos)
 document.addEventListener("click", function (e) {
-  const boton = e.target.closest(".btn-ver-mas");
+  const botonVerMas = e.target.closest(".btn-ver-mas");
+  const botonReservar = e.target.closest(".btn-reservar");
 
-  if (boton) {
-    document.getElementById("modalTitulo").textContent = boton.dataset.titulo;
-    document.getElementById("modalDescripcion").textContent = boton.dataset.detalle;
-    document.getElementById("modalPrecio").textContent = boton.dataset.precio || "";
-    document.getElementById("modalImagen").src = boton.dataset.imagen;
+  // Lógica para el botón "Ver más" (Modal)
+  if (botonVerMas) {
+    document.getElementById("modalTitulo").textContent = botonVerMas.dataset.titulo;
+    document.getElementById("modalDescripcion").textContent = botonVerMas.dataset.detalle;
+    document.getElementById("modalPrecio").textContent = botonVerMas.dataset.precio || "";
+    document.getElementById("modalImagen").src = botonVerMas.dataset.imagen;
 
     const botonModal = document.querySelector("#modalSalvajeSignature .btn-reservar");
     if (botonModal) {
-      botonModal.dataset.id = boton.dataset.id;
+      botonModal.dataset.id = botonVerMas.dataset.id;
       botonModal.innerHTML = "📅 Reservar";
     }
 
     planDelModal = {
-      id: boton.dataset.id,
-      nombre: boton.dataset.titulo,
-      descripcion: boton.dataset.detalle,
-      precio: precioNumero(boton.dataset.precio),
-      precioTexto: boton.dataset.precio,
-      imagen: boton.dataset.imagen,
+      id: botonVerMas.dataset.id,
+      nombre: botonVerMas.dataset.titulo,
+      descripcion: botonVerMas.dataset.detalle,
+      precio: precioNumero(botonVerMas.dataset.precio),
+      precioTexto: botonVerMas.dataset.precio,
+      imagen: botonVerMas.dataset.imagen,
       dificultad: "No especificada",
       categoria: "Aventura"
     };
-  }
-});
-
-document.addEventListener("click", function (e) {
-  const boton = e.target.closest(".btn-reservar");
-  if (!boton) return;
-
-  // Reservar desde el modal
-  if (boton.closest("#modalSalvajeSignature") && planDelModal) {
-    agregarAlCarrito(planDelModal); // ← antes: setItem("reservaActual")
-    window.location.href = "Reservas-Usuario.html";
     return;
   }
 
-  // Reservar desde la card directamente
-  let plan = buscarPlanGuardado(boton.dataset.id);
+  // Lógica para el botón "Reservar"
+  if (botonReservar) {
+    // Caso A: Reserva desde el modal
+    if (botonReservar.closest("#modalSalvajeSignature") && planDelModal) {
+      agregarAlCarrito(planDelModal);
+      window.location.href = "Reservas-Usuario.html";
+      return;
+    }
 
-  if (!plan) {
-    plan = buscarPlanDeLaCard(boton);
-  } else {
-    plan.precio = precioNumero(plan.precio);
-    plan.precioTexto = `$${plan.precio.toLocaleString("es-CO")}`;
+    // Caso B: Reserva desde la card directamente
+    let plan = buscarPlanGuardado(botonReservar.dataset.id);
+
+    if (!plan) {
+      plan = buscarPlanDeLaCard(botonReservar);
+    } else {
+      plan.precio = precioNumero(plan.precio);
+      plan.precioTexto = `$${plan.precio.toLocaleString("es-CO")}`;
+    }
+
+    if (plan) {
+      agregarAlCarrito(plan);
+      window.location.href = "Reservas-Usuario.html";
+    } else {
+      alert("No se pudo cargar el plan seleccionado.");
+    }
   }
-
-  if (!plan) {
-    alert("No se pudo cargar el plan seleccionado.");
-    return;
-  }
-
-  agregarAlCarrito(plan); // ← antes: setItem("reservaActual")
-  window.location.href = "Reservas-Usuario.html";
 });
