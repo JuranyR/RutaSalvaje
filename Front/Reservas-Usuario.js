@@ -4,6 +4,9 @@ const fechaInput = document.getElementById("fechaReserva");
 const btnConfirmar = document.getElementById("btnConfirmar");
 const btnVaciar = document.getElementById("btnVaciar");
 const alertaEl = document.getElementById("alerta");
+const numPersonasInput = document.getElementById("numPersonas");
+const btnMas = document.getElementById("btnMas");
+const btnMenos = document.getElementById("btnMenos");
 
 let reservas     = [];
 let alertaTimer  = null;
@@ -25,8 +28,9 @@ function renderLista() {
   }
 
   lista.innerHTML = reservas.map((plan, index) => {
-    const personas  = plan.personas || 1;
-    const totalItem = plan.precio * personas;
+    // Usamos el valor del input global de personas
+    const personas  = parseInt(numPersonasInput.value) || 1;
+    const totalItem = (Number(plan.precio) || 0) * personas;
 
     return `
       <div class="item" data-index="${index}">
@@ -34,7 +38,7 @@ function renderLista() {
         <div class="plan-info">
           <p>${plan.nombre}</p>
         </div>
-        <div class="celda">$${plan.precio.toLocaleString("es-CO")}</div>
+        <div class="celda">$${(Number(plan.precio) || 0).toLocaleString("es-CO")}</div>
         <div class="celda">${personas}</div>
         <div class="celda total-item">$${totalItem.toLocaleString("es-CO")}</div>
         <button class="btn-eliminar" data-index="${index}">✕</button>
@@ -56,7 +60,9 @@ function renderLista() {
 }
 
 function calcularTotal() {
-  const total = reservas.reduce((sum, plan) => sum + plan.precio * (plan.personas || 1), 0);
+  const nPersonas = parseInt(numPersonasInput.value) || 1;
+  // Sumamos los precios de todos los planes y multiplicamos por la cantidad de personas
+  const total = reservas.reduce((sum, plan) => sum + (Number(plan.precio) || 0) * nPersonas, 0);
   montoTotalEl.textContent = total.toLocaleString("es-CO");
 }
 
@@ -66,6 +72,23 @@ function mostrarMensaje(texto, tipo = "ok") {
   if (alertaTimer) clearTimeout(alertaTimer);
   alertaTimer = setTimeout(() => { alertaEl.className = "alerta-inline"; }, 3000);
 }
+
+// Lógica para los botones de cantidad de personas
+btnMas.addEventListener("click", () => {
+  numPersonasInput.value = parseInt(numPersonasInput.value) + 1;
+  renderLista(); // Re-renderiza para actualizar totales por fila y el gran total
+});
+
+btnMenos.addEventListener("click", () => {
+  let actual = parseInt(numPersonasInput.value);
+  if (actual > 1) {
+    numPersonasInput.value = actual - 1;
+    renderLista();
+  }
+});
+
+// Escuchar cambios manuales en el input de personas
+numPersonasInput.addEventListener("change", renderLista);
 
 btnConfirmar.addEventListener("click", () => {
   if (reservas.length === 0) { 
