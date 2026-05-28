@@ -43,13 +43,26 @@ registro.addEventListener("submit", function (evento) {
         sonValidos = false;
     }
 
+    const correoSimbol = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (inputCorreo.value.trim() === "") {
         errorCorreo.textContent = "El campo Correo no puede estar vacio";
         sonValidos = false;
-    } else if (!inputCorreo.value.trim().includes("@")) {
-        errorCorreo.textContent = "El correo debe incluir un @";
+    } else if (!correoSimbol.test(inputCorreo.value.trim())) {
+        errorCorreo.textContent = "Correo inválido";
         sonValidos = false;
+    } else {
+        const existe = usuarios.some(
+            usu => usu.correo === inputCorreo.value.trim()
+        );
+
+        if (existe) {
+            errorCorreo.textContent = "Este correo ya está registrado";
+            sonValidos = false;
+        }
+
     }
+
 
     if (inputTelefono.value.trim() === "") {
         errorTelefono.textContent = "El campo Telefono no puede estar vacio";
@@ -65,7 +78,7 @@ registro.addEventListener("submit", function (evento) {
     if (inputPassword.value.trim() === "") {
         errorPassword.textContent = "El campo contraseña no puede estar vacio";
         sonValidos = false;
-    } else if(inputPassword.value.length<6) {
+    } else if (inputPassword.value.length < 6) {
         errorPassword.textContent = "La contraseña debe tener mínimo 6 caracteres";
         sonValidos = false;
 
@@ -122,18 +135,24 @@ registro.addEventListener("submit", function (evento) {
     }
 });
 
-const btn = document.getElementById("togglePassword");
-const input = document.getElementById("password");
-const icon = document.getElementById("iconPassword");
+const togglePassword1 = document.getElementById("togglePassword1");
+const togglePassword2 = document.getElementById("togglePassword2");
 
-btn.addEventListener("click", () => {
-  if (input.type === "password") {
-    input.type = "text";
-    icon.classList.add("bi-eye-slash");
-    icon.classList.remove("bi-eye");
-  } else {
-    input.type = "password";
-    icon.classList.add("bi-eye");
-    icon.classList.remove("bi-eye-slash");
-  }
+const icon1 = document.getElementById("iconPassword1");
+const icon2 = document.getElementById("iconPassword2");
+
+togglePassword1.addEventListener("click", () => {
+    const isHidden = inputPassword.type === "password";
+    inputPassword.type = isHidden ? "text" : "password";
+
+    icon1.classList.toggle("bi-eye");
+    icon1.classList.toggle("bi-eye-slash");
+});
+
+togglePassword2.addEventListener("click", () => {
+    const isHidden = inputPassword2.type === "password";
+    inputPassword2.type = isHidden ? "text" : "password";
+
+    icon2.classList.toggle("bi-eye");
+    icon2.classList.toggle("bi-eye-slash");
 });
