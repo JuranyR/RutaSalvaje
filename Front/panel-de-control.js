@@ -29,6 +29,8 @@ categoria.addEventListener("change", () => {
   }
 });
 
+//SOLO GUARDA PLANES CON IMAGENES QUE PESEN MENOS DE 5MB
+
 form.addEventListener("submit", (evento) => {
   evento.preventDefault();
 
