@@ -237,10 +237,19 @@ function verificarSesion(type) {
     const reservas = document.getElementById("reservas");
     const login = document.getElementById("login");
     const logout = document.getElementById("logout");
+    const reservasAdmin = document.getElementById("reservas-admin");
+
+    if(sesionActiva.rol === "ADMIN") {
+        reservasAdmin.classList.remove("d-none");
+        reservas.classList.add("d-none");
+    } else {
+        reservasAdmin.classList.add("d-none");
+        reservas.classList.remove("d-none");
+    }
 
     if (sesionActiva) {
         planes.classList.remove("d-none");
-        reservas.classList.remove("d-none");
+        // reservas.classList.remove("d-none");
         login.classList.add("d-none");
         logout.classList.remove("d-none");
     }

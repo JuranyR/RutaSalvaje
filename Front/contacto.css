@@ -34,17 +34,8 @@ body {
     background-color: var(--color-primario);
 }
 
-<<<<<<< HEAD
-section #titulo-contacto {
-    color: var(--color-quinto);
-    text-align: left;
-    font-size: 1.4rem;
-    letter-spacing: 0.03em;
-    margin-bottom: 28px;
-}
 
-section h3.contacto-titulo {
-=======
+
 main h1 {
     letter-spacing: 1px;
 }
@@ -59,7 +50,7 @@ main h1 {
 
 section #titulo-contacto {
     font-size: 1.5rem;
-    color: var(--color-secundario);
+    color: var(--color-secundario) !important;
     text-align: left !important;
     margin-bottom: 20px;
 }
@@ -75,22 +66,21 @@ section #titulo-contacto {
 }
 
 section h3 {
->>>>>>> ce5b7aa2a29ea97a0bebc4001acd483d71d7f0c6
     color: var(--color-secundario);
     font-size: 1.1rem;
     letter-spacing: 0.04em;
     font-weight: 700;
 }
 
-<<<<<<< HEAD
 .d-flex.gap-2 h4 {
-    font-size: 0.82rem;
+    font-size: 18px;
     font-weight: 700;
     letter-spacing: 0.06em;
     color: var(--color-cuarto);
     margin: 0;
     align-self: center;
-=======
+}
+
 .formulario {
     margin-top: 20px; 
     padding: 35px 28px;
@@ -104,12 +94,10 @@ section h3 {
         0 10px 30px rgba(166, 93, 57, 0.15),
         0 2px 8px rgba(0, 0, 0, 0.05);
     transition: 0.3s ease;
->>>>>>> ce5b7aa2a29ea97a0bebc4001acd483d71d7f0c6
 }
 
 .mb-4 p {
-    font-size: 0.88rem;
-    color: var(--color-sexto);
+    font-size: 16px;
     line-height: 1.6;
 }
 
@@ -192,7 +180,7 @@ section h3 {
 }
 
 #btn-formulario {
-    background-color: var(--color-quinto);
+    background-color: var(--color-secundario);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.85rem;
     font-weight: 700;
@@ -205,7 +193,7 @@ section h3 {
 }
 
 #btn-formulario:hover {
-    background-color: var(--color-secundario);
+    background-color: var(--color-quinto);
     transform: translateY(-2px);
 }
 

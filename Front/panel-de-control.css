@@ -17,6 +17,7 @@ html, body {
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #f0f2f0;
+    margin-top: 70px !important;
 }
 
 
@@ -37,21 +38,24 @@ body {
     transform: translateX(2px);
 }
 
-.navbar {
+
+.alk {
     padding-top: 5px;
     padding-bottom: 5px;
     background-color: #ffffff !important;
 }
 
-.navbar .btn {
+.alk .btn {
     padding: 5px 12px;
-    font-size: .82rem;
+    font-size: 1rem;
 }
 
-.navbar .nav-link {
+.alk .nav-link {
     transition: color 0.2s ease, transform 0.2s ease;
+    font-size: 16px;
+    font-weight: 500;
 }
-.navbar .nav-link:hover {
+.alk .nav-link:hover {
     color: var(--color-quinto);
     transform: translateY(-1px);
 }
@@ -86,15 +90,15 @@ body {
 }
 
 
-.btn-panel {
-    background-color: var(--color-quinto);
+.btn.btn-panel {
+    background-color: var(--color-secundario);
     color: var(--color-primario);
     border-radius: 20px;
     font-weight: 500;
     transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-.btn-panel:hover {
-    background-color: var(--color-secundario);
+.btn.btn-panel:hover {
+    background-color: var(--color-quinto);
     color: white;
     transform: translateY(-1px);
     box-shadow: 0 2px 6px rgba(0,0,0,0.15);
@@ -129,8 +133,8 @@ section {
 }
 
 
-.btn-agregar {
-    background-color: var(--color-quinto);
+.btn.btn-agregar {
+    background-color: var(--color-secundario);
     color: #fff;
     border: none;
     border-radius: 10px;
@@ -139,8 +143,8 @@ section {
     padding: 8px 18px;
     transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
-.btn-agregar:hover {
-    background-color: var(--color-secundario);
+.btn.btn-agregar:hover {
+    background-color: var(--color-quinto);
     color: white;
     transform: translateY(-1px);
     box-shadow: 0 3px 10px rgba(0,0,0,0.12);
@@ -168,7 +172,7 @@ section {
 }
 
 
-.btn-guardar {
+.btn.btn-guardar {
     background-color: var(--color-secundario);
     color: white;
     border: none;
@@ -178,13 +182,13 @@ section {
     padding: 8px 22px;
     transition: all .2s ease;
 }
-.btn-guardar:hover {
+.btn.btn-guardar:hover {
     background-color: var(--color-quinto);
     color: white;
     transform: translateY(-2px);
 }
 
-.btn-cancelar {
+.btn.btn-cancelar {
     background-color: transparent;
     color: var(--color-sexto);
     border: 1.5px solid #ddd;
@@ -193,7 +197,7 @@ section {
     padding: 8px 22px;
     transition: all .2s ease;
 }
-.btn-cancelar:hover {
+.btn.btn-cancelar:hover {
     background-color: #f5f5f5;
     color: var(--color-cuarto);
 }
@@ -237,7 +241,7 @@ section {
 #listaActividades .badge.bg-success {
     background-color: rgba(58, 90, 64, 0.12) !important;
     color: var(--color-secundario);
-    font-size: .72rem;
+    font-size: 14px;
     font-weight: 600;
     border-radius: 6px;
     padding: 4px 9px;
@@ -245,14 +249,14 @@ section {
 
 #listaActividades .card-body strong {
     color: var(--color-cuarto);
-    font-size: .82rem;
+    font-size: 13px;
 }
 #listaActividades .card-body hr {
     margin: 12px 0;
     border-color: #f0f0f0;
 }
 
-#listaActividades .btn-warning {
+#listaActividades .btn.btn-warning {
     background-color: var(--color-quinto);
     border: none;
     color: #fff;
@@ -262,19 +266,19 @@ section {
     padding: 5px 14px;
     transition: opacity .2s, transform .2s;
 }
-#listaActividades .btn-warning:hover {
+#listaActividades .btn.btn-warning:hover {
     opacity: .85;
     transform: translateY(-1px);
     color: #fff;
 }
-#listaActividades .btn-danger {
+#listaActividades .btn.btn-danger {
     font-size: .78rem;
     font-weight: 600;
     border-radius: 8px;
     padding: 5px 14px;
     transition: opacity .2s, transform .2s;
 }
-#listaActividades .btn-danger:hover {
+#listaActividades .btn.btn-danger:hover {
     opacity: .85;
     transform: translateY(-1px);
 }
@@ -285,7 +289,7 @@ section {
     gap: 8px;
 }
 
-#listaActividades .card-body .btn-warning {
+#listaActividades .card-body .btn.btn-warning {
     background-color: rgba(255, 140, 0, 0.1); 
     border: 1px solid rgba(255, 140, 0, 0.25);
     color: var(--color-quinto); 
@@ -299,7 +303,7 @@ section {
     transition: all 0.2s ease;
 }
 
-#listaActividades .card-body .btn-warning:hover {
+#listaActividades .card-body .btn.btn-warning:hover, .btn.btn-editar:hover {
     background-color: var(--color-quinto); /* Cambia a tu naranja sólido */
     border-color: var(--color-quinto);
     color: #ffffff;
@@ -307,26 +311,14 @@ section {
     box-shadow: 0 4px 8px rgba(255, 140, 0, 0.2);
 }
 
-#listaActividades .card-body .btn-danger {
-    background-color: #f1f3f5; /* Gris ultra suave para que no compita visualmente */
-    border: 1px solid #e2e8f0;
-    color: #64748b; /* Texto/ícono gris neutral */
-    font-size: .78rem;
-    font-weight: 600;
-    border-radius: 8px;
-    padding: 6px 14px;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    transition: all 0.2s ease;
+
+.btn.btn-editar{
+    background-color: var(--color-secundario);
+    color: #fff;
 }
 
-#listaActividades .card-body .btn-danger:hover {
-    background-color: #fee2e2; /* Fondo rojo suave */
-    border-color: #fca5a5;
-    color: #ef4444; /* Texto rojo elegante */
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(239, 68, 68, 0.15);
+#listaActividades .card-body .btn.btn-eliminar{
+    background-color: var(--color-quinto);
+    color: #fff;
+    border: 1px solid var(--color-quinto);
 }
-
-
