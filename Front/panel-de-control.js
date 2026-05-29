@@ -160,8 +160,8 @@ function mostrarPlanes() {
             <strong>Dificultad:</strong> ${plan.dificultad}<br>
             <strong>Precio:</strong> $${plan.precio}
             <hr>
-            <button class="btn btn-warning btn-sm me-1" onclick="editandoPlan(${plan.id})">Editar</button>
-            <button class="btn btn-danger btn-sm" onclick="eliminarPlan(${plan.id})">Eliminar</button>
+            <button class="btn btn-sm me-1 btn-editar" id="btn-editar" onclick="editandoPlan(${plan.id})">Editar</button>
+            <button class="btn  btn-sm btn-eliminar" onclick="eliminarPlan(${plan.id})">Eliminar</button>
           </div>
         </div>
       </div>`;
@@ -193,6 +193,10 @@ function editandoPlan(id) {
 
   formContainer.style.display = "block";
   editarPlan = id;
+  window.scrollTo({
+    top: "100",
+    behavior: 'smooth'
+  });
 }
 
 

@@ -37,11 +37,12 @@ function cargarPlanes() {
             <p class="card-text"><b>Dificultad:</b> ${plan.dificultad}</p>
             <p class="card-text"><b>Precio:</b> $${Number(plan.precio).toLocaleString("es-CO")}</p>
             <div class="mt-auto">
-              <button class="btn btn-agregar btn-reservar" data-id="${plan.id}">
+              <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="${plan.id}">
                 📅 Reservar
               </button>
               <button
                 class="btn btn-info btn-ver-mas"
+                id="ver-mas"
                 data-bs-toggle="modal"
                 data-bs-target="#modalSalvajeSignature"
                 data-id="${plan.id}"
@@ -50,7 +51,7 @@ function cargarPlanes() {
                 data-precio="$${Number(plan.precio).toLocaleString("es-CO")}"
                 data-imagen="${plan.imagen}"
               >
-                ℹ️ Ver más
+                🔍 Ver más
               </button>
             </div>
           </div>
