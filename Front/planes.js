@@ -33,7 +33,6 @@ function cargarPlanes() {
           <div class="card-body d-flex flex-column">
             <h5 class="card-title">${plan.nombre}</h5>
             <p class="card-text descripcion"><b>Actividades:</b> ${actividades} <br>
-              <b>Ideal para:</b> ${plan.descripcion}
             </p>
             <p class="card-text"><b>Dificultad:</b> ${plan.dificultad}</p>
             <p class="card-text"><b>Precio:</b> $${Number(plan.precio).toLocaleString("es-CO")}</p>
