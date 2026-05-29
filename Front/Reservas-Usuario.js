@@ -91,27 +91,63 @@ btnMenos.addEventListener("click", () => {
 numPersonasInput.addEventListener("change", renderLista);
 
 btnConfirmar.addEventListener("click", () => {
+
+  const sesion = JSON.parse(localStorage.getItem("sesionActiva"));
+
+  // SI NO HAY SESIÓN, REDIRIGE
+  if (!sesion) {
+    mostrarMensaje("Debes iniciar sesión para confirmar la reserva", "error");
+
+    setTimeout(() => {
+      window.location.href = "login.html"; 
+      // o "registro.html" si esa es tu vista
+    }, 1200);
+
+    return;
+  }
+
+  // VALIDACIONES NORMALES
   if (reservas.length === 0) { 
     mostrarMensaje("No hay nada en el carrito.", "error"); 
     return; 
   }
+
   if (!fechaInput.value) { 
     mostrarMensaje("Por favor selecciona una fecha.", "error"); 
     return; 
   }
 
   mostrarMensaje("¡Reserva confirmada exitosamente!", "ok");
-  localStorage.removeItem("reservas");
-  reservas = [];
-  renderLista();
+
+// 🔥 GUARDAR EN ADMIN
+const reservasAdmin = JSON.parse(localStorage.getItem("reservasAdmin")) || [];
+
+// Convertimos carrito a reservas reales
+reservas.forEach((plan) => {
+  reservasAdmin.push({
+    id: Date.now(),
+    nombre: plan.nombre,
+    imagen: plan.imagen,
+    precio: plan.precio,
+    personas: parseInt(numPersonasInput.value) || 1,
+    fecha: fechaInput.value,
+    estado: "Pendiente"
+  });
 });
 
-btnVaciar.addEventListener("click", () => {
-  if (reservas.length === 0) { mostrarMensaje("El carrito ya está vacío.", "error"); return; }
-  localStorage.removeItem("reservas");
-  reservas = [];
-  renderLista();
-  mostrarMensaje("Carrito vaciado.", "ok");
+localStorage.setItem("reservasAdmin", JSON.stringify(reservasAdmin));
+
+// limpiar carrito usuario
+localStorage.removeItem("reservas");
+reservas = [];
+renderLista();
 });
 
 cargarReservas();
+
+const hoy = new Date();
+const yyyy = hoy.getFullYear();
+const mm = String(hoy.getMonth() + 1).padStart(2, "0");
+const dd = String(hoy.getDate()).padStart(2, "0");
+
+fechaInput.min = `${yyyy}-${mm}-${dd}`;

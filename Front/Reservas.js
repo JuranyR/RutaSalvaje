@@ -4,7 +4,7 @@ const form = document.getElementById("formActividad");
 const lista = document.getElementById("listaReservas");
 const inputFecha = document.getElementById("fecha");
 
-let reservas = JSON.parse(localStorage.getItem("reservas")) || [];
+let reservas = JSON.parse(localStorage.getItem("reservasAdmin")) || [];
 
 btnMostrarForm.addEventListener("click", () => {
   if (formContainer.style.display === "none") {
@@ -31,18 +31,19 @@ form.addEventListener("submit", (evento) => {
   }
 
   const nuevaReserva = {
-    id: Date.now(),
-    nombre: document.getElementById("nombre").value,
-    plan: document.getElementById("categoria").value,
-    personas: personas,
-    dificultad: document.getElementById("dificultad").value,
-    precio: precio,
-    dia: document.getElementById("fecha").value,
-  };
+  id: Date.now(),
+  nombre: document.getElementById("nombre").value, 
+  personas: Number(document.getElementById("personas").value),
+  dificultad: document.getElementById("dificultad").value,
+  precio: Number(document.getElementById("precio").value),
+  fecha: document.getElementById("fecha").value,
+  estado: "Pendiente"
+};
 
-  reservas.push(nuevaReserva);
+  const reservasAdmin = JSON.parse(localStorage.getItem("reservasAdmin")) || [];
+  reservasAdmin.push(nuevaReserva);
+  localStorage.setItem("reservasAdmin", JSON.stringify(reservasAdmin));
 
-  localStorage.setItem("reservas", JSON.stringify(reservas));
 
   console.log(JSON.stringify(reservas));
 
@@ -53,35 +54,25 @@ form.addEventListener("submit", (evento) => {
 });
 
 function mostrarReservas() {
+  const reservasAdmin = JSON.parse(localStorage.getItem("reservasAdmin")) || [];
   lista.innerHTML = "";
 
-  reservas.forEach((reserv) => {
+  reservasAdmin.forEach((reserv) => {
     lista.innerHTML += `
             <div class="col-md-4">
                 <div class="card shadow-sm h-100">
                     <div class="card-body">
                         <h5>${reserv.nombre}</h5>
 
-                        <p>
-                            <strong>Plan:</strong> ${reserv.plan}
-                        </p>
-                        <p>
-                            <strong>Personas:</strong> ${reserv.personas}
-                        </p>
-                        <p>
-                            <strong>Dificultad:</strong> ${reserv.dificultad}
-                        </p>
-                        <p>
-                            <strong>Precio:</strong> $${reserv.precio}
-                        </p>
-                        <p>
-                            <strong>Fecha:</strong> $${reserv.dia}
-                        </p>
 
-                        <button
-                            class="btn btn-danger btn-sm mt-2"
-                            onclick="eliminarReserva(${reserv.id})"
-                        >
+                        <p><strong>Personas:</strong> ${reserv.personas}</p>
+                        <p><strong>Dificultad:</strong> ${reserv.dificultad}</p>
+                        <p><strong>Precio:</strong> $${reserv.precio}</p>
+                        <p><strong>Fecha:</strong> ${reserv.fecha}</p>
+                        <p><strong>Estado:</strong> ${reserv.estado}</p>
+
+                         <button class="btn btn-danger btn-sm mt-2"
+                            onclick="eliminarReserva(${reserv.id})">
                             Eliminar
                         </button>
                     </div>
@@ -95,9 +86,11 @@ const hoy = new Date().toISOString().split("T")[0];
 inputFecha.min = hoy;
 
 function eliminarReserva(id) {
-  reservas = reservas.filter((reserva) => reserva.id !== id);
+  let reservasAdmin = JSON.parse(localStorage.getItem("reservasAdmin")) || [];
 
-  localStorage.setItem("reservas", JSON.stringify(reservas));
+  reservasAdmin = reservasAdmin.filter(r => r.id !== id);
+
+  localStorage.setItem("reservasAdmin", JSON.stringify(reservasAdmin));
 
   mostrarReservas();
 }

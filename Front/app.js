@@ -2,8 +2,8 @@ const planesBase = [
   {
     "id": 1,
     "nombre": "Plan Ruta del vértigo",
-    "descripcion": "Puente tibetano, Bungee Jumping, Canopy.",
-    "detalle": "Atrévete a cruzar puentes colgantes sobre cascadas, sentir la adrenalina del bungee y deslizarte entre montañas. Incluye guías expertos y una experiencia segura pero extrema.",
+    "descripcion": "Puente tibetano, Bungee Jumping, Canopy, Escalada en roca, Columpio extremo.",
+    "detalle": "Puente tibetano: Cruce suspendido sobre el vacío usando cables de alta seguridad.Bungee Jumping: Salto libre al vacío desde una plataforma de gran altura.Canopy: Desplazamiento a alta velocidad sujeto a un cable entre las copas de los árboles.Escalada en roca: Ascenso vertical en paredes naturales que desafía tu fuerza física y mental.Columpio extremo: Un balanceo gigante al borde de un abismo que simula un vuelo sin motor.",
     "precio": 310000,
     "categoria": "Extremo",
     "dificultad": "Alta",
@@ -178,7 +178,7 @@ function inicializarPlanes() {
 
 function cambiarTab(tabId, event) {
 
- 
+
   document.querySelectorAll(".tab-content").forEach(el => {
     el.classList.remove("active");
   });
@@ -187,39 +187,39 @@ function cambiarTab(tabId, event) {
     tab.classList.remove("active");
   });
 
-  
+
   document.getElementById(tabId).classList.add("active");
 
- 
+
   event.target.classList.add("active");
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
   inicializarPlanes();
-    fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-            document.body.insertAdjacentHTML('beforeend', data);
-            verificarSesion('footer');
+  fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+      document.body.insertAdjacentHTML('beforeend', data);
+      verificarSesion('footer');
 
-        });
+    });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    fetch('nav.html')
-        .then(response => response.text())
-        .then(data => {
-            document.body.insertAdjacentHTML('beforeend', data);
-            verificarSesion('nav');
-            agregarColorLink()
-        });
+document.addEventListener("DOMContentLoaded", function () {
+  fetch('nav.html')
+    .then(response => response.text())
+    .then(data => {
+      document.body.insertAdjacentHTML('beforeend', data);
+      verificarSesion('nav');
+      agregarColorLink()
+    });
 });
 
 function agregarColorLink() {
   const currentPath = window.location.pathname;
   const items = document.querySelectorAll('li a')
-  items.forEach(item=> {
-    if(currentPath.includes(item.getAttribute('href'))) {
+  items.forEach(item => {
+    if (currentPath.includes(item.getAttribute('href'))) {
       item.classList.add('active');
     }
   })
@@ -232,43 +232,43 @@ function haySesion() {
 function verificarSesion(type) {
   const sesionActiva = haySesion();
 
-  if(type === 'nav') {
+  if (type === 'nav') {
     const planes = document.getElementById("planes");
     const reservas = document.getElementById("reservas");
     const login = document.getElementById("login");
     const logout = document.getElementById("logout");
     const reservasAdmin = document.getElementById("reservas-admin");
 
-    if(sesionActiva.rol === "ADMIN") {
-        reservasAdmin.classList.remove("d-none");
-        reservas.classList.add("d-none");
+    if (sesionActiva && sesionActiva.rol === "ADMIN") {
+      reservasAdmin.classList.remove("d-none");
+      reservas.classList.add("d-none");
     } else {
-        reservasAdmin.classList.add("d-none");
-        reservas.classList.remove("d-none");
+      reservasAdmin.classList.add("d-none");
+      reservas.classList.remove("d-none");
     }
 
     if (sesionActiva) {
-        planes.classList.remove("d-none");
-        // reservas.classList.remove("d-none");
-        login.classList.add("d-none");
-        logout.classList.remove("d-none");
+      planes.classList.remove("d-none");
+      // reservas.classList.remove("d-none");
+      login.classList.add("d-none");
+      logout.classList.remove("d-none");
     }
-  } else if(type === 'footer') {
+  } else if (type === 'footer') {
     const isLogin = document.getElementById("nav-logged-in");
     if (sesionActiva) {
-        isLogin.classList.remove("d-none");
+      isLogin.classList.remove("d-none");
     }
   }
 }
 
 function cerrarSesion() {
-    const isLogin = document.getElementById("nav-logged-in");
-    const login = document.getElementById("login");
-    const logout = document.getElementById("logout");
+  const isLogin = document.getElementById("nav-logged-in");
+  const login = document.getElementById("login");
+  const logout = document.getElementById("logout");
 
-    localStorage.removeItem("sesionActiva");
-    logout.classList.add("d-none");
-    login.classList.remove("d-none");
-    isLogin.classList.add("d-none");
-    window.location.href = "index.html";
+  localStorage.removeItem("sesionActiva");
+  logout.classList.add("d-none");
+  login.classList.remove("d-none");
+  isLogin.classList.add("d-none");
+  window.location.href = "index.html";
 }

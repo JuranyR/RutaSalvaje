@@ -13,26 +13,31 @@ let filtroCategoria = "";
 let filtroDificultad = "";
 let filtroEstado = "";
 
-btnMostrarForm.addEventListener("click", () => {
-  if (formContainer.style.display === "none") {
-    formContainer.style.display = "block";
-  } else {
-    formContainer.style.display = "none";
-  }
-});
+if (btnMostrarForm && formContainer) {
+  btnMostrarForm.addEventListener("click", () => {
+    if (formContainer.style.display === "none") {
+      formContainer.style.display = "block";
+    } else {
+      formContainer.style.display = "none";
+    }
+  });
+}
 
-categoria.addEventListener("change", () => {
-  if (categoria.value === "nueva") {
-    nuevaCategoriaContainer.style.display = "block";
-  } else {
-    nuevaCategoriaContainer.style.display = "none";
-  }
-});
+if (categoria && nuevaCategoriaContainer) {
+  categoria.addEventListener("change", () => {
+    if (categoria.value === "nueva") {
+      nuevaCategoriaContainer.style.display = "block";
+    } else {
+      nuevaCategoriaContainer.style.display = "none";
+    }
+  });
+}
 
 //SOLO GUARDA PLANES CON IMAGENES QUE PESEN MENOS DE 5MB
 
-form.addEventListener("submit", (evento) => {
-  evento.preventDefault();
+if (form) {
+  form.addEventListener("submit", (evento) => {
+    evento.preventDefault();
 
   const fileInput = document.getElementById("imagen");
   const file = fileInput.files[0];
@@ -51,7 +56,7 @@ form.addEventListener("submit", (evento) => {
       id: Date.now(),
       nombre: document.getElementById("nombre").value,
       descripcion: document.getElementById("descripcion").value,
-      imagen: reader.result,
+      imagen: file ? "./imagenes/planes/" + file.name : "./imagenes/default.png",
       categoria: categoriaFinal,
       dificultad: document.getElementById("dificultad").value,
       precio: document.getElementById("precio").value,
@@ -77,6 +82,7 @@ form.addEventListener("submit", (evento) => {
 
   reader.readAsDataURL(file);
 });
+}
 
 
 const inputBuscar = document.querySelector("input[type='search']");
