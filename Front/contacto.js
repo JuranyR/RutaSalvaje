@@ -58,6 +58,7 @@ formulario.addEventListener("submit", function(validacion) {
         alertaEnvio.classList.remove("d-none");
 
         setTimeout(function() {
+            
             formulario.submit();
         }, 1500);
     }

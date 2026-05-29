@@ -23,7 +23,7 @@
       <div id="contenedorPlanes" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-4 g-4 justify-content-center">
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-RutaDelVertigo.png" class="card-img-top" alt="Colombia" />
+            <img src="./imagenes/planes/Plan-RutaDelVertigo.png" class="card-img-top" alt="planVertigo" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "Ruta del vértigo"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Puente tibetano, Bungee Jumping, Canopy. <br>
@@ -31,11 +31,12 @@
               </p>
               <p class="card-text"><b>Precio:</b> $310.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar" data-id="1">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="1">
                   📅 Reservar
                 </button>
                 <button 
                   class="btn btn-info btn-ver-mas"
+                  id="ver-mas"
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Ruta del vértigo"
@@ -43,7 +44,7 @@
                   data-precio="$310.000"
                   data-imagen="./imagenes/planes/Plan-RutaDelVertigo.png"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -51,7 +52,7 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-DesafioTotal.png" class="card-img-top" alt="rio" />
+            <img src="./imagenes/planes/Plan-DesafioTotal.png" class="card-img-top" alt="planDesafio" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "Desafío Total"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Canotaje, Bungee Jumping. <br>
@@ -59,11 +60,12 @@
               </p>
               <p class="card-text"><b>Precio:</b> $380.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar" data-id="2">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="2">
                   📅 Reservar
                 </button>
                 <button 
                   class="btn btn-info btn-ver-mas"
+                  id="ver-mas"
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Desafío Total"
@@ -71,7 +73,7 @@
                   data-precio="$380.000"
                   data-imagen="./imagenes/planes/Plan-DesafioTotal.png"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -79,7 +81,7 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-ExploradordelasNubes.png" class="card-img-top" alt="Colombia" />
+            <img src="./imagenes/planes/Plan-ExploradordelasNubes.png" class="card-img-top" alt="planNubes" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "Explorador de las nubes"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Parapente, Canopy. <br>
@@ -87,9 +89,10 @@
               </p>
               <p class="card-text"><b>Precio:</b> $420.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar" data-id="3">📅 Reservar</button>
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="3">📅 Reservar</button>
                 <button 
                   class="btn btn-info btn-ver-mas"
+                  id="ver-mas"
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Explorador de las nubes"
@@ -97,7 +100,7 @@
                   data-precio="$420.000"
                   data-imagen="./imagenes/planes/Plan-ExploradordelasNubes.png"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -105,7 +108,7 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-MisionSecretaOperacionSelva.png" class="card-img-top" alt="Colombia" />
+            <img src="./imagenes/planes/Plan-MisionSecretaOperacionSelva.png" class="card-img-top" alt="planSelva" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan Misión secreta: Operación Selva</h5>
               <p class="card-text descripcion"><b>Actividades:</b>Búsqueda de pistas, retos en equipo, pruebas físicas y mentales. <br>
@@ -113,19 +116,21 @@
               </p>
               <p class="card-text"><b>Precio:</b> $310.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar" data-id="4">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="4">
                   📅 Reservar
                 </button>
                 <button 
                   class="btn btn-info btn-ver-mas"
+                  id="ver-mas"
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Misión secreta: Operación Selva"
                   data-detalle="Participa en una experiencia inmersiva tipo juego donde deberás resolver pistas, trabajar en equipo y superar retos físicos y mentales en un entorno selvático."
                   data-precio="$310.000"
                   data-imagen="./imagenes/planes/Plan-MisionSecretaOperacionSelva.png"
+                  data-precio="$310.000"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -133,7 +138,7 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-AguayRoca.png" class="card-img-top" alt="Colombia" />
+            <img src="./imagenes/planes/Plan-AguayRoca.png" class="card-img-top" alt="planRoca" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "Agua y roca"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Canotaje, Torrentismo, Nado en río, Exploración de
@@ -143,11 +148,12 @@
               </p>
               <p class="card-text"><b>Precio:</b> $290.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar " data-id="5">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="5">
                   📅 Reservar
                 </button>
                 <button 
-                  class="btn btn-info btn-ver-mas" 
+                  class="btn btn-info btn-ver-mas"
+                  id="ver-mas" 
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Agua y roca"
@@ -155,7 +161,7 @@
                   data-precio="$290.000"
                   data-imagen="./imagenes/planes/Plan-AguayRoca.png"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -163,7 +169,7 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-TravesiaDelHorizonte.png" class="card-img-top" alt="Colombia" />
+            <img src="./imagenes/planes/Plan-TravesiaDelHorizonte.png" class="card-img-top" alt="planHorizonte" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "Travesía del horizonte"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Senderismo de alta montaña, Camping, Parapente,
@@ -173,11 +179,12 @@
               </p>
               <p class="card-text"><b>Precio:</b> $460.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar" data-id="6">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="6">
                   📅 Reservar
                 </button>
                 <button 
                   class="btn btn-info btn-ver-mas"
+                  id="ver-mas"
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Travesía del horizonte"
@@ -185,7 +192,7 @@
                   data-precio="$460.000"
                   data-imagen="./imagenes/planes/Plan-TravesiaDelHorizonte.png"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -193,7 +200,7 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-CaminosColgantes.png" class="card-img-top" alt="Colombia" />
+            <img src="./imagenes/planes/Plan-CaminosColgantes.png" class="card-img-top" alt="planColgantes" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "Caminos colgantes"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Senderos en altura, Cruce de puentes colgantes,
@@ -202,11 +209,12 @@
               </p>
               <p class="card-text"><b>Precio:</b> $160.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar" data-id="7">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="7">
                   📅 Reservar
                 </button>
                 <button 
                   class="btn btn-info btn-ver-mas"
+                  id="ver-mas"
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Caminos colgantes"
@@ -214,7 +222,7 @@
                   data-precio="$160.000"
                   data-imagen="./imagenes/planes/Plan-CaminosColgantes.png"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -222,7 +230,7 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-Desafios.png" class="card-img-top" alt="Colombia" />
+            <img src="./imagenes/planes/Plan-Desafios.png" class="card-img-top" alt="planDesafios" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "Supervivencia extrema"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Supervivencia básica, Construcción de refugios,
@@ -231,11 +239,12 @@
               </p>
               <p class="card-text"><b>Precio:</b> $340.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar" data-id="8">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="8">
                   📅 Reservar
                 </button>
                 <button 
                   class="btn btn-info btn-ver-mas"
+                  id="ver-mas"
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Supervivencia extrema"
@@ -243,7 +252,7 @@
                   data-precio="$340.000"
                   data-imagen="./imagenes/planes/Plan-Desafios.png"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -251,7 +260,7 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-AventuraEnElBosque.png" class="card-img-top" alt="Colombia" />
+            <img src="./imagenes/planes/Plan-AventuraEnElBosque.png" class="card-img-top" alt="planBosque" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "Aventura en el bosque"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Caminatas ecológicas, Exploración de flora, Juegos de
@@ -260,11 +269,12 @@
               </p>
               <p class="card-text"><b>Precio:</b> $195.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar" data-id="9">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="9">
                   📅 Reservar
                 </button>
                 <button 
                   class="btn btn-info btn-ver-mas"
+                  id="ver-mas"
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan Aventura en el bosque"
@@ -272,7 +282,7 @@
                   data-precio="$195.000"
                   data-imagen="./imagenes/planes/Plan-AventuraEnElBosque.png"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -280,7 +290,7 @@
         </div>
         <div class="col">
           <div class="card h-100">
-            <img src="./imagenes/planes/Plan-SaltoDelCaminante.png" class="card-img-top" alt="Colombia" />
+            <img src="./imagenes/planes/Plan-SaltoDelCaminante.png" class="card-img-top" alt="planCaminante" />
             <div class="card-body d-flex flex-column">
               <h5 class="card-title">Plan "El salto del caminante"</h5>
               <p class="card-text descripcion"><b>Actividades:</b> Trekking de montaña, Ascenso a miradores, Bungee
@@ -289,11 +299,12 @@
               </p>
               <p class="card-text"><b>Precio:</b> $245.000</p>
               <div class="mt-auto">
-                <button class="btn btn-agregar btn-reservar" data-id="10">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="10">
                   📅 Reservar
                 </button>
                 <button 
                   class="btn btn-info btn-ver-mas"
+                  id="ver-mas"
                   data-bs-toggle="modal" 
                   data-bs-target="#modalSalvajeSignature"
                   data-titulo="Plan El salto del caminante"
@@ -301,7 +312,7 @@
                   data-precio="$245.000"
                   data-imagen="./imagenes/planes/Plan-SaltoDelCaminante.png"
                 >
-                  ℹ️ Ver más
+                  🔍 Ver más
                 </button>
               </div>
             </div>
@@ -331,7 +342,7 @@
                 <h4 id="modalTitulo" class="fw-bold"></h4>
                 <p id="modalDescripcion" class="mt-2"></p>
                 <div class="flex-grow-1"></div>
-                <button class="btn btn-agregar btn-reservar" data-id="">
+                <button class="btn btn-agregar btn-reservar" id="btn-reservar" data-id="11">
                   📅 Reservar
                 </button>
               </div>
@@ -341,10 +352,6 @@
               <div>
                 <p class="mb-0 text-muted">Precio:</p>
                 <h4 id="modalPrecio" class="fw-bold precio"></h4>
-              </div>
-              <div class="text-end">
-                <p class="text-warning mb-0">⭐⭐⭐⭐ 4.5/5</p>
-                <small class="text-decoration-underline">20 opiniones</small>
               </div>
             </div>
           </div>

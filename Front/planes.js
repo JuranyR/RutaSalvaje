@@ -1,3 +1,17 @@
+
+function activarCalendarios() {
+  flatpickr(".btn-reservar", {
+    enableTime: false,
+    dateFormat: "d-m-Y",
+    minDate: "today",
+     onChange: function(selectedDates, dateStr) {
+      window.location.href = `Reservas-Usuario.html?fecha=${dateStr}`;
+
+    }
+
+  });
+}
+
 const contenedor = document.getElementById("contenedorPlanes");
 
 let planDelModal = null;

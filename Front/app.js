@@ -82,5 +82,5 @@ function cerrarSesion() {
     logout.classList.add("d-none");
     login.classList.remove("d-none");
     isLogin.classList.add("d-none");
-    window.location.href = "inicio.html";
+    window.location.href = "index.html";
 }
