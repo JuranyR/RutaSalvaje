@@ -15,7 +15,7 @@ html, body {
 }
 
 .precio{
-    color: var(--color-quinto);
+    color: var(--color-secundario);
     font-weight: bold;
 }
 
@@ -52,4 +52,30 @@ html, body {
 
 main {
   padding-top: 80px;
+}
+
+#ver-mas {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+#ver-mas:hover {
+    background-color: var(--color-quinto);
+}
+
+#btn-reservar {
+    background-color: var(--color-secundario);
+    color: var(--color-primario);
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+}
+
+#btn-reservar:hover {
+    background-color: var(--color-quinto);
 }

@@ -21,12 +21,59 @@
             Regístrate aquí
           </h3>
 
-          <form id="registro" novalidate>
-            <div class="form-floating mb-1">
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre completo" required />
-              <label for="nombre">Nombre completo</label>
+        <form id="registro" novalidate>
+          <div class="form-floating mb-1">
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Completo" required />
+            <label for="nombre">Nombre completo</label>
+          </div>
+          <span id="errorNombre" class="text-danger d-block mt-1 mb-2"></span>
+
+          <div class="form-floating mb-1">
+            <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo" required />
+            <label for="correo">Correo electrónico</label>
+          </div>
+          <span id="errorCorreo" class="text-danger d-block mt-1 mb-2"></span>
+
+
+          <div class="form-floating mb-1">
+            <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
+            <label for="telefono">Teléfono</label>
+          </div>
+          <span id="errorTelefono" class="text-danger d-block mt-1 mb-2"></span>
+
+
+          <div class="input-group mb-1">
+            <div class="form-floating flex-grow-1">
+              <input type="text" class="form-control" id="password" placeholder="Contraseña" required />
+              <label for="password">Contraseña</label>
             </div>
-            <span id="errorNombre" class="text-danger error-mensaje d-block mb-2"></span>
+
+            <span class="input-group-text cursor-pointer" id="togglePassword1">
+              <i class="bi bi-eye" id="iconPassword1"></i>
+            </span>
+
+          </div>
+
+          <div class="input-group mb-1">
+            <div class="form-floating flex-grow-1">
+              <input type="text" class="form-control" id="password2" placeholder="Confirmar contraseña" required />
+              <label for="password2">Confirmar contraseña</label>
+            </div>
+
+            <span class="input-group-text cursor-pointer" id="togglePassword2">
+              <i class="bi bi-eye" id="iconPassword2"></i>
+            </span>
+          </div>
+
+          <span id="errorPassword" class="text-danger"></span>
+
+          <div>
+            <h5>CONTACTO DE EMERGENCIA</h5>
+            
+            <p class="texto-ayuda">
+              En caso de accidente o emergencia durante una actividad,
+              utilizaremos esta información para contactar a una persona cercana.
+            </p>
 
             <div class="form-floating mb-1">
               <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo electrónico" required />

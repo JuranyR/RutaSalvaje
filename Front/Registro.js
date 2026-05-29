@@ -131,7 +131,8 @@ registro.addEventListener("submit", function (evento) {
         setTimeout(function () {
             registro.reset();
             alertaExito.classList.add("d-none");
-        }, 1500);
+            window.location.href = "./login.html";
+        }, 1000);
     }
 });
 
