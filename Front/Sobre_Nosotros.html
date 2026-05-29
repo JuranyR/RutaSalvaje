@@ -8,17 +8,29 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
   <style>
-    .efecto-flotar { transition: all 0.3s ease; }
-    .efecto-flotar:hover { transform: translateY(-10px); }
+    .efecto-flotar {
+      transition: all 0.3s ease;
+    }
+
+    .efecto-flotar:hover {
+      transform: translateY(-10px);
+    }
   </style>
 </head>
 
 <body>
+
+  <div class="container-fluid p-0"> 
+    <img src="./imagenes/kamerman1960-zipline-6278621_1920.jpg" alt="Persona en tirolesa"
+        class="img-fluid w-100 imagen-banner object-fit-cover" style="max-height: 500px;"> 
+    </div>
+
   <section class="container my-5">
     <div class="row">
       <div class="col-12 col-lg-10 mx-auto">
         <div class="card border-0 shadow-sm" style="border-radius: 15px; background-color: #ffffff">
           <div class="card-body p-4 p-md-5">
+        
             <h1 class="fw-bold mb-4" style="color: #ff8c00">¿Qué es Ruta Salvaje?</h1>
             <p class="fs-5 text-muted" style="line-height: 1.6; text-align: justify">
               Ruta Salvaje es una plataforma digital que moderniza el
@@ -35,16 +47,22 @@
     </div>
 
     <h2 class="pt-5 mt-5 mb-4 fw-bold col-12 col-lg-10 mx-auto">Equipo de trabajo</h2>
-    
+
     <div class="row g-4 justify-content-center">
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="card border-2 efecto-flotar shadow-sm h-100" style="border-color: #1a5928 !important; border-radius: 15px;">
-          <img src="./imagenes/equipo/Cristian.png" class="card-img-top w-75 my-3 mx-auto object-fit-contain" style="height: 250px;" alt="Cristian Ariza">
+        <div class="card border-2 efecto-flotar shadow-sm h-100"
+          style="border-color: #1a5928 !important; border-radius: 15px;">
+          <img src="./imagenes/equipo/Cristian.png" class="card-img-top w-75 my-3 mx-auto object-fit-contain"
+            style="height: 250px;" alt="Cristian Ariza">
           <div class="card-body text-center">
             <h5 class="card-title fw-bold">Cristian Ariza</h5>
-            <span class="badge rounded-pill mb-2" style="background-color: rgba(255, 140, 0, 0.1); color: #ff8c00; border: 1px solid #ff8c00; font-size: 0.75rem;">Full Stack Developer</span>
-            <p class="card-text" style="font-size: 0.9rem;">Especialista en lógica de programación, Java y Spring Boot.</p>
-            <a href="https://www.linkedin.com/in/cristian-ariza-velasco-5b417a3b8" target="_blank" class="text-decoration-none">
+            <span class="badge rounded-pill mb-2"
+              style="background-color: rgba(255, 140, 0, 0.1); color: #ff8c00; border: 1px solid #ff8c00; font-size: 0.75rem;">Full
+              Stack Developer</span>
+            <p class="card-text" style="font-size: 0.9rem;">Especialista en lógica de programación, Java y Spring Boot.
+            </p>
+            <a href="https://www.linkedin.com/in/cristian-ariza-velasco-5b417a3b8" target="_blank"
+              class="text-decoration-none">
               <small class="text-body-secondary"><i class="bi bi-linkedin"></i> Linkedin</small>
             </a>
           </div>
@@ -52,13 +70,19 @@
       </div>
 
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="card border-2 efecto-flotar shadow-sm h-100" style="border-color: #1a5928 !important; border-radius: 15px;">
-          <img src="./imagenes/equipo/Jurany.png" class="card-img-top w-75 my-3 mx-auto object-fit-contain" style="height: 250px;" alt="Jurany Ramírez">
+        <div class="card border-2 efecto-flotar shadow-sm h-100"
+          style="border-color: #1a5928 !important; border-radius: 15px;">
+          <img src="./imagenes/equipo/Jurany.png" class="card-img-top w-75 my-3 mx-auto object-fit-contain"
+            style="height: 250px;" alt="Jurany Ramírez">
           <div class="card-body text-center">
             <h5 class="card-title fw-bold">Jurany Ramírez</h5>
-            <span class="badge rounded-pill mb-2" style="background-color: rgba(255, 140, 0, 0.1); color: #ff8c00; border: 1px solid #ff8c00; font-size: 0.75rem;">Full Stack Developer</span>
-            <p class="card-text" style="font-size: 0.9rem;">Desarrolladora enfocada en interfaces dinámicas y crecimiento.</p>
-            <a href="https://www.linkedin.com/in/jurany-adelia-ramirez-pineda/" target="_blank" class="text-decoration-none">
+            <span class="badge rounded-pill mb-2"
+              style="background-color: rgba(255, 140, 0, 0.1); color: #ff8c00; border: 1px solid #ff8c00; font-size: 0.75rem;">Full
+              Stack Developer</span>
+            <p class="card-text" style="font-size: 0.9rem;">Desarrolladora enfocada en interfaces dinámicas y
+              crecimiento.</p>
+            <a href="https://www.linkedin.com/in/jurany-adelia-ramirez-pineda/" target="_blank"
+              class="text-decoration-none">
               <small class="text-body-secondary"><i class="bi bi-linkedin"></i> Linkedin</small>
             </a>
           </div>
@@ -66,12 +90,17 @@
       </div>
 
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="card border-2 efecto-flotar shadow-sm h-100" style="border-color: #1a5928 !important; border-radius: 15px;">
-          <img src="./imagenes/equipo/Leider.jpg" class="card-img-top w-75 my-3 mx-auto object-fit-contain" style="height: 250px;" alt="Leider Merchan">
+        <div class="card border-2 efecto-flotar shadow-sm h-100"
+          style="border-color: #1a5928 !important; border-radius: 15px;">
+          <img src="./imagenes/equipo/Leider.png" class="card-img-top w-75 my-3 mx-auto object-fit-contain"
+            style="height: 250px;" alt="Leider Merchan">
           <div class="card-body text-center">
             <h5 class="card-title fw-bold">Leider Merchan</h5>
-            <span class="badge rounded-pill mb-2" style="background-color: rgba(255, 140, 0, 0.1); color: #ff8c00; border: 1px solid #ff8c00; font-size: 0.75rem;">Full Stack Developer</span>
-            <p class="card-text" style="font-size: 0.9rem;">Analítico orientado al detalle y soluciones funcionales backend.</p>
+            <span class="badge rounded-pill mb-2"
+              style="background-color: rgba(255, 140, 0, 0.1); color: #ff8c00; border: 1px solid #ff8c00; font-size: 0.75rem;">Full
+              Stack Developer</span>
+            <p class="card-text" style="font-size: 0.9rem;">Analítico orientado al detalle y soluciones funcionales
+              backend.</p>
             <a href="#" class="text-decoration-none">
               <small class="text-body-secondary"><i class="bi bi-linkedin"></i> Linkedin</small>
             </a>
@@ -80,13 +109,19 @@
       </div>
 
       <div class="col-12 col-md-6 col-lg-3">
-        <div class="card border-2 efecto-flotar shadow-sm h-100" style="border-color: #1a5928 !important; border-radius: 15px;">
-          <img src="./imagenes/equipo/Marlon.png" class="card-img-top w-75 my-3 mx-auto object-fit-contain" style="height: 250px;" alt="Marlon Alvarez">
+        <div class="card border-2 efecto-flotar shadow-sm h-100"
+          style="border-color: #1a5928 !important; border-radius: 15px;">
+          <img src="./imagenes/equipo/Quiryat.jpeg" class="card-img-top w-75 my-3 mx-auto object-fit-contain"
+            style="height: 250px;" alt="Quiryat Moncada">
           <div class="card-body text-center">
-            <h5 class="card-title fw-bold">Marlon Alvarez</h5>
-            <span class="badge rounded-pill mb-2" style="background-color: rgba(255, 140, 0, 0.1); color: #ff8c00; border: 1px solid #ff8c00; font-size: 0.75rem;">Full Stack Developer</span>
-            <p class="card-text" style="font-size: 0.9rem;">Arquitecto de sistemas robustos y aplicaciones integrales.</p>
-            <a href="https://www.linkedin.com/in/marlon-arley-alvarez-gomez-93586b1b5/" target="_blank" class="text-decoration-none">
+            <h5 class="card-title fw-bold">Quiryat Moncada</h5>
+            <span class="badge rounded-pill mb-2"
+              style="background-color: rgba(255, 140, 0, 0.1); color: #ff8c00; border: 1px solid #ff8c00; font-size: 0.75rem;">Full
+              Stack Developer</span>
+            <p class="card-text" style="font-size: 0.9rem;">Desarrolladora enfocada en interfaces web y soluciones Full
+              Stack.</p>
+            <a href="https://www.linkedin.com/in/quiryat-gabriela-moncada-sarmiento-fullstack/" target="_blank"
+              class="text-decoration-none">
               <small class="text-body-secondary"><i class="bi bi-linkedin"></i> Linkedin</small>
             </a>
           </div>
@@ -98,18 +133,20 @@
       <div class="col-12 col-md-5">
         <div class="card h-100 shadow-sm border-0">
           <div class="card-body p-4 text-center">
-            <span class="fs-1">🎯</span>
+            <span class="fs-1">🧭</span>
             <h2 class="card-title fw-bold mb-3" style="color: #ff8c00">Misión</h2>
-            <p class="card-text text-muted">Nuestra misión es ser la puerta de entrada a experiencias de aventura únicas, mediante una plataforma web segura, práctica y fácil de usar.</p>
+            <p class="card-text text-muted">Nuestra misión es ser la puerta de entrada a experiencias de aventura
+              únicas, mediante una plataforma web segura, práctica y fácil de usar.</p>
           </div>
         </div>
       </div>
       <div class="col-12 col-md-5">
         <div class="card h-100 shadow-sm border-0">
           <div class="card-body p-4 text-center">
-            <span class="fs-1">🚀</span>
+            <span class="fs-1">🌄</span>
             <h2 class="card-title fw-bold mb-3" style="color: #ff8c00">Visión</h2>
-            <p class="card-text text-muted">Nuestra visión es ser el ecosistema digital que lidera el turismo de aventura. Para el 2028, Ruta Salvaje será la plataforma referente en Colombia.</p>
+            <p class="card-text text-muted">Nuestra visión es ser el ecosistema digital que lidera el turismo de
+              aventura. Para el 2028, Ruta Salvaje será la plataforma referente en Colombia.</p>
           </div>
         </div>
       </div>
@@ -119,4 +156,5 @@
   <script src="app.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
