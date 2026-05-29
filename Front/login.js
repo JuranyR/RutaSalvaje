@@ -49,7 +49,9 @@ loginForm.addEventListener("submit", function (evento) {
 
             setTimeout(function () {
                 if (usuarioEncontrado.rol === "ADMIN") {
-                    window.location.href = "panel-de-control.html"; 
+                    window.location.href = "panel-de-control.html";
+
+
                 } else {
                     window.location.href = "index.html"; 
                 }
