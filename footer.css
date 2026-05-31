@@ -1,0 +1,103 @@
+
+html,
+body {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #0A0A0A; 
+}
+
+body > main,
+.page-wrapper {
+    flex: 1 0 auto;
+}
+
+
+.site-footer {
+    flex-shrink: 0;
+    margin-top: auto;
+    background-color: #080808; /* Ultra oscuro del diseño original */
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    padding: 35px 0 20px;
+    position: relative;
+    border-top: 4px solid #FF4500;
+    box-shadow: 0 -4px 30px rgba(255, 69, 0, 0.2);
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: -4px; /* Ajuste milimétrico sobre el borde */
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(to right, #FF4500, #FF8C00, #FF4500);
+    box-shadow: 0 0 20px rgba(255, 69, 0, 0.5);
+    z-index: 2;
+}
+
+.site-footer h5 {
+    color: #FF8C00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+    font-weight: 500; /* Extra peso visual del diseño 1 */
+    margin-bottom: 16px;
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+}
+
+.site-footer p {
+    color: #888888;
+    line-height: 1.6;
+    font-size: 0.88rem;
+    font-weight: 300;
+    margin-bottom: 0;
+}
+
+.site-footer ul {
+    padding: 0;
+    margin: 0;
+}
+
+.site-footer li {
+    list-style: none;
+    margin-bottom: 8px;
+}
+
+.site-footer a {
+    color: #AAAAAA;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 400;
+    display: inline-block;
+    transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.site-footer a:hover {
+    color: #FF8C00;
+    transform: translateY(-2px);
+    text-shadow: 0 0 8px rgba(255, 140, 0, 0.4);
+}
+
+/* Línea divisoria inferior */
+.site-footer hr {
+    background-color: #FF4500;
+    border: 0;
+    height: 1px;
+    opacity: 0.15;
+    margin: 30px 0 20px;
+}
+
+/* Copyright Texto */
+.site-footer small {
+    color: #555555;
+    font-weight: 300;
+    font-size: 0.78rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

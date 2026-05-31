@@ -1,0 +1,392 @@
+/* ============================================
+   RUTA SALVAJE — contacto.css (Diseño Oscuro)
+   Paleta: Negro Absoluto, Naranja Quemado, Gris Premium
+   ============================================ */
+
+:root {
+    --color-primario:      #0D0D0D;
+    --color-secundario:    #FF8C00; /* Naranja Brillante */
+    --color-tercero:       #FF4500; /* Naranja Oscuro / Terracota */
+    --color-cuarto:        #F0F0F0;
+    --color-fondo-card:    #141414; /* Gris ultra oscuro */
+    --color-input:         #1A1A1A;
+    --color-input-focus:   #1E1E1E;
+    --texto-muted:         #AAAAAA;
+    --gris-borde:          rgba(255, 69, 0, 0.2);
+    
+    /* Configuración estructural */
+    --radio-card:          6px;
+    --radio-btn:           4px;
+    --radio-input:         3px;
+    --sombra-card:         0 10px 40px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 69, 0, 0.1);
+}
+
+/* ── Base ── */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0A0A0A;
+    color: var(--color-cuarto);
+}
+
+/* ── Fondo con imagen ── */
+.background-contacto {
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    background-color: #0A0A0A;
+}
+
+.background-contacto::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url(./imagenes/contacto/imagen-contacto.png) no-repeat center center / cover;
+    opacity: 0.08;
+    z-index: 0;
+    filter: grayscale(50%) brightness(0.4);
+}
+
+/* ── Wrapper central ── */
+.contacto-wrapper {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 960px;
+    margin: 0 auto;
+}
+
+/* ── Hero / Encabezado ── */
+.contacto-hero {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.contacto-heading {
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    font-weight: 900;
+    color: var(--color-secundario);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 0 0 20px rgba(255, 140, 0, 0.3);
+    margin-bottom: 12px;
+}
+
+.contacto-subheading {
+    font-size: 0.95rem;
+    color: var(--texto-muted);
+    max-width: 520px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ── Grid de dos columnas ── */
+.contacto-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 35px;
+    align-items: start;
+}
+
+/* Modifica esta sección en tu contacto.css */
+@media (max-width: 768px) {
+    .contacto-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Forzamos al formulario a tomar el primer lugar */
+    .form-panel {
+        order: 1;
+    }
+
+    /* Mandamos el panel de información al segundo lugar */
+    .info-panel {
+        order: 2;
+    }
+}
+
+/* ── Panel de información ── */
+.info-panel {
+    background: var(--color-fondo-card);
+    border-radius: var(--radio-card);
+    border: 1px solid var(--gris-borde);
+    padding: 35px 28px;
+    box-shadow: var(--sombra-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.info-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, var(--color-tercero), var(--color-secundario));
+    border-radius: var(--radio-card) var(--radio-card) 0 0;
+}
+
+.info-panel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 50px rgba(255, 69, 0, 0.15), 0 0 0 1px rgba(255, 69, 0, 0.2);
+}
+
+.info-panel__title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-secundario);
+    margin-bottom: 30px;
+}
+
+/* ── Fila de datos de contacto ── */
+.info-row {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.info-row__icon {
+    width: 36px;
+    height: 36px;
+    min-width: 36px;
+    border-radius: 50%;
+    background: rgba(255, 69, 0, 0.1);
+    color: var(--color-secundario);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.info-row:hover .info-row__icon {
+    transform: scale(1.15);
+    filter: drop-shadow(0 0 8px var(--color-tercero));
+}
+
+.info-row__body {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-row__label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #888888;
+    letter-spacing: 1px;
+}
+
+.info-row__value {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-cuarto);
+    margin-top: 2px;
+}
+
+.info-row__hint {
+    font-size: 0.85rem;
+    color: var(--texto-muted);
+    margin-top: 1px;
+}
+
+/* Divisor interno */
+.info-divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.08);
+    margin: 30px 0 25px 0;
+}
+
+/* Redes Sociales */
+.info-social {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-social__label {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #888888;
+    text-transform: uppercase;
+}
+
+.info-social__icons {
+    display: flex;
+    gap: 16px;
+}
+
+.social-btn {
+    color: #888888;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.social-btn:hover {
+    transform: scale(1.2);
+    color: var(--color-secundario);
+    filter: drop-shadow(0 0 8px rgba(255, 140, 0, 0.5));
+}
+
+/* ── Panel del Formulario ── */
+.form-panel {
+    background: var(--color-fondo-card);
+    border-radius: var(--radio-card);
+    border: 1px solid var(--gris-borde);
+    padding: 35px 28px;
+    box-shadow: var(--sombra-card);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+
+.form-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, var(--color-tercero), var(--color-secundario));
+    border-radius: var(--radio-card) var(--radio-card) 0 0;
+}
+
+.form-panel:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 50px rgba(255, 69, 0, 0.15), 0 0 0 1px rgba(255, 69, 0, 0.2);
+}
+
+.form-panel__title {
+    color: var(--color-secundario);
+    font-size: 1.1rem;
+    letter-spacing: 2px;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.2);
+    margin-bottom: 30px;
+}
+
+/* Campos de entrada input/textarea */
+.campo {
+    margin-bottom: 6px;
+}
+
+.campo__label {
+    font-size: 0.8rem;
+    color: var(--color-cuarto);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.campo__input-wrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.campo__icon {
+    position: absolute;
+    left: 12px;
+    color: #666666;
+    pointer-events: none;
+    transition: color 0.2s ease;
+}
+
+.campo__icon--textarea {
+    top: 14px;
+}
+
+.campo__input {
+    width: 100%;
+    padding: 11px 12px 11px 38px;
+    border: 1px solid var(--gris-borde);
+    border-radius: var(--radio-input);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    background: var(--color-input);
+    color: var(--color-cuarto);
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+.campo__textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* Focus states */
+.campo__input:focus {
+    outline: none;
+    border-color: var(--color-tercero);
+    background: var(--color-input-focus);
+    color: var(--color-cuarto);
+    box-shadow: 0 0 0 3px rgba(255, 69, 0, 0.15);
+}
+
+.campo__input-wrap:focus-within .campo__icon {
+    color: var(--color-secundario);
+}
+
+/* Mensajes de error */
+.campo__error {
+    color: var(--color-tercero);
+    font-size: 0.75rem;
+    display: block;
+    height: 18px;
+    margin-top: 2px;
+    font-weight: 600;
+}
+
+/* Alerta Éxito */
+.alerta-exito {
+    font-size: 0.88rem;
+    font-weight: 700;
+    text-align: center;
+    padding: 10px;
+    margin: 15px 0;
+    background-color: #001A05;
+    border: 1px solid rgba(0, 200, 83, 0.3);
+    color: #00C853;
+    border-radius: var(--radio-input);
+}
+
+/* Botón de envío */
+.btn-enviar {
+    width: 50%;
+    margin: 15px auto 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: linear-gradient(135deg, var(--color-tercero), var(--color-secundario));
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #fff;
+    border: none;
+    border-radius: var(--radio-input);
+    padding: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(255, 69, 0, 0.4);
+    cursor: pointer;
+}
+
+.btn-enviar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(255, 69, 0, 0.6);
+    filter: brightness(1.1);
+}
+
+.btn-enviar:active {
+    transform: scale(0.97);
+}
+
+@media (max-width: 540px) {
+    .btn-enviar {
+        width: 100%;
+    }
+}
