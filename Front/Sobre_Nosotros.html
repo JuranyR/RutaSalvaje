@@ -7,44 +7,86 @@
   <title>Ruta Salvaje</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css" />
-  <style>
-    .efecto-flotar {
-      transition: all 0.3s ease;
-    }
-
-    .efecto-flotar:hover {
-      transform: translateY(-10px);
-    }
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="nav.css">
+  <link rel="stylesheet" href="footer.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+<nav class="navbar navbar-expand-lg navbar-salvaje fixed-top shadow-sm">
+        <div class="container">
+            
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img class="logo" src="./imagenes/Image20260417121620.png" alt="Logo" width="65" height="65"/>Ruta Salvaje
+            </a>
 
-  <div class="container-fluid p-0"> 
-    <img src="./imagenes/kamerman1960-zipline-6278621_1920.jpg" alt="Persona en tirolesa"
-        class="img-fluid w-100 imagen-banner object-fit-cover" style="max-height: 500px;"> 
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Sobre_Nosotros.html">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item d-none" id="planes">
+                        <a class="nav-link" href="planes.html">Planes</a>
+                    </li>
+                    <li class="nav-item d-none" id="reservas">
+                        <a class="nav-link" href="Reservas-Usuario.html">Reservas</a>
+                    </li>
+                    <li class="nav-item d-none" id="reservas-admin">
+                        <a class="nav-link" href="Reservas.html">Reservas</a>
+                    </li>
+                    <li class="nav-item" id="nav-contacto">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item ms-lg-3" id="login">
+                        <a class="btn btn-login px-4 py-2" href="login.html">Iniciar sesión</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item ms-lg-3 d-none dropdown" id="user-avatar">
+                        <a href="javascript:void(0)" class="dropdown-toggle text-decoration-none d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false" style="line-height:1;">
+                            <div id="avatarUsuario" class="avatar-iniciales">--</div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" id="avatarMenu"></ul>
+                    </li>
+
+                    
+                    <li class="nav-item ms-lg-2 d-none" id="logout">
+                        <a class="btn btn-logout px-4 py-2 d-none d-lg-inline-block" href="javascript:void(0)" onclick="cerrarSesion()">Cerrar sesión</a>
+                        <a class="nav-link d-lg-none logout-mobile" href="javascript:void(0)" onclick="cerrarSesion()">⏻ Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+  <div class="sobre-hero">
+    <div class="sobre-hero-overlay"></div>
+    <img src="./imagenes/kamerman1960-zipline-6278621_1920.jpg" alt="Persona en tirolesa" class="sobre-hero-img">
+    <div class="sobre-hero-content">
+      <p class="sobre-hero-eyebrow">⚡ NUESTRA HISTORIA</p>
+      <h1 class="sobre-hero-titulo">¿Qué es Ruta Salvaje?</h1>
+      <div class="sobre-hero-divider"></div>
+      <p class="sobre-hero-texto">
+        Ruta Salvaje es una plataforma digital que moderniza el turismo de aventura al digitalizar procesos de reserva antes manuales. Su solución integra tecnología para ofrecer planes estructurados y seguros, facilitando la exploración y toma de decisiones del usuario. El proyecto se centra en la usabilidad y la confianza, conectando a aventureros con experiencias al aire libre de manera rápida e intuitiva.
+      </p>
     </div>
+  </div>
 
   <section class="container my-5">
     <div class="row">
-      <div class="col-12 col-lg-10 mx-auto">
-        <div class="card border-0 shadow-sm" style="border-radius: 15px; background-color: #ffffff">
-          <div class="card-body p-4 p-md-5">
-        
-            <h1 class="fw-bold mb-4" style="color: #ff8c00">¿Qué es Ruta Salvaje?</h1>
-            <p class="fs-5 text-muted" style="line-height: 1.6; text-align: justify">
-              Ruta Salvaje es una plataforma digital que moderniza el
-              turismo de aventura al digitalizar procesos de reserva antes
-              manuales. Su solución integra tecnología para ofrecer planes
-              estructurados y seguros, facilitando la exploración y toma de
-              decisiones del usuario. El proyecto se centra en la usabilidad
-              y la confianza, conectando a aventureros con experiencias al
-              aire libre de manera rápida e intuitiva.
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <h2 class="pt-5 mt-5 mb-4 fw-bold col-12 col-lg-10 mx-auto">Equipo de trabajo</h2>
 
@@ -153,8 +195,60 @@
     </div>
   </section>
 
-  <script src="app.js"></script>
+  <script src="config.js"></script>
+    <script src="api.js"></script>
+  <script src="estadoSesion.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+<footer class="site-footer">
+    <div class="container">
+        <div class="row gy-4 align-items-start">
+            
+            <!-- Columna Marca -->
+            <div class="col-md-4 text-center text-md-start">
+                <h5>Ruta Salvaje</h5>
+                <p>
+                    Plataforma para descubrir <br>
+                    aventuras al aire libre.
+                </p>
+            </div>
+
+            <!-- Columna Navegación -->
+            <div class="col-md-4 text-center">
+                <h5>Navegación</h5>
+                <ul class="list-unstyled">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Sobre_Nosotros.html">Sobre Nosotros</a></li>
+                    
+                    <!-- Contenedor dinámico para sesión activa -->
+                    <span id="nav-logged-in" class="d-none">
+                        <li><a href="planes.html">Planes</a></li>
+                        <li><a href="Reservas.html">Reservas</a></li>
+                    </span>
+                    
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna Contacto -->
+            <div class="col-md-4 text-center text-md-end">
+                <h5>Contacto</h5>
+                <p>
+                    Bogotá, Colombia<br>
+                    rutasalvaje.admin@gmail.com<br>
+                    +57 315 123 4567
+                </p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Copyright -->
+        <div class="text-center">
+            <small>© 2026 Ruta Salvaje - Todos los derechos reservados</small>
+        </div>
+    </div>
+</footer>
+  <script src="app.js"></script>
 </body>
 
 </html>

@@ -6,118 +6,263 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Registro - Tu Próximo Desafío</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="Registro.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" />
 </head>
 
 <body>
-  <main class="container-fluid p-0 min-vh-100">
-    <div class="row g-0 min-vh-100">
+<nav class="navbar navbar-expand-lg navbar-salvaje fixed-top shadow-sm">
+        <div class="container">
+            
+            <a class="navbar-brand fw-bold" href="index.html">
+                <img class="logo" src="./imagenes/Image20260417121620.png" alt="Logo" width="65" height="65"/>Ruta Salvaje
+            </a>
 
-      <section class="col-lg-6 d-flex align-items-center justify-content-center bg-light py-5 px-3">
-        <div class="formulario card border-0 shadow p-4" id="formulario-container">
-          <h3 class="contacto-titulo pb-2 text-center text-uppercase">
-            Regístrate aquí
-          </h3>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuPrincipal"
+                aria-controls="menuPrincipal" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menuPrincipal">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Sobre_Nosotros.html">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item d-none" id="planes">
+                        <a class="nav-link" href="planes.html">Planes</a>
+                    </li>
+                    <li class="nav-item d-none" id="reservas">
+                        <a class="nav-link" href="Reservas-Usuario.html">Reservas</a>
+                    </li>
+                    <li class="nav-item d-none" id="reservas-admin">
+                        <a class="nav-link" href="Reservas.html">Reservas</a>
+                    </li>
+                    <li class="nav-item" id="nav-contacto">
+                        <a class="nav-link" href="contacto.html">Contacto</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item ms-lg-3" id="login">
+                        <a class="btn btn-login px-4 py-2" href="login.html">Iniciar sesión</a>
+                    </li>
+                    
+                    
+                    <li class="nav-item ms-lg-3 d-none dropdown" id="user-avatar">
+                        <a href="javascript:void(0)" class="dropdown-toggle text-decoration-none d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false" style="line-height:1;">
+                            <div id="avatarUsuario" class="avatar-iniciales">--</div>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" id="avatarMenu"></ul>
+                    </li>
+
+                    
+                    <li class="nav-item ms-lg-2 d-none" id="logout">
+                        <a class="btn btn-logout px-4 py-2 d-none d-lg-inline-block" href="javascript:void(0)" onclick="cerrarSesion()">Cerrar sesión</a>
+                        <a class="nav-link d-lg-none logout-mobile" href="javascript:void(0)" onclick="cerrarSesion()">⏻ Cerrar sesión</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+  <main class="reg-page">
+    <div class="reg-layout">
+
+      <section class="reg-form-col">
+        <div class="reg-card" id="formulario-container">
+
+          <h2 class="reg-title">Únete al desafío</h2>
+          <p class="reg-subtitle">Completa tus datos para registrarte</p>
 
           <form id="registro" novalidate>
-            <div class="form-floating mb-1">
-              <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre Completo"
-                required />
-              <label for="nombre">Nombre completo</label>
+
+            <span class="reg-section-label">Información personal</span>
+
+            <div class="campo">
+              <label class="campo__label" for="nombre">Nombre completo</label>
+              <div class="campo__wrap">
+                <svg class="campo__icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                </svg>
+                <input type="text" class="campo__input" id="nombre" name="nombre" placeholder="Ej. Carlos Rodríguez" required />
+              </div>
+              <span id="errorNombre" class="campo__error"></span>
             </div>
-            <span id="errorNombre" class="text-danger d-block mt-1 mb-2"></span>
 
-            <div class="form-floating mb-1">
-              <input type="email" class="form-control" id="correo" name="correo" placeholder="Correo" required />
-              <label for="correo">Correo electrónico</label>
+            <div class="campo">
+              <label class="campo__label" for="correo">Correo electrónico</label>
+              <div class="campo__wrap">
+                <svg class="campo__icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                </svg>
+                <input type="email" class="campo__input" id="correo" name="correo" placeholder="tucorreo@email.com" required />
+              </div>
+              <span id="errorCorreo" class="campo__error"></span>
             </div>
-            <span id="errorCorreo" class="text-danger d-block mt-1 mb-2"></span>
 
-
-            <div class="form-floating mb-1">
-              <input type="tel" class="form-control" id="telefono" name="telefono" placeholder="Teléfono" required>
-              <label for="telefono">Teléfono</label>
+            <div class="campo">
+              <label class="campo__label" for="telefono">Teléfono</label>
+              <div class="campo__wrap">
+                <svg class="campo__icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                </svg>
+                <input type="tel" class="campo__input" id="telefono" name="telefono" placeholder="+57 315 000 0000" required />
+              </div>
+              <span id="errorTelefono" class="campo__error"></span>
             </div>
-            <span id="errorTelefono" class="text-danger d-block mt-1 mb-2"></span>
 
+            <div class="campo">
+              <label class="campo__label" for="password">Contraseña</label>
+              <div class="campo__wrap campo__wrap--pass">
+                <svg class="campo__icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                </svg>
+                <input type="password" class="campo__input" id="password" placeholder="Mínimo 8 caracteres" required />
+                <button type="button" class="eye-btn" id="togglePassword1" aria-label="Mostrar contraseña">
+                  <i class="eye-icon bi bi-eye" id="iconPassword1" data-target="password"></i>
+    
+                  </i>
+                </button>
+              </div>
+            </div>
 
-            <div class="input-group mb-1">
-              <div class="form-floating flex-grow-1">
-                <input type="text" class="form-control" id="password" placeholder="Contraseña" required />
-                <label for="password">Contraseña</label>
+            <div class="campo">
+              <label class="campo__label" for="password2">Confirmar contraseña</label>
+              <div class="campo__wrap campo__wrap--pass">
+                <svg class="campo__icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2"/>
+                </svg>
+                <input type="password" class="campo__input" id="password2" placeholder="Repite tu contraseña" required />
+                <button type="button" class="eye-btn" id="togglePassword2" aria-label="Mostrar contraseña">
+                  <i class="eye-icon bi bi-eye" id="iconPassword1" data-target="password"></i>
+                    
+                  </i>
+                </button>
+              </div>
+              <span id="errorPassword" class="campo__error"></span>
+            </div>
+
+            <span class="reg-section-label">Contacto de emergencia</span>
+            <p class="reg-hint">En caso de accidente, utilizaremos esta información para contactar a una persona cercana.</p>
+
+            <div class="campo-row">
+              <div class="campo">
+                <label class="campo__label" for="contactoEmergencia">Nombre del contacto</label>
+                <div class="campo__wrap">
+                  <svg class="campo__icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z"/>
+                  </svg>
+                  <input type="text" class="campo__input" id="contactoEmergencia" name="contactoEmergencia" placeholder="Nombre completo" required />
+                </div>
+                <span id="errorContactoEmergencia" class="campo__error"></span>
               </div>
 
-              <span class="input-group-text cursor-pointer" id="togglePassword1">
-                <i class="bi bi-eye" id="iconPassword1"></i>
-              </span>
-
+              <div class="campo">
+                <label class="campo__label" for="parentescoEmergencia">Parentesco</label>
+                <div class="campo__wrap">
+                  <svg class="campo__icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                  </svg>
+                  <input type="text" class="campo__input" id="parentescoEmergencia" name="parentescoEmergencia" placeholder="Ej. Madre" required />
+                </div>
+                <span id="errorParentescoEmergencia" class="campo__error"></span>
+              </div>
             </div>
 
-            <div class="input-group mb-1">
-              <div class="form-floating flex-grow-1">
-                <input type="text" class="form-control" id="password2" placeholder="Confirmar contraseña" required />
-                <label for="password2">Confirmar contraseña</label>
+            <div class="campo">
+              <label class="campo__label" for="telefonoEmergencia">Teléfono de emergencia</label>
+              <div class="campo__wrap">
+                <svg class="campo__icon" xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"/>
+                </svg>
+                <input type="tel" class="campo__input" id="telefonoEmergencia" name="telefonoEmergencia" placeholder="+57 315 000 0000" required />
               </div>
-
-              <span class="input-group-text cursor-pointer" id="togglePassword2">
-                <i class="bi bi-eye" id="iconPassword2"></i>
-              </span>
+              <span id="errorTelefonoEmergencia" class="campo__error"></span>
             </div>
 
-            <span id="errorPassword" class="text-danger"></span>
-
-            <div>
-              <h5>CONTACTO DE EMERGENCIA</h5>
-              <p class="texto-ayuda">
-                En caso de accidente, utilizaremos esta información para contactar a una persona cercana.
-              </p>
-
-              <div class="form-floating mb-1">
-                <input type="text" class="form-control" id="contactoEmergencia" name="contactoEmergencia"
-                  placeholder="Nombre" required />
-                <label for="contactoEmergencia">Nombre del contacto</label>
-              </div>
-              <span id="errorContactoEmergencia" class="text-danger error-mensaje d-block mb-2"></span>
-
-              <div class="form-floating mb-1">
-                <input type="text" class="form-control" id="parentescoEmergencia" name="parentescoEmergencia"
-                  placeholder="Parentesco" required />
-                <label for="parentescoEmergencia">Parentesco o relación</label>
-              </div>
-              <span id="errorParentescoEmergencia" class="text-danger error-mensaje d-block mb-2"></span>
-
-              <div class="form-floating mb-1">
-                <input type="tel" class="form-control" id="telefonoEmergencia" name="telefonoEmergencia"
-                  placeholder="Teléfono" required />
-                <label for="telefonoEmergencia">Teléfono de emergencia</label>
-              </div>
-              <span id="errorTelefonoEmergencia" class="text-danger error-mensaje d-block mb-2"></span>
+            <div id="alertaExito" class="alerta-exito d-none">
+              ¡Registro exitoso! Bienvenido al desafío
             </div>
 
-            <div id="alertaExito" class="alert alert-success d-none text-center my-2 fw-bold py-2">
-              ¡Registro exitoso!
-            </div>
-
-            <button type="submit" class="btn btn-registro w-100 py-2 text-white fw-bold mt-2">
-              Registrarse al Desafío
+            <button type="submit" class="btn-registro">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M15.854.146a.5.5 0 0 1 .11.54l-5.819 14.547a.75.75 0 0 1-1.329.124l-3.178-4.995L.643 7.184a.75.75 0 0 1 .124-1.33L15.314.037a.5.5 0 0 1 .54.11z"/>
+              </svg>
+              Registrarse al desafío
             </button>
+
+            <p class="reg-login-link">¿Ya tienes cuenta? <a href="login.html">Inicia sesión</a></p>
+
           </form>
         </div>
       </section>
 
-      <section class="col-lg-6 d-none d-lg-block position-relative" id="image">
-        <div class="position-absolute top-0 start-0 w-100 h-100 bg-dark bg-opacity-50"></div>
-        <img src="./imagenes/registro.png" alt="Imagen de registro" class="img-registro" />
+      <section class="reg-image-col d-none d-lg-block" id="image">
+        <div class="reg-image-overlay"></div>
+        <img src="./imagenes/registro.png" alt="Imagen de registro" class="reg-image" />
       </section>
 
     </div>
   </main>
 
+  <script src="config.js"></script>
+    <script src="api.js"></script>
   <script src="Registro.js"></script>
-  <script src="app.js"></script>
+  <script src="estadoSesion.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<footer class="site-footer">
+    <div class="container">
+        <div class="row gy-4 align-items-start">
+            
+            <!-- Columna Marca -->
+            <div class="col-md-4 text-center text-md-start">
+                <h5>Ruta Salvaje</h5>
+                <p>
+                    Plataforma para descubrir <br>
+                    aventuras al aire libre.
+                </p>
+            </div>
+
+            <!-- Columna Navegación -->
+            <div class="col-md-4 text-center">
+                <h5>Navegación</h5>
+                <ul class="list-unstyled">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="Sobre_Nosotros.html">Sobre Nosotros</a></li>
+                    
+                    <!-- Contenedor dinámico para sesión activa -->
+                    <span id="nav-logged-in" class="d-none">
+                        <li><a href="planes.html">Planes</a></li>
+                        <li><a href="Reservas.html">Reservas</a></li>
+                    </span>
+                    
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+
+            <!-- Columna Contacto -->
+            <div class="col-md-4 text-center text-md-end">
+                <h5>Contacto</h5>
+                <p>
+                    Bogotá, Colombia<br>
+                    rutasalvaje.admin@gmail.com<br>
+                    +57 315 123 4567
+                </p>
+            </div>
+        </div>
+
+        <hr>
+
+        <!-- Copyright -->
+        <div class="text-center">
+            <small>© 2026 Ruta Salvaje - Todos los derechos reservados</small>
+        </div>
+    </div>
+</footer>
+  <script src="app.js"></script>
 </body>
 
 </html>

@@ -1,211 +1,461 @@
-const btnMostrarForm = document.getElementById("btnFormAct");
-const formContainer = document.getElementById("formContainer");
+if (!requireAdmin()) {
+    throw new Error("Acceso restringido a administradores");
+}
+
+// Inicialización de elementos del DOM y el Offcanvas de Bootstrap
+const offcanvasElement = document.getElementById("offcanvasNuevoPlan");
+const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
+
 const form = document.getElementById("formActividad");
 const categoria = document.getElementById("categoria");
 const nuevaCategoriaContainer = document.getElementById("nuevaCategoriaContainer");
 const lista = document.getElementById("listaActividades");
+const inputBuscar = document.querySelector("input[type='search']");
+const btnBuscar = document.querySelector(".btn-outline-success");
+const filtroCategoriaSelect = document.getElementById("filtroCategoria");
+const filtroDificultadSelect = document.getElementById("filtroDificultad");
+const filtroEstadoSelect = document.getElementById("filtroEstado");
+const listaContactos = document.getElementById("listaContactos");
+const btnActualizarContactos = document.getElementById("btnActualizarContactos");
 
-const planes = JSON.parse(localStorage.getItem("planes")) || [];
+let planes = [];
+let mensajesContacto = [];
 let editarPlan = null;
-
 let filtroBuscar = "";
 let filtroCategoria = "";
 let filtroDificultad = "";
 let filtroEstado = "";
 
-if (btnMostrarForm && formContainer) {
-  btnMostrarForm.addEventListener("click", () => {
-    if (formContainer.style.display === "none") {
-      formContainer.style.display = "block";
-    } else {
-      formContainer.style.display = "none";
+document.getElementById("imagen")?.addEventListener("change", (e) => {
+    const labelText = e.target.nextElementSibling?.nextElementSibling;
+    if (labelText && e.target.files[0]) {
+        labelText.textContent = e.target.files[0].name;
     }
-  });
+});
+
+function tipoPlanDesdeCategoria(valor) {
+    const categoriaNormalizada = normalizarTexto(valor);
+    if (categoriaNormalizada.includes("aventura")) return "AVENTURA";
+    if (categoriaNormalizada.includes("romant")) return "ROMANTICO";
+    if (categoriaNormalizada.includes("familiar")) return "FAMILIAR";
+    if (categoriaNormalizada.includes("extremo")) return "EXTREMO";
+    return "EXTREMO";
 }
 
-if (categoria && nuevaCategoriaContainer) {
-  categoria.addEventListener("change", () => {
-    if (categoria.value === "nueva") {
-      nuevaCategoriaContainer.style.display = "block";
-    } else {
-      nuevaCategoriaContainer.style.display = "none";
-    }
-  });
+function categoriaDesdeTipoPlan(valor) {
+    const tipo = String(valor || "AVENTURA").toUpperCase();
+    if (tipo === "AVENTURA") return "Aventura";
+    if (tipo === "ROMANTICO") return "Romántico";
+    if (tipo === "FAMILIAR") return "Familiar";
+    if (tipo === "EXTREMO") return "Extremo";
+    return "Aventura";
 }
 
-//SOLO GUARDA PLANES CON IMAGENES QUE PESEN MENOS DE 5MB
-
-if (form) {
-  form.addEventListener("submit", (evento) => {
-    evento.preventDefault();
-
-  const fileInput = document.getElementById("imagen");
-  const file = fileInput.files[0];
-
-  let categoriaFinal = categoria.value;
-
-  if (categoria.value === "nueva") {
-    categoriaFinal = document.getElementById("nuevaCategoria").value;
-  }
-
-  const reader = new FileReader();
-
-  reader.onload = function () {
-
-    const nuevoPlan = {
-      id: Date.now(),
-      nombre: document.getElementById("nombre").value,
-      descripcion: document.getElementById("descripcion").value,
-      imagen: file ? "./imagenes/planes/" + file.name : "./imagenes/default.png",
-      categoria: categoriaFinal,
-      dificultad: document.getElementById("dificultad").value,
-      precio: document.getElementById("precio").value,
-      estado: document.getElementById("estado").value,
-      actividades: document.getElementById("actividades").value.split(",")
-    };
-
-    if (editarPlan) {
-      const index = planes.findIndex(p => p.id === editarPlan);
-      planes[index] = nuevoPlan;
-      editarPlan = null;
-      alert("Plan actualizado");
-    } else {
-      planes.push(nuevoPlan);
-      alert("Plan agregado");
-    }
-
-    localStorage.setItem("planes", JSON.stringify(planes));
-    form.reset();
-    formContainer.style.display = "none";
-    mostrarPlanes();
-  }
-
-  reader.readAsDataURL(file);
-});
+function actividadesTexto(plan) {
+    if (Array.isArray(plan.actividades)) return plan.actividades.join(", ");
+    return plan.actividades || "No especificadas";
 }
 
+function escaparHtml(valor) {
+    return String(valor || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+}
 
-const inputBuscar = document.querySelector("input[type='search']");
-const btnBuscar = document.querySelector(".btn-outline-success");
+async function cargarPlanes() {
+    try {
+        const response = await fetch(`${RUTA_API_URL}/planes`);
+        if (!response.ok) throw await apiError(response, "Error al obtener planes");
 
-inputBuscar.addEventListener("input", () => {
-  filtroBuscar = inputBuscar.value.toLowerCase();
-  mostrarPlanes();
-});
+        planes = await response.json(); 
 
-btnBuscar.addEventListener("click", (e) => {
-  e.preventDefault();
-  filtroBuscar = inputBuscar.value.toLowerCase();
-  mostrarPlanes();
-});
+        if (!planes || planes.length === 0) {
+            lista.innerHTML = `<div class="col-12">${estadoVacioHtml("Aún no tienes planes creados.")}</div>`;
+            return;
+        }
 
+        mostrarPlanes();
+    } catch (error) {
+        console.error("Error al cargar planes:", error);
+        if (lista) {
+            lista.innerHTML = `<div class="col-12">${estadoVacioHtml(error.message)}</div>`;
+        }
+    }
+}
 
-document.querySelectorAll(".dropdown-menu .dropdown-item").forEach(item => {
+async function cargarContactos() {
+    if (!listaContactos) return;
 
-  item.addEventListener("click", (e) => {
-    e.preventDefault();
+    try {
+        const response = await fetch(`${RUTA_API_URL}/contactos`, {
+            headers: getAuthHeaders()
+        });
+        if (!response.ok) throw await apiError(response, "No se pudieron cargar los mensajes de contacto");
 
-    const valor = item.textContent.trim();
-    const menu = item.closest(".dropdown-menu");
-    const boton = menu.previousElementSibling;
-    const nombreBoton = boton.textContent.trim();
+        mensajesContacto = await response.json();
+        mostrarContactos();
+    } catch (error) {
+        console.error("Error al cargar contactos:", error);
+        listaContactos.innerHTML = estadoVacioHtml(error.message);
+    }
+}
 
-    if (nombreBoton === "Categoria") {
-      filtroCategoria = valor;
+function mostrarContactos() {
+    if (!listaContactos) return;
+
+    if (!mensajesContacto || mensajesContacto.length === 0) {
+        listaContactos.innerHTML = estadoVacioHtml("Todavía no hay mensajes de contacto.");
+        return;
     }
 
-    if (nombreBoton === "Dificultad") {
-      filtroDificultad = valor;
+    listaContactos.innerHTML = mensajesContacto.map(mensaje => `
+        <article class="contacto-card">
+            <div class="contacto-card__header">
+                <div>
+                    <h6>${escaparHtml(mensaje.nombre)}</h6>
+                    <a href="mailto:${escaparHtml(mensaje.email)}">${escaparHtml(mensaje.email)}</a>
+                </div>
+                <button class="btn btn-sm btn-eliminar-contacto" type="button" data-id="${mensaje.id}">Eliminar</button>
+            </div>
+            <p class="contacto-card__telefono">${escaparHtml(mensaje.telefono)}</p>
+            <p class="contacto-card__mensaje">${escaparHtml(mensaje.mensaje)}</p>
+        </article>
+    `).join("");
+}
+
+async function eliminarContacto(id) {
+    const confirmado = await confirmarAccion({
+        titulo: "Eliminar mensaje",
+        mensaje: "Este mensaje de contacto se eliminará del panel.",
+        confirmar: "Eliminar"
+    });
+    if (!confirmado) return;
+
+    try {
+        const response = await fetch(`${RUTA_API_URL}/contactos/${id}`, {
+            method: "DELETE",
+            headers: getAuthHeaders()
+        });
+        if (!response.ok) throw await apiError(response, "No se pudo eliminar el mensaje");
+
+        mostrarToast("Mensaje eliminado correctamente.", "ok");
+        await cargarContactos();
+    } catch (error) {
+        console.error(error);
+        mostrarToast(error.message, "error");
     }
-
-    if (nombreBoton === "Estado") {
-      filtroEstado = valor;
-    }
-
-    mostrarPlanes();
-  });
-
-});
-
+}
 
 function mostrarPlanes() {
+    lista.innerHTML = "";
 
-  lista.innerHTML = "";
+    const resultado = planes.filter(plan => {
+        const nombre = normalizarTexto(plan.nombre);
+        const categoriaPlan = planCategoria(plan);
+        const dificultadPlan = planDificultad(plan);
+        const estadoPlan = planEstadoTexto(plan);
 
-  let resultado = planes.filter(plan => {
-    let pasaBuscar = plan.nombre.toLowerCase().includes(filtroBuscar);
-    let pasaCategoria = filtroCategoria === "" || plan.categoria === filtroCategoria;
-    let pasaDificultad = filtroDificultad === "" || plan.dificultad === filtroDificultad;
-    let pasaEstado = filtroEstado === "" || plan.estado === filtroEstado;
-    return pasaBuscar && pasaCategoria && pasaDificultad && pasaEstado;
+        const pasaBuscar = nombre.includes(normalizarTexto(filtroBuscar));
+        const pasaCategoria = !filtroCategoria || categoriaPlan === filtroCategoria;
+        const pasaDificultad = !filtroDificultad || dificultadPlan === filtroDificultad;
+        const pasaEstado = !filtroEstado || normalizarTexto(estadoPlan).toUpperCase() === filtroEstado;
 
-  });
+        return pasaBuscar && pasaCategoria && pasaDificultad && pasaEstado;
+    });
 
-  if (resultado.length === 0) {
-    lista.innerHTML = `<div class="col-12"><p class="text-muted">No se encontraron planes.</p></div>`;
-    return;
-  }
-
-  resultado.forEach(plan => {
-
-    let actividades;
-    if (plan.actividades) {
-      actividades = plan.actividades.join(", ");
-    } else {
-      actividades = "No especificadas";
+    if (resultado.length === 0) {
+        lista.innerHTML = `<div class="col-12">${estadoVacioHtml("No se encontraron planes con esos filtros.")}</div>`;
+        return;
     }
 
-    lista.innerHTML += `
-      <div class="col-md-4">
-        <div class="card shadow-sm h-100">
-          <img src="${plan.imagen}" alt="${plan.nombre}">
-          <div class="card-body">
-            <h5>${plan.nombre}</h5>
-            <p>${plan.descripcion}</p>
-            <p><strong>Incluye:</strong> ${actividades}</p>
-            <span class="badge bg-success">${plan.categoria}</span>
-            <br><br>
-            <strong>Dificultad:</strong> ${plan.dificultad}<br>
-            <strong>Precio:</strong> $${plan.precio}
-            <hr>
-            <button class="btn btn-sm me-1 btn-editar" id="btn-editar" onclick="editandoPlan(${plan.id})">Editar</button>
-            <button class="btn  btn-sm btn-eliminar" onclick="eliminarPlan(${plan.id})">Eliminar</button>
-          </div>
-        </div>
-      </div>`;
-  });
+    resultado.forEach(plan => {
+        lista.innerHTML += `
+            <div class="col-md-4">
+                <div class="card shadow-sm h-100">
+                    <img src="${planImagen(plan)}" alt="${plan.nombre}">
+                    <div class="card-body">
+                        <h5>${plan.nombre}</h5>
+                        <p>${plan.descripcion}</p>
+                        <p><strong>Incluye:</strong> ${actividadesTexto(plan)}</p>
+                        <span class="badge bg-success">${categoriaDesdeTipoPlan(plan.tipoPlan)}</span>
+                        <br><br>
+                        <strong>Dificultad:</strong> ${formatoEnum(planDificultad(plan))}<br>
+                        <strong>Estado:</strong> ${planEstadoTexto(plan)}<br>
+                        <strong>Precio:</strong> $${formatoPrecio(precioPlan(plan))}<br>
+                        <strong>Descuento:</strong> ${Number(plan.descuentoPorcentaje || 0)}%
+                        <hr>
+                        <button class="btn btn-sm me-1 btn-editar" type="button" data-id="${plan.id}">Editar</button>
+                        <button class="btn btn-sm me-1 btn-toggle-estado" type="button" data-id="${plan.id}">
+                            ${plan.estado === false ? "Activar" : "Inactivar"}
+                        </button>
+                        <button class="btn btn-sm btn-eliminar" type="button" data-id="${plan.id}">Eliminar</button>
+                    </div>
+                </div>
+            </div>`;
+    });
 }
 
+function limpiarFormulario() {
+    editarPlan = null;
+    form.reset();
+    document.getElementById("imagen").required = true;
+    
+    const labelText = document.querySelector("#offcanvasNuevoPlan .fw-bold.d-block");
+    if (labelText) labelText.textContent = "Haz clic para seleccionar una imagen";
 
-function eliminarPlan(id) {
-  const confirmar = confirm("¿Eliminar este plan?");
-  if (!confirmar) return;
-
-  const index = planes.findIndex(p => p.id === id);
-  planes.splice(index, 1);
-  localStorage.setItem("planes", JSON.stringify(planes));
-  mostrarPlanes();
+    bsOffcanvas.hide();
 }
 
+function planDesdeFormulario(imagenActual = "") {
+    const categoriaFinal = categoria.value === "nueva"
+        ? document.getElementById("nuevaCategoria").value
+        : categoria.value;
+
+    return {
+        nombre: document.getElementById("nombre").value.trim(),
+        descripcion: document.getElementById("descripcion").value.trim(),
+        precio: Number(document.getElementById("precio").value),
+        descuentoPorcentaje: Number(document.getElementById("descuento").value || 0),
+        tipoPlan: tipoPlanDesdeCategoria(categoriaFinal),
+        dificultad: document.getElementById("dificultad").value.toUpperCase(),
+        estado: document.getElementById("estado").value === "Activa",
+        actividades: document.getElementById("actividades").value.trim(),
+        imagen: imagenActual
+    };
+}
+
+async function crearPlan() {
+    const file = document.getElementById("imagen").files[0];
+    if (!file) {
+        mostrarToast("Selecciona una imagen para crear el plan.", "info");
+        return;
+    }
+
+    const plan = planDesdeFormulario();
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("nombre", plan.nombre);
+    formData.append("descripcion", plan.descripcion);
+    formData.append("precio", plan.precio);
+    formData.append("descuentoPorcentaje", plan.descuentoPorcentaje);
+    formData.append("tipoPlan", plan.tipoPlan);
+    formData.append("dificultad", plan.dificultad);
+    formData.append("estado", plan.estado);
+    formData.append("actividades", plan.actividades);
+
+    const response = await fetch(`${RUTA_API_URL}/planes`, {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: formData
+    });
+
+    if (!response.ok) throw await apiError(response, "No se pudo crear el plan");
+}
+
+async function actualizarPlan() {
+
+    const file = document.getElementById("imagen").files[0];
+
+    const planActual = planes.find(
+        plan => String(plan.id) === String(editarPlan)
+    );
+
+    const plan = planDesdeFormulario(planActual?.imagen || "");
+
+    const formData = new FormData();
+
+    if (file) {
+        formData.append("file", file);
+    }
+
+    formData.append("nombre", plan.nombre);
+    formData.append("descripcion", plan.descripcion);
+    formData.append("precio", plan.precio);
+    formData.append("descuentoPorcentaje", plan.descuentoPorcentaje);
+    formData.append("tipoPlan", plan.tipoPlan);
+    formData.append("dificultad", plan.dificultad);
+    formData.append("estado", plan.estado);
+    formData.append("actividades", plan.actividades);
+
+    const response = await fetch(`${RUTA_API_URL}/planes/${editarPlan}`, {
+        method: "PUT",
+        headers: getAuthHeaders(),
+        body: formData
+    });
+
+    if (!response.ok) {
+        throw await apiError(response, "No se pudo actualizar el plan");
+    }
+}
+
+async function cambiarEstadoPlan(id) {
+
+    const planActual = planes.find(
+        plan => String(plan.id) === String(id)
+    );
+
+    if (!planActual) return;
+
+    const formData = new FormData();
+
+    formData.append("nombre", planActual.nombre);
+    formData.append("descripcion", planActual.descripcion);
+    formData.append("precio", planActual.precio);
+
+    formData.append(
+        "descuentoPorcentaje",
+        planActual.descuentoPorcentaje || 0
+    );
+
+    formData.append("tipoPlan", planActual.tipoPlan);
+
+    formData.append(
+        "dificultad",
+        planActual.dificultad
+    );
+
+    formData.append(
+        "estado",
+        !planActual.estado
+    );
+
+    formData.append(
+        "actividades",
+        planActual.actividades
+    );
+
+    const response = await fetch(`${RUTA_API_URL}/planes/${id}`, {
+        method: "PUT",
+        headers: getAuthHeaders(),
+        body: formData
+    });
+
+    if (!response.ok) {
+        throw await apiError(
+            response,
+            "No se pudo cambiar el estado del plan"
+        );
+    }
+
+    await cargarPlanes();
+}
+
+async function eliminarPlan(id) {
+    const confirmado = await confirmarAccion({
+        titulo: "Eliminar plan",
+        mensaje: "El plan dejará de aparecer y no se podrá recuperar desde esta vista.",
+        confirmar: "Eliminar"
+    });
+    if (!confirmado) return;
+
+    try {
+        const response = await fetch(`${RUTA_API_URL}/planes/${id}`, {
+            method: "DELETE",
+            headers: getAuthHeaders()
+        });
+
+        if (!response.ok) throw await apiError(response, "No se pudo eliminar el plan");
+        await cargarPlanes();
+    } catch (error) {
+        console.error(error);
+        mostrarToast(error.message, "error");
+    }
+}
 
 function editandoPlan(id) {
-  const plan = planes.find(p => p.id === id);
+    const plan = planes.find(item => String(item.id) === String(id));
+    if (!plan) return;
 
-  document.getElementById("nombre").value = plan.nombre;
-  document.getElementById("descripcion").value = plan.descripcion;
-  document.getElementById("precio").value = plan.precio;
-  document.getElementById("categoria").value = plan.categoria;
-  document.getElementById("dificultad").value = plan.dificultad;
-  document.getElementById("estado").value = plan.estado;
-  document.getElementById("actividades").value = plan.actividades.join(",");
+    document.getElementById("nombre").value = plan.nombre;
+    document.getElementById("descripcion").value = plan.descripcion;
+    document.getElementById("precio").value = plan.precio;
+    document.getElementById("descuento").value = plan.descuentoPorcentaje || 0;
+    document.getElementById("categoria").value = categoriaDesdeTipoPlan(plan.tipoPlan);
+    document.getElementById("dificultad").value = formatoEnum(planDificultad(plan));
+    document.getElementById("estado").value = planEstadoTexto(plan);
+    document.getElementById("actividades").value = actividadesTexto(plan);
+    document.getElementById("imagen").required = false;
 
-  formContainer.style.display = "block";
-  editarPlan = id;
-  window.scrollTo({
-    top: "100",
-    behavior: 'smooth'
-  });
+    editarPlan = id;
+    
+    // Muestra el Offcanvas con los datos mapeados
+    bsOffcanvas.show();
 }
 
+categoria?.addEventListener("change", () => {
+    nuevaCategoriaContainer.style.display = categoria.value === "nueva" ? "block" : "none";
+});
 
-mostrarPlanes();
+form?.addEventListener("submit", async (evento) => {
+    evento.preventDefault();
+
+    try {
+        if (editarPlan) {
+            await actualizarPlan();
+            mostrarToast("Plan actualizado correctamente.", "ok");
+        } else {
+            await crearPlan();
+            mostrarToast("Plan agregado correctamente.", "ok");
+        }
+
+        limpiarFormulario();
+        await cargarPlanes();
+    } catch (error) {
+        console.error(error);
+        mostrarToast(error.message, "error");
+    }
+});
+
+inputBuscar?.addEventListener("input", () => {
+    filtroBuscar = inputBuscar.value;
+    mostrarPlanes();
+});
+
+btnBuscar?.addEventListener("click", (e) => {
+    e.preventDefault();
+    filtroBuscar = inputBuscar.value;
+    mostrarPlanes();
+});
+
+filtroCategoriaSelect?.addEventListener("change", () => {
+    filtroCategoria = filtroCategoriaSelect.value;
+    mostrarPlanes();
+});
+
+filtroDificultadSelect?.addEventListener("change", () => {
+    filtroDificultad = filtroDificultadSelect.value;
+    mostrarPlanes();
+});
+
+filtroEstadoSelect?.addEventListener("change", () => {
+    filtroEstado = filtroEstadoSelect.value;
+    mostrarPlanes();
+});
+
+lista?.addEventListener("click", (e) => {
+    const btnEditar = e.target.closest(".btn-editar");
+    const btnToggleEstado = e.target.closest(".btn-toggle-estado");
+    const btnEliminar = e.target.closest(".btn-eliminar");
+
+    if (btnEditar) editandoPlan(btnEditar.dataset.id);
+    if (btnToggleEstado) {
+        cambiarEstadoPlan(btnToggleEstado.dataset.id).catch(error => {
+            console.error(error);
+            mostrarToast(error.message, "error");
+        });
+    }
+    if (btnEliminar) eliminarPlan(btnEliminar.dataset.id);
+});
+
+listaContactos?.addEventListener("click", (e) => {
+    const btnEliminar = e.target.closest(".btn-eliminar-contacto");
+    if (btnEliminar) eliminarContacto(btnEliminar.dataset.id);
+});
+
+btnActualizarContactos?.addEventListener("click", cargarContactos);
+
+cargarPlanes();
+cargarContactos();

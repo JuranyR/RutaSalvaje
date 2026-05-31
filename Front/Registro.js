@@ -1,4 +1,4 @@
-const errorNombre = document.getElementById("errorNombre");
+﻿const errorNombre = document.getElementById("errorNombre");
 const errorCorreo = document.getElementById("errorCorreo");
 const errorTelefono = document.getElementById("errorTelefono");
 const errorPassword = document.getElementById("errorPassword");
@@ -14,14 +14,12 @@ const inputPassword2 = document.getElementById("password2");
 const inputContactoEmergencia = document.getElementById("contactoEmergencia");
 const inputParentescoEmergencia = document.getElementById("parentescoEmergencia");
 const inputTelefonoEmergencia = document.getElementById("telefonoEmergencia");
+
 const alertaExito = document.getElementById("alertaExito");
 
 const registro = document.getElementById("registro");
 
-let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
-
-
-registro.addEventListener("submit", function (evento) {
+registro.addEventListener("submit", async function (evento) {
 
     evento.preventDefault();
 
@@ -36,104 +34,116 @@ registro.addEventListener("submit", function (evento) {
     let sonValidos = true;
 
     if (inputNombre.value.trim() === "") {
-        errorNombre.textContent = "El campo Nombre no puede estar vacio";
+        errorNombre.textContent = "El campo Nombre no puede estar vacío";
         sonValidos = false;
     } else if (/\d/.test(inputNombre.value.trim())) {
         errorNombre.textContent = "El nombre solo puede contener letras";
         sonValidos = false;
     }
 
-    const correoSimbol = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const correoRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
     if (inputCorreo.value.trim() === "") {
-        errorCorreo.textContent = "El campo Correo no puede estar vacio";
+        errorCorreo.textContent = "El campo Correo no puede estar vacío";
         sonValidos = false;
-    } else if (!correoSimbol.test(inputCorreo.value.trim())) {
+    } else if (!correoRegex.test(inputCorreo.value.trim())) {
         errorCorreo.textContent = "Correo inválido";
         sonValidos = false;
-    } else {
-        const existe = usuarios.some(
-            usu => usu.correo === inputCorreo.value.trim()
-        );
-
-        if (existe) {
-            errorCorreo.textContent = "Este correo ya está registrado";
-            sonValidos = false;
-        }
-
     }
 
-
     if (inputTelefono.value.trim() === "") {
-        errorTelefono.textContent = "El campo Telefono no puede estar vacio";
+        errorTelefono.textContent = "El campo Teléfono no puede estar vacío";
         sonValidos = false;
     } else if (isNaN(inputTelefono.value.trim())) {
-        errorTelefono.textContent = "Debe contener solo numeros";
+        errorTelefono.textContent = "Debe contener solo números";
         sonValidos = false;
     } else if (inputTelefono.value.trim().length !== 10) {
-        errorTelefono.textContent = "El numero debe tener exactamente 10 digitos";
+        errorTelefono.textContent = "Debe tener exactamente 10 dígitos";
         sonValidos = false;
     }
 
     if (inputPassword.value.trim() === "") {
-        errorPassword.textContent = "El campo contraseña no puede estar vacio";
+        errorPassword.textContent = "La contraseña es obligatoria";
         sonValidos = false;
-    } else if (inputPassword.value.length < 6) {
-        errorPassword.textContent = "La contraseña debe tener mínimo 6 caracteres";
+    } else if (inputPassword.value.length < 8) {
+        errorPassword.textContent = "Debe tener mínimo 8 caracteres";
         sonValidos = false;
-
     } else if (inputPassword.value.trim() !== inputPassword2.value.trim()) {
-        errorPassword.textContent = "Las contraseñas no son iguales";
+        errorPassword.textContent = "Las contraseñas no coinciden";
         sonValidos = false;
     }
 
     if (inputContactoEmergencia.value.trim() === "") {
-        errorContactoEmergencia.textContent = "El nombre del contacto no puede estar vacio";
+        errorContactoEmergencia.textContent = "El contacto de emergencia es obligatorio";
         sonValidos = false;
     } else if (/\d/.test(inputContactoEmergencia.value.trim())) {
-        errorContactoEmergencia.textContent = "El nombre solo puede contener letras";
+        errorContactoEmergencia.textContent = "Solo puede contener letras";
         sonValidos = false;
     }
 
     if (inputParentescoEmergencia.value.trim() === "") {
-        errorParentescoEmergencia.textContent = "El parentesco no puede estar vacio";
-        sonValidos = false;
-    } else if (/\d/.test(inputParentescoEmergencia.value.trim())) {
-        errorParentescoEmergencia.textContent = "El parentesco solo puede contener letras";
+        errorParentescoEmergencia.textContent = "El parentesco es obligatorio";
         sonValidos = false;
     }
 
     if (inputTelefonoEmergencia.value.trim() === "") {
-        errorTelefonoEmergencia.textContent = "El telefono de emergencia no puede estar vacio";
+        errorTelefonoEmergencia.textContent = "El teléfono de emergencia es obligatorio";
         sonValidos = false;
     } else if (isNaN(inputTelefonoEmergencia.value.trim())) {
-        errorTelefonoEmergencia.textContent = "Debe contener solo numeros";
+        errorTelefonoEmergencia.textContent = "Debe contener solo números";
         sonValidos = false;
     } else if (inputTelefonoEmergencia.value.trim().length !== 10) {
-        errorTelefonoEmergencia.textContent = "El numero debe tener exactamente 10 digitos";
+        errorTelefonoEmergencia.textContent = "Debe tener exactamente 10 dígitos";
         sonValidos = false;
     }
 
-    if (sonValidos) {
-        usuarios.push({
-            nombre: inputNombre.value.trim(),
-            correo: inputCorreo.value.trim(),
-            telefono: inputTelefono.value.trim(),
-            password: inputPassword.value.trim(),
-            contactoEmergencia: inputContactoEmergencia.value.trim(),
-            parentescoEmergencia: inputParentescoEmergencia.value.trim(),
-            telefonoEmergencia: inputTelefonoEmergencia.value.trim()
+    if (!sonValidos) return;
+
+    const usuario = {
+        nombre: inputNombre.value.trim(),
+        email: inputCorreo.value.trim().toLowerCase(),
+        password: inputPassword.value.trim(),
+        telefono: inputTelefono.value.trim(),
+        nombreEmergencia: inputContactoEmergencia.value.trim(),
+        telefonoEmergencia: inputTelefonoEmergencia.value.trim(),
+        parentesco: inputParentescoEmergencia.value.trim()
+    };
+
+    try {
+
+        const response = await fetch(`${RUTA_API_URL}/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(usuario)
         });
-        localStorage.setItem("usuarios", JSON.stringify(usuarios));
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(
+                data.error ||
+                data.message ||
+                "No fue posible registrar el usuario"
+            );
+        }
 
         alertaExito.classList.remove("d-none");
+        mostrarToast("Registro exitoso. Te llevaremos al inicio de sesión.", "ok");
 
-        setTimeout(function () {
+        setTimeout(() => {
             registro.reset();
-            alertaExito.classList.add("d-none");
             window.location.href = "./login.html";
-        }, 1000);
+        }, 1500);
+
+    } catch (error) {
+
+        console.error(error);
+        mostrarToast(error.message, "error");
+
     }
+
 });
 
 const togglePassword1 = document.getElementById("togglePassword1");
@@ -143,17 +153,21 @@ const icon1 = document.getElementById("iconPassword1");
 const icon2 = document.getElementById("iconPassword2");
 
 togglePassword1.addEventListener("click", () => {
-    const isHidden = inputPassword.type === "password";
-    inputPassword.type = isHidden ? "text" : "password";
+
+    const oculta = inputPassword.type === "password";
+    inputPassword.type = oculta ? "text" : "password";
 
     icon1.classList.toggle("bi-eye");
     icon1.classList.toggle("bi-eye-slash");
+
 });
 
 togglePassword2.addEventListener("click", () => {
-    const isHidden = inputPassword2.type === "password";
-    inputPassword2.type = isHidden ? "text" : "password";
+
+    const oculta = inputPassword2.type === "password";
+    inputPassword2.type = oculta ? "text" : "password";
 
     icon2.classList.toggle("bi-eye");
     icon2.classList.toggle("bi-eye-slash");
+
 });

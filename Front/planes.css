@@ -1,81 +1,333 @@
 :root {
-    --color-primario: #F9F9F9;
-    --color-secundario: #3A5A40;
-    --color-tercero: #A65D39;
-    --color-cuarto: #212121;
-    --color-quinto: #ff8c00;
-    --color-sexto: #8d847e;
-    --color-septimo: #aca4a4;
-    --color-octavo: rgb(72, 175, 79);
+    --color-primario: #0D0D0D;
+    --color-secundario: #FF8C00;
+    --color-tercero: #FF4500;
+    --color-cuarto: #F0F0F0;
+    --color-quinto: #FF8C00;
+    --color-sexto: #888888;
+    --color-septimo: #555555;
+    --color-octavo: #00C853;
+}
+
+* {
+    font-family: 'Montserrat', sans-serif;
 }
 
 html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
+    background-color: var(--color-primario);
+    color: var(--color-cuarto);
 }
 
-.precio{
-    color: var(--color-secundario);
-    font-weight: bold;
+main {
+    padding-top: 80px;
+    background-color: var(--color-primario);
 }
 
-.card-body .card-title {
-    color: var(--color-secundario);
-    font-weight: bold;
-    text-align: left;
-    min-height: 48px;
+main h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--color-quinto);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 20px rgba(255, 140, 0, 0.3);
+}
+
+main h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--color-quinto);
+    margin: 0.8rem auto 2.8rem;
+    border-radius: 2px;
+}
+
+#contenedorPlanes {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+#contenedorPlanes > .col {
+    width: 100%;
 }
 
 .card {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--color-secundario); 
+    background-color: #141414 !important;
+    border: 1px solid rgba(255, 69, 0, 0.2) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    height: 100%;
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(to right, #FF4500, #FF8C00);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+
+.card:hover::before {
+    transform: scaleX(1);
 }
 
 .card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 50px rgba(255, 69, 0, 0.25), 0 0 0 1px rgba(255, 69, 0, 0.3) !important;
+    border-color: rgba(255, 69, 0, 0.5) !important;
 }
 
-.card-body .btn-agregar, .modal .modal-body .btn-agregar {
-    background-color: var(--color-quinto);
-    color: var(--color-primario);
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: contain !important;
+    padding: 16px 16px 0 16px !important;
+    border-radius: 12px !important;
+    display: block;
+    transition: all 0.5s ease;
 }
 
-.card-body .btn-info {
-    background-color: var(--color-primario);
-    border: 1px solid var(--color-secundario);
+.card:hover .card-img-top {
+    transform: scale(1.03);
 }
 
-main {
-  padding-top: 80px;
+.card-body {
+    padding: 1.6rem;
+    display: flex;
+    flex-direction: column;
 }
 
-#ver-mas {
-    background-color: var(--color-secundario);
-    color: var(--color-primario);
-    padding: 8px 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
+.card-body .card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-cuarto);
+    margin-bottom: 0.6rem;
+    min-height: 48px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-#ver-mas:hover {
-    background-color: var(--color-quinto);
+.card-body .card-text {
+    font-size: 0.92rem;
+    color: #AAAAAA; /* Texto más claro para contraste en fondo oscuro */
+    line-height: 1.6;
 }
 
+.card-body .descripcion {
+    margin-bottom: 0.5rem;
+}
+
+.precio {
+    color: var(--color-secundario);
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+}
+
+/* Botones Principales (Gradiente) */
+.card-body .btn-reservar,
+.modal .modal-body .btn-reservar,
+.btn-rs-primary,
+#ver-mas,
 #btn-reservar {
-    background-color: var(--color-secundario);
-    color: var(--color-primario);
-    padding: 8px 16px;
-    border-radius: 5px;
+    background: linear-gradient(135deg, #FF4500, #FF8C00) !important;
+    color: #ffffff !important;
+    border: none !important;
+    padding: 10px 20px;
+    border-radius: 8px;
     cursor: pointer;
-    border: none;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 14px rgba(255, 69, 0, 0.4);
 }
 
+.card-body .btn-reservar:hover,
+.modal .modal-body .btn-reservar:hover,
+.btn-rs-primary:hover,
+#ver-mas:hover,
 #btn-reservar:hover {
-    background-color: var(--color-quinto);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
+    filter: brightness(1.1);
+}
+
+/* Botones Secundarios (Borde Naranja) */
+.card-body .btn-ver-mas,
+.btn-rs-outline {
+    background-color: transparent !important;
+    color: var(--color-secundario) !important;
+    border: 1px solid rgba(255, 140, 0, 0.4) !important;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.85rem;
+    padding: 10px 18px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.card-body .btn-ver-mas:hover,
+.btn-rs-outline:hover {
+    background-color: rgba(255, 140, 0, 0.1) !important;
+    border-color: var(--color-secundario) !important;
+    color: var(--color-secundario) !important;
+}
+
+/* Reseñas y Estrellas */
+.resena-resumen {
+    color: var(--color-sexto);
+    font-size: 0.88rem;
+}
+
+.resena-estrellas {
+    color: var(--color-quinto);
+    font-weight: 700;
+}
+
+/* Modal Oscuro */
+.modal-content {
+    background-color: #141414 !important;
+    border: 1px solid rgba(255, 69, 0, 0.3) !important;
+    border-radius: 16px;
+    color: var(--color-cuarto) !important;
+    overflow: hidden;
+}
+
+.modal-header {
+    border-bottom: 1px solid rgba(255, 69, 0, 0.2) !important;
+    background: linear-gradient(135deg, #1A0A00, #141414) !important;
+    padding: 1rem 1.25rem 0;
+}
+
+.modal-body {
+    padding: 1.25rem 1.5rem 1.5rem;
+}
+
+#modalTitulo {
+    color: var(--color-quinto) !important;
+    font-size: 1.3rem;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+}
+
+#modalDescripcion {
+    font-size: 0.95rem;
+    color: #AAAAAA;
+    line-height: 1.7;
+}
+
+#modalPrecio {
+    color: var(--color-secundario);
+    font-weight: 800;
+    font-size: 1.3rem;
+    text-shadow: 0 0 10px rgba(255, 140, 0, 0.3);
+}
+
+.btn-close {
+    filter: invert(1) !important; /* Para que la X de cerrar sea blanca */
+}
+
+/* Panel de Reseñas en Modal */
+.resenas-panel {
+    background: #1A0A00;
+    border: 1px solid rgba(255, 69, 0, 0.2);
+    border-radius: 12px;
+    padding: 16px;
+}
+
+.resenas-lista {
+    max-height: 220px;
+    overflow-y: auto;
+}
+
+.resena-item {
+    border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+    padding: 10px 0;
+    font-size: 0.9rem;
+    color: #DDDDDD;
+}
+
+/* Formulario de Reseñas */
+.resena-form .form-control,
+.resena-form .form-select {
+    background-color: #0D0D0D;
+    color: #F0F0F0;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 140, 0, 0.4);
+    font-size: 0.9rem;
+}
+
+.resena-form .form-control::placeholder {
+    color: #888888;
+}
+
+.resena-form .form-control:focus,
+.resena-form .form-select:focus {
+    background-color: #141414;
+    color: #F0F0F0;
+    border-color: var(--color-quinto);
+    box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.25);
+    outline: none;
+}
+
+.resena-mensaje {
+    font-size: 0.84rem;
+    font-weight: 700;
+}
+
+.resena-mensaje.ok {
+    color: var(--color-octavo); /* Verde para éxito */
+}
+
+.resena-mensaje.error {
+    color: var(--color-tercero); /* Rojo para error */
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    #contenedorPlanes {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 520px) {
+    #contenedorPlanes {
+        grid-template-columns: 1fr;
+    }
+}
+
+.text-muted, 
+small, 
+.card-body p.text-muted {
+    color: #BBBBBB !important; /* Un gris mucho más claro y legible */
+}
+
+/* Si "Familiar | Baja" está dentro de un .badge (etiqueta), le damos estilo neón sutil */
+.badge {
+    color: var(--color-secundario) !important;
+    background-color: rgba(255, 140, 0, 0.1) !important;
+    border: 1px solid rgba(255, 140, 0, 0.3) !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+    text-transform: uppercase !important;
 }

@@ -1,97 +1,328 @@
 :root {
-  --f9f9f9: #f9f9f9;
-  --1b3022: #1b3022;
-  --a65d39: #a65d39;
-  --212121: #212121;
+    --f9f9f9: #0D0D0D;
+    --1b3022: #FF8C00;
+    --a65d39: #FF4500;
+    --212121: #F0F0F0;
 }
 
 body {
-  background-color: var(--f9f9f9);
-  font-family: "Montserrat", sans-serif;
+    background-color: #0A0A0A;
+    font-family: "Montserrat", sans-serif;
+    color: #F0F0F0;
 }
 
 .tab-content {
-  display: none;
+    display: none;
 }
 
 .tab-content.active {
-  display: block;
+    display: block;
 }
 
+/* Cards del Sobre Nosotros */
 .card {
-    border-radius: 20px; 
-    overflow: visible;   
-    background: #ffffff;
+    border-radius: 4px !important;
+    overflow: hidden;
+    background: #141414 !important;
+    border: 1px solid rgba(255, 69, 0, 0.2) !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 50px rgba(255, 69, 0, 0.25), 0 0 0 1px rgba(255, 69, 0, 0.4) !important;
+    border-color: rgba(255, 69, 0, 0.5) !important;
 }
 
 .card-img-wrapper {
-  width: 100%;
-  height: 280px;
-  background-color: #fff;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    height: 280px;
+    background-color: #1A0A00;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 69, 0, 0.15);
 }
 
 .card-img-top {
-  
-  object-fit: contain;
-  padding: 20px;
-  border-radius: 15px;
+    object-fit: contain;
+    padding: 20px;
+    border-radius: 4px;
+    transition: all 0.5s ease;
+    filter: brightness(0.9);
+}
+
+.card:hover .card-img-top {
+    transform: scale(1.05);
+    filter: drop-shadow(0 0 15px rgba(255, 140, 0, 0.4)) brightness(1.1);
 }
 
 .card-body {
-  padding: 1.5rem;
+    padding: 1.5rem;
+    background-color: #141414;
+}
+
+.card-body .card-title {
+    color: #F0F0F0 !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+}
+
+.card-body .card-text,
+.card-body p {
+    color: #AAAAAA !important;
+    font-size: 0.88rem;
 }
 
 .btn-outline-dark {
-  text-transform: uppercase;
-  font-weight: 700;
-  font-size: 11px;
-  letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 11px;
+    letter-spacing: 2px;
+    border-color: rgba(255, 69, 0, 0.4) !important;
+    color: #FF8C00 !important;
+    background: transparent !important;
+    border-radius: 3px !important;
+    transition: all 0.3s ease !important;
+}
+
+.btn-outline-dark:hover {
+    background: linear-gradient(135deg, #FF4500, #FF8C00) !important;
+    border-color: #FF4500 !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(255, 69, 0, 0.4) !important;
+    transform: translateY(-2px) !important;
 }
 
 .nav-link {
-  font-weight: 700;
-  font-size: 12px;
-  color: var(--212121);
+    font-weight: 700;
+    font-size: 12px;
+    color: #AAAAAA !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
 }
 
 .nav-link.active {
-  color: var(--a65d39);
+    color: #FF8C00 !important;
+}
+
+.nav-link:hover {
+    color: #FF8C00 !important;
 }
 
 h1 {
-  color: #f07a05;
-  text-align: center;
+    color: #FF8C00;
+    text-align: center;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 25px rgba(255, 140, 0, 0.3);
 }
 
 h2 {
-  color: #f07a05;
-  text-align: center;
+    color: #FF8C00;
+    text-align: center;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 20px rgba(255, 140, 0, 0.25);
 }
 
-/* --- Mejora de tu clase actual --- */
+/* Banner de la página */
 .efecto-flotar {
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     cursor: pointer;
+    border: 1px solid rgba(255, 69, 0, 0.15) !important;
 }
 
 .efecto-flotar:hover {
-    transform: translateY(-15px) scale(1.05); 
-    box-shadow: 0 20px 40px rgba(255, 140, 0, 0.3); 
-    border-color: #ff8c00;
-    
+    transform: translateY(-15px) scale(1.03);
+    box-shadow: 0 24px 50px rgba(255, 69, 0, 0.3) !important;
+    border-color: rgba(255, 140, 0, 0.5) !important;
 }
 
 .efecto-flotar:hover .card-img-top {
-    transform: scale(1.1);
-    filter: drop-shadow(0 0 10px rgba(255, 140, 0, 0.5));
+    transform: scale(1.08);
+    filter: drop-shadow(0 0 15px rgba(255, 140, 0, 0.5)) brightness(1.1);
 }
 
-.card-img-top {
-    transition: all 0.5s ease;
+/* Banner de zipline / header de la página */
+.banner-sobre,
+img.banner-sobre {
+    filter: brightness(0.5) saturate(1.3);
+    border-bottom: 3px solid #FF4500;
+}
+
+/* Sección misión/visión */
+.mision-card,
+.vision-card {
+    background-color: #141414 !important;
+    border: 1px solid rgba(255, 69, 0, 0.2) !important;
+}
+
+/* ========================
+   BANNER HERO - Sobre Nosotros
+======================== */
+.sobre-hero {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    border-bottom: 4px solid #FF4500;
+}
+
+.sobre-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 30%;
+    filter: brightness(0.45) saturate(1.2);
+    z-index: 0;
+}
+
+.sobre-hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0.88) 0%,
+        rgba(0, 0, 0, 0.60) 60%,
+        rgba(0, 0, 0, 0.20) 100%
+    );
+    z-index: 1;
+}
+
+.sobre-hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 720px;
+    padding: 5rem 2rem 5rem 5vw;
+}
+
+.sobre-hero-eyebrow {
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #FF4500;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 12px rgba(255, 69, 0, 0.6);
+}
+
+.sobre-hero-titulo {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    color: #FF8C00;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    line-height: 1.05;
+    margin-bottom: 1.2rem;
+    text-shadow: 0 0 30px rgba(255, 69, 0, 0.4), 0 4px 20px rgba(0, 0, 0, 0.8);
+}
+
+.sobre-hero-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(to right, #FF4500, #FF8C00);
+    margin-bottom: 1.5rem;
+    border-radius: 2px;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+}
+
+.sobre-hero-texto {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.8;
+    font-weight: 300;
+    max-width: 620px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+/* LinkedIn links */
+a[href*="linkedin"] {
+    color: #FF8C00 !important;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a[href*="linkedin"]:hover {
+    color: #FF4500 !important;
+    text-shadow: 0 0 8px rgba(255, 69, 0, 0.5);
 }
 
 
+
+
+/* =========================================
+   FIX DEFINITIVO: MODAL RUTA SALVAJE
+   ========================================= */
+
+/* 1. Fondo del modal oscuro */
+.modal-content {
+    background-color: #0D0D0D !important;
+    border: 1px solid #FF4500 !important;
+}
+
+/* 2. Forzar que TODO el texto sea claro por defecto */
+.modal-content, 
+.modal-content p, 
+.modal-content span, 
+.modal-content div, 
+.modal-content label {
+    color: #E0E0E0 !important;
+}
+
+/* 3. El texto que mencionas: "Comparte tu experiencia..." */
+/* Usamos una clase genérica para capturar esos textos que se pierden */
+.modal-body .text-muted, 
+.modal-body small {
+    color: #A0A0A0 !important; /* Un gris claro que sí se lea */
+}
+
+/* 4. Formulario (input y select) */
+.modal-content select, 
+.modal-content input {
+    background-color: #1A1A1A !important;
+    color: #FFFFFF !important; /* Texto blanco para que se vea */
+    border: 1px solid #3A5A40 !important;
+}
+
+/* Esto asegura que las opciones dentro del selector no sean negras sobre negro */
+.modal-content select option {
+    background-color: #1A1A1A !important;
+    color: #FFFFFF !important;
+}
+
+/* 5. Títulos en tu color naranja */
+.modal-content h3, .modal-content h4 {
+    color: #FF4500 !important;
+}
+
+
+/* =========================================
+   FIX PARA PLACEHOLDERS (TEXTO DE AYUDA)
+   ========================================= */
+
+/* Forzar que el placeholder sea un gris claro legible */
+.modal-content input::placeholder, 
+.modal-content textarea::placeholder {
+    color: #A0A0A0 !important;
+    opacity: 1; /* Esto es necesario en Firefox */
+}
+
+/* También forzamos el color cuando el usuario hace clic (estado focus) */
+.modal-content input:focus, 
+.modal-content textarea:focus {
+    color: #FFFFFF !important;
+}
