@@ -21,7 +21,7 @@ body {
 
 .carrito-subtitulo {
     font-size: 0.82rem;
-    color: #888888;
+    color: var(--color-sexto);
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -84,7 +84,7 @@ body {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #888888;
+    color: var(--color-sexto);
 }
 
 .th-reserva {
@@ -145,12 +145,12 @@ body {
 #lista-reservas .item .celda {
     flex: 1;
     text-align: center;
-    color: #AAAAAA;
+    color: var(--texto-muted);
     font-size: 0.88rem;
 }
 
 #lista-reservas .texto-vacio {
-    color: #555555;
+    color: #fff;
     padding: 24px 0;
     text-align: center;
     font-size: 0.88rem;
@@ -368,7 +368,7 @@ span.flatpickr-weekday {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #888888;
+    color: var(--color-sexto);
     margin-bottom: 5px;
 }
 
@@ -435,7 +435,7 @@ span.flatpickr-weekday {
 }
 
 .resumen-total span:first-child {
-    color: #888888;
+    color: var(--color-sexto);
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -490,7 +490,7 @@ span.flatpickr-weekday {
     width: 100%;
     padding: 10px;
     background-color: transparent;
-    color: #888888;
+    color: var(--color-sexto);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.75rem;
     font-weight: 600;
@@ -600,7 +600,7 @@ span.flatpickr-weekday {
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: #555555;
+    color: #fff;
 }
 
 .reserva-confirmada__valor {

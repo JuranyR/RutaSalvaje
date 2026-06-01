@@ -3,6 +3,7 @@
     --1b3022: #FF8C00;
     --a65d39: #FF4500;
     --212121: #F0F0F0;
+    --color-input: #FFF;
 }
 
 body {
@@ -72,8 +73,12 @@ body {
 
 .card-body .card-text,
 .card-body p {
-    color: #AAAAAA !important;
+    color: var(--color-input) !important;
     font-size: 0.88rem;
+}
+
+.text-body-secondary {
+    color: #FF8C00 !important;
 }
 
 .btn-outline-dark {
@@ -91,7 +96,7 @@ body {
 .btn-outline-dark:hover {
     background: linear-gradient(135deg, #FF4500, #FF8C00) !important;
     border-color: #FF4500 !important;
-    color: #ffffff !important;
+    color: var(--color-input) !important;
     box-shadow: 0 4px 14px rgba(255, 69, 0, 0.4) !important;
     transform: translateY(-2px) !important;
 }
@@ -99,7 +104,7 @@ body {
 .nav-link {
     font-weight: 700;
     font-size: 12px;
-    color: #AAAAAA !important;
+    color: var(--color-input) !important;
     text-transform: uppercase;
     letter-spacing: 1px;
     transition: color 0.3s ease;
@@ -192,9 +197,9 @@ img.banner-sobre {
     inset: 0;
     background: linear-gradient(
         to right,
-        rgba(0, 0, 0, 0.88) 0%,
-        rgba(0, 0, 0, 0.60) 60%,
-        rgba(0, 0, 0, 0.20) 100%
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.2) 55%,
+        rgba(0, 0, 0, 0.0) 100%
     );
     z-index: 1;
 }
@@ -207,7 +212,7 @@ img.banner-sobre {
 }
 
 .sobre-hero-eyebrow {
-    font-size: 0.65rem;
+    font-size: 1rem;
     font-weight: 700;
     letter-spacing: 5px;
     color: #FF4500;
@@ -317,7 +322,7 @@ a[href*="linkedin"]:hover {
 /* Forzar que el placeholder sea un gris claro legible */
 .modal-content input::placeholder, 
 .modal-content textarea::placeholder {
-    color: #A0A0A0 !important;
+    color: #FFF !important;
     opacity: 1; /* Esto es necesario en Firefox */
 }
 

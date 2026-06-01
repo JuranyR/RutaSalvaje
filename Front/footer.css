@@ -52,7 +52,7 @@ body > main,
 }
 
 .site-footer p {
-    color: #888888;
+    color: var(--color-sexto);
     line-height: 1.6;
     font-size: 0.88rem;
     font-weight: 300;
@@ -70,7 +70,7 @@ body > main,
 }
 
 .site-footer a {
-    color: #AAAAAA;
+    color: var(--texto-muted);
     text-decoration: none;
     font-size: 0.88rem;
     font-weight: 400;

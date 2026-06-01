@@ -9,7 +9,7 @@
     --color-naranja:     #ff8c00;
     --texto-blanco:      #ffffff;
     --texto-muted:       #8d847e;
-    --texto-error:       #ea868f;
+    --texto-error:       #d43644;
     --radio-card:        8px;
     --radio-input:       4px;
 }
@@ -78,8 +78,8 @@ html, body {
 }
 
 .reg-subtitle {
-    font-size: 0.8rem;
-    color: var(--texto-muted);
+    font-size: 1rem;
+    color: var(--texto-blanco);
     text-align: center;
     margin-bottom: 24px;
 }
@@ -90,11 +90,11 @@ html, body {
 
 .campo__label {
     display: block;
-    font-size: 0.68rem;
+    font-size: 0.8rem;
     font-weight: 700;
     letter-spacing: 0.5px;
     text-transform: uppercase;
-    color: var(--texto-muted);
+    color: var(--texto-blanco);
     margin-bottom: 5px;
 }
 
@@ -107,7 +107,7 @@ html, body {
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #555;
+    color: var(--texto-blanco);
     pointer-events: none;
     display: flex;
     align-items: center;
@@ -117,9 +117,10 @@ html, body {
     width: 100%;
     border: 1px solid var(--borde-input);
     border-radius: var(--radio-input);
-    padding: 10px 12px 10px 36px;
+    padding: 8px 12px 8px 36px;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.85rem;
+        font-weight: 600;
     color: var(--texto-blanco);
     background: var(--fondo-input);
     outline: none;
@@ -132,8 +133,8 @@ html, body {
 }
 
 .campo__input::placeholder {
-    color: #444;
-    font-size: 0.8rem;
+    color: #FFF;
+    opacity: 1;
 }
 
 .campo__input[type="password"]::-ms-reveal,
@@ -173,7 +174,7 @@ html, body {
     background: none;
     border: none;
     cursor: pointer;
-    color: #555;
+    color: #fff;
     padding: 0;
     display: flex;
     align-items: center;
@@ -215,7 +216,7 @@ html, body {
     color: var(--texto-blanco);
     font-family: 'Montserrat', sans-serif;
     font-size: 0.82rem;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: uppercase;
     border: none;
@@ -231,7 +232,7 @@ html, body {
 .reg-login-link {
     text-align: center;
     font-size: 0.78rem;
-    color: var(--texto-muted);
+    color: var(--texto-blanco);
     margin-top: 18px;
     margin-bottom: 0;
 }
@@ -275,11 +276,11 @@ html, body {
         grid-template-columns: 60% 40%; 
     }
 }
-
+/*
 .login-overlay {
     background: linear-gradient(90deg, rgba(18,18,18,0.95) 0%, rgba(13,13,13,0.1) 100%);
 }
-
+*/
 @media (max-width: 992px) {
     .reg-form-col {
         padding: 32px 16px;

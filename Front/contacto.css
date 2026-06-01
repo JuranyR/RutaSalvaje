@@ -11,7 +11,7 @@
     --color-fondo-card:    #141414; /* Gris ultra oscuro */
     --color-input:         #1A1A1A;
     --color-input-focus:   #1E1E1E;
-    --texto-muted:         #AAAAAA;
+    --texto-muted:         #FFF;
     --gris-borde:          rgba(255, 69, 0, 0.2);
     
     /* Configuración estructural */
@@ -66,7 +66,7 @@ body {
 }
 
 .contacto-heading {
-    font-size: clamp(2rem, 5vw, 2.6rem);
+    font-size: 1.6rem;
     font-weight: 900;
     color: var(--color-secundario);
     letter-spacing: 3px;
@@ -157,7 +157,7 @@ body {
     font-size: 0.78rem;
     font-weight: 800;
     text-transform: uppercase;
-    color: #888888;
+    color: var(--color-sexto);
     letter-spacing: 1px;
 }
 
@@ -192,7 +192,7 @@ body {
     font-size: 0.78rem;
     font-weight: 800;
     letter-spacing: 2px;
-    color: #888888;
+    color: var(--color-sexto);
     text-transform: uppercase;
 }
 
@@ -202,7 +202,7 @@ body {
 }
 
 .social-btn {
-    color: #888888;
+    color: var(--color-sexto);
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
@@ -271,7 +271,7 @@ body {
 .campo__icon {
     position: absolute;
     left: 12px;
-    color: #666666;
+    color: #FFF;
     pointer-events: none;
     transition: color 0.2s ease;
 }
@@ -285,6 +285,7 @@ body {
     padding: 11px 12px 11px 38px;
     border: 1px solid var(--gris-borde);
     border-radius: var(--radio-input);
+    font-weight: 600;
     font-family: 'Montserrat', sans-serif;
     font-size: 0.9rem;
     background: var(--color-input);
@@ -375,6 +376,12 @@ body {
 
 .btn-enviar:active {
     transform: scale(0.97);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #FFF;
+  opacity: 1;
 }
 
 @media (max-width: 540px) {

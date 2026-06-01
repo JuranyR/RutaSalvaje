@@ -4,7 +4,7 @@
     --color-tercero: #FF4500;
     --color-cuarto: #F0F0F0;
     --color-quinto: #FF8C00;
-    --color-sexto: #888888;
+    --color-sexto: #FFF;
     --color-septimo: #555555;
     --color-octavo: #00C853;
 }
@@ -22,12 +22,12 @@ html, body {
 }
 
 main {
-    padding-top: 80px;
+    padding-top: 50px;
 }
 
 main h2 {
-    font-size: 2rem;
-    font-weight: 900;
+    font-size: 1.6rem;
+    font-weight: 900 !important;
     color: var(--color-quinto);
     margin-bottom: 0.5rem;
     text-transform: uppercase;
@@ -124,7 +124,7 @@ main h2::after {
 
 .card-body .card-text {
     font-size: 0.92rem;
-    color: #AAAAAA; /* Texto más claro para contraste en fondo oscuro */
+    color: var(--color-sexto); /* Texto más claro para contraste en fondo oscuro */
     line-height: 1.6;
 }
 
@@ -231,7 +231,7 @@ main h2::after {
 
 #modalDescripcion {
     font-size: 0.95rem;
-    color: #AAAAAA;
+    color: var(--color-sexto);
     line-height: 1.7;
 }
 
@@ -340,7 +340,7 @@ main h2::after {
 
 .resena-item__comentario {
     font-size: 0.83rem;
-    color: #AAAAAA;
+    color: var(--color-sexto);
     line-height: 1.5;
     margin: 0;
 }
@@ -373,7 +373,7 @@ main h2::after {
 }
 
 .reseña-form .form-control::placeholder {
-    color: #555555;
+    color: #FFF;
 }
 
 .reseña-form .form-select option {
@@ -435,7 +435,7 @@ main h2::after {
 .text-muted, 
 small, 
 .card-body p.text-muted {
-    color: #BBBBBB !important; /* Un gris mucho más claro y legible */
+    color: var(--color-sexto) !important; /* Un gris mucho más claro y legible */
 }
 
 /* Si "Familiar | Baja" está dentro de un .badge (etiqueta), le damos estilo neón sutil */

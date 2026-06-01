@@ -253,7 +253,7 @@ function asegurarUiFeedback() {
 
             .rs-confirm-card p {
                 margin: 0;
-                color: #888888;
+                color: var(--texto-muted);
                 font-size: 0.85rem;
                 line-height: 1.5;
             }
@@ -282,7 +282,7 @@ function asegurarUiFeedback() {
 
             .rs-confirm-cancel {
                 background: transparent;
-                color: #888888;
+                color: var(--color-sexto);
                 border: 1px solid rgba(255,255,255,0.1) !important;
             }
 

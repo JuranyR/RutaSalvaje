@@ -5,8 +5,8 @@
     --color-tercero: #FF4500;      /* Naranja rojizo fuego */
     --color-cuarto: #F0F0F0;       /* Blanco texto principal */
     --color-quinto: #FF8C00;       /* Alias de secundario */
-    --color-sexto: #BBBBBB;        /* Gris claro para textos secundarios */
-    --color-septimo: #555555;      /* Gris medio para bordes apagados */
+    --color-sexto: #FFF;        /* Gris claro para textos secundarios */
+    --color-septimo: #fff;      /* Gris medio para bordes apagados */
     --color-octavo: #00C853;       /* Verde neón éxitos */
 }
 
@@ -23,13 +23,13 @@ body {
 }
 
 body.admin-page {
-    padding-top: 92px !important;
+    padding-top: 120px !important;
 }
 
 
 /* --- TEXTOS GENERALES Y SUBTÍTULOS --- */
 .text-muted, small, small.text-muted {
-    color: #A0A0A0 !important; /* Gris claro de alta legibilidad */
+    color: var(--color-sexto)!important; /* Gris claro de alta legibilidad */
     --bs-text-opacity: 1 !important;
     font-size: 0.95rem !important;
     font-weight: 400 !important;
@@ -54,7 +54,7 @@ h5.fw-semibold {
 }
 
 h2 + p { 
-    color: #A0A0A0 !important;
+    color: var(--color-sexto)!important;
     font-size: 0.95rem !important;
     margin-top: -10px !important;
     letter-spacing: 0.5px !important;
@@ -74,7 +74,7 @@ header nav.navbar, .alk {
 }
 
 .form-control::placeholder {
-    color: #888888 !important;
+    color: var(--color-sexto) !important;
 }
 
 .form-control:focus, .form-select:focus {
@@ -138,7 +138,7 @@ header nav.navbar, .alk {
 }
 
 .offcanvas-body .nav-link {
-    color: #AAAAAA !important;
+    color: var(--texto-muted) !important;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -255,7 +255,7 @@ form#formActividad .btn-guardar {
 }
 
 .contacto-card__telefono {
-    color: #BBBBBB;
+    color: var(--color-sexto);
     font-weight: 700;
     margin: 12px 0 6px;
 }
@@ -400,7 +400,7 @@ form#formActividad .btn-guardar {
     flex-direction: column;
     gap: 3px;
     font-size: 0.78rem;
-    color: #666;
+    color: #fff;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.4px;
@@ -412,7 +412,7 @@ form#formActividad .btn-guardar {
 
 .resena-comentario {
     font-size: 0.85rem;
-    color: #BBBBBB;
+    color: var(--color-sexto);
     line-height: 1.6;
     font-style: italic;
     border-left: 2px solid rgba(255, 140, 0, 0.25);
@@ -535,7 +535,7 @@ main section {
     margin: 48px auto 0;
     padding: 18px 24px 28px;
     border-top: 1px solid rgba(255, 140, 0, 0.28);
-    color: #888888;
+    color: var(--color-sexto);
     display: flex;
     justify-content: space-between;
     gap: 16px;
@@ -555,13 +555,13 @@ main section {
 }
 
 /* Estilos compartidos con Reservas-Usuario */
-.campo-label {
+.campo-label, .form-label {
     display: block;
     font-size: 0.65rem;
-    font-weight: 800;
+    font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #888888;
+    color: var(--color-sexto) !important;
     margin-bottom: 5px;
 }
 
@@ -784,7 +784,7 @@ span.flatpickr-weekday {
     text-transform: uppercase;
     letter-spacing: 0.8px;
     text-decoration: none;
-    color: #555;
+    color: #fff;
     border-bottom: 2px solid transparent;
     white-space: nowrap;
     transition: color 0.2s ease, border-color 0.2s ease;
@@ -795,7 +795,7 @@ span.flatpickr-weekday {
 }
 
 .admin-tab:hover {
-    color: #aaa;
+    color: var(--color-sexto);
     border-bottom-color: #333;
 }
 
@@ -824,7 +824,7 @@ span.flatpickr-weekday {
     left: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #555;
+    color: #fff;
     font-size: 0.85rem;
     pointer-events: none;
 }
@@ -835,7 +835,7 @@ span.flatpickr-weekday {
     border: 1px solid #2a2a2a;
     border-radius: 8px;
     color: #f0f0f0;
-    font-size: 0.83rem;
+    font-size: 0.8rem;
     padding: 8px 12px 8px 34px;
     font-family: 'Montserrat', sans-serif;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
@@ -843,7 +843,8 @@ span.flatpickr-weekday {
 }
 
 .admin-search-input::placeholder {
-    color: #444;
+    color: #fff;
+    opacity: 1;
 }
 
 .admin-search-input:focus {
@@ -856,8 +857,8 @@ span.flatpickr-weekday {
     background-color: #161616;
     border: 1px solid #2a2a2a;
     border-radius: 8px;
-    color: #aaa;
-    font-size: 0.78rem;
+    color: var(--color-sexto);
+    font-size: 0.8rem;
     font-weight: 600;
     font-family: 'Montserrat', sans-serif;
     padding: 7px 30px 7px 12px;
@@ -892,8 +893,8 @@ span.flatpickr-weekday {
     background-color: #161616;
     border: 1px solid #2a2a2a;
     border-radius: 8px;
-    color: #aaa;
-    font-size: 0.78rem;
+    color: var(--color-sexto);
+    font-size: 0.8rem;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
@@ -1120,7 +1121,7 @@ span.flatpickr-weekday {
 }
 
 .reservas-header small {
-    color: #bbbbbb;
+    color: var(--color-sexto);
     font-size: 0.95rem;
 }
 
