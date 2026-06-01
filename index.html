@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="3; url=./Front/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ruta Salvaje</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #0a0a0a;
+      font-family: 'Montserrat', sans-serif;
+      overflow: hidden;
+    }
+
+    /* Fondo con gradiente animado */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 50%, rgba(255, 69, 0, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 20%, rgba(58, 90, 64, 0.15) 0%, transparent 60%);
+      animation: pulse-bg 4s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+
+    @keyframes pulse-bg {
+      from { opacity: 0.6; }
+      to   { opacity: 1; }
+    }
+
+    .container {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      animation: fade-in 0.8s ease forwards;
+    }
+
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Icono */
+    .icon {
+      font-size: 4rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-12px); }
+    }
+
+    /* Titulo */
+    .title {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      line-height: 1;
+    }
+
+    .title span {
+      color: #ff4500;
+    }
+
+    .subtitle {
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      color: #888;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-top: 0.4rem;
+    }
+
+    /* Barra de progreso */
+    .progress-wrap {
+      width: min(320px, 80vw);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 4px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #ff4500, #ff6a33);
+      border-radius: 99px;
+      animation: fill-bar 3s linear forwards;
+    }
+
+    @keyframes fill-bar {
+      from { width: 0%; }
+      to   { width: 100%; }
+    }
+
+    .progress-label {
+      font-size: 0.72rem;
+      color: #555;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-align: right;
+    }
+
+    /* Enlace manual */
+    .manual-link {
+      font-size: 0.8rem;
+      color: #555;
+    }
+
+    .manual-link a {
+      color: #ff4500;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s;
+    }
+
+    .manual-link a:hover {
+      border-color: #ff4500;
+    }
+
+    /* Particulas decorativas */
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: #ff4500;
+      border-radius: 50%;
+      opacity: 0;
+      animation: float-up var(--dur) ease-in infinite;
+      animation-delay: var(--delay);
+      left: var(--x);
+      bottom: -10px;
+    }
+
+    @keyframes float-up {
+      0%   { transform: translateY(0)   scale(1);   opacity: 0.6; }
+      80%  { opacity: 0.2; }
+      100% { transform: translateY(-100vh) scale(0.3); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Particulas de fondo -->
+  <div class="particles" aria-hidden="true">
+    <div class="particle" style="--x:10%; --dur:6s;  --delay:0s;"></div>
+    <div class="particle" style="--x:25%; --dur:8s;  --delay:1s;"></div>
+    <div class="particle" style="--x:40%; --dur:5s;  --delay:2s;"></div>
+    <div class="particle" style="--x:55%; --dur:7s;  --delay:0.5s;"></div>
+    <div class="particle" style="--x:70%; --dur:9s;  --delay:1.5s;"></div>
+    <div class="particle" style="--x:85%; --dur:6s;  --delay:3s;"></div>
+    <div class="particle" style="--x:92%; --dur:7s;  --delay:0.8s;"></div>
+  </div>
+
+  <div class="container">
+    <div class="icon">🏔️</div>
+
+    <div>
+      <h1 class="title">Ruta <span>Salvaje</span></h1>
+      <p class="subtitle">Aventura sin límites</p>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill"></div>
+      </div>
+      <p class="progress-label">Cargando experiencia...</p>
+    </div>
+
+    <p class="manual-link">
+      ¿No redirige? <a href="./Front/index.html">Haz clic aquí</a>
+    </p>
+  </div>
+
+</body>
+</html>
