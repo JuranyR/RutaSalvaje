@@ -43,7 +43,27 @@ function formatoFechaReserva(fecha) {
         month: "2-digit",
         day: "2-digit",
         hour: "2-digit",
-        minute: "2-digit"
+        minute: "2-digit",
+        hour12: true
+    });
+}
+
+function initFlatpickr() {
+    document.querySelectorAll(".input-fecha").forEach((input) => {
+        const item = input.closest(".item");
+        const index = Number(item.dataset.index);
+        flatpickr(input, {
+            locale: "es",
+            minDate: fechaMinima(),
+            dateFormat: "Y-m-d",
+            disableMobile: true,
+            defaultDate: reservas[index]?.fecha || null,
+            onChange(_, dateStr) {
+                reservas[index].fecha = dateStr;
+                guardarCarrito();
+                calcularTotal();
+            }
+        });
     });
 }
 
@@ -58,7 +78,6 @@ function renderLista() {
     }
 
     btnConfirmar.disabled = false;
-    const min = fechaMinima();
     lista.innerHTML = reservas.map((plan, index) => `
         <div class="item" data-index="${index}">
             <div class="plan-info">
@@ -73,9 +92,9 @@ function renderLista() {
 
             <div class="celda reserva-fecha">
                 <label class="campo-label fecha-label">Fecha</label>
-                <input type="date" class="campo-input input-fecha" min="${min}" value="${plan.fecha || ""}">
-                <label class="campo-label hora-label">Hora</label>
-                <select class="campo-input input-hora mt-2">
+                <input type="text" class="campo-input input-fecha" placeholder="Selecciona fecha">
+                <label class="campo-label hora-label mt-2">Hora</label>
+                <select class="campo-input input-hora mt-1">
                     ${horasDisponibles.map(hora => `<option value="${hora}" ${hora === (plan.hora || "10:00") ? "selected" : ""}>${hora}</option>`).join("")}
                 </select>
             </div>
@@ -97,6 +116,7 @@ function renderLista() {
     `).join("");
 
     calcularTotal();
+    initFlatpickr();
 }
 
 function calcularTotal() {
@@ -174,12 +194,33 @@ btnConfirmar.addEventListener("click", async () => {
             if (!response.ok) throw await apiError(response, `Error al guardar ${plan.nombre}`);
         }
 
+        const total = reservas.reduce((sum, p) => sum + subtotal(p), 0);
+
+        // Poblar modal
+        document.getElementById("modalResumenLista").innerHTML = reservas.map(p => `
+            <div style="margin-bottom:12px;padding-bottom:12px;border-bottom:1px solid rgba(255,69,0,0.12);">
+                <p style="font-weight:800;font-size:0.88rem;color:#FF8C00;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px;">${p.nombre}</p>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+                    <span style="font-size:0.72rem;color:#888;text-transform:uppercase;letter-spacing:1px;">Personas</span>
+                    <span style="font-size:0.82rem;font-weight:700;color:#F0F0F0;">${p.personas}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;">
+                    <span style="font-size:0.72rem;color:#888;text-transform:uppercase;letter-spacing:1px;">Fecha y hora</span>
+                    <span style="font-size:0.82rem;font-weight:700;color:#F0F0F0;">${p.fecha} · ${p.hora}</span>
+                </div>
+            </div>
+        `).join("");
+        document.getElementById("modalResumenUsuario").textContent = usuario?.nombre || usuario?.email || "—";
+        document.getElementById("modalResumenTotal").textContent = `$${formatoPrecio(total)}`;
+
         localStorage.removeItem("reservas");
         reservas = [];
-        mostrarAlerta("Reserva confirmada con éxito.", "ok");
         btnConfirmar.textContent = "Confirmar reserva";
         renderLista();
         await cargarReservasConfirmadas();
+
+        mostrarToast("¡Reserva confirmada con éxito!", "success");
+        new bootstrap.Modal(document.getElementById("modalConfirmacion")).show();
     } catch (error) {
         console.error(error);
         mostrarAlerta(error.message);
@@ -208,11 +249,10 @@ lista.addEventListener("input", (e) => {
 });
 
 lista.addEventListener("change", (e) => {
-    if (e.target.classList.contains("input-fecha") || e.target.classList.contains("input-hora")) {
+    if (e.target.classList.contains("input-hora")) {
         const item = e.target.closest(".item");
         const index = Number(item.dataset.index);
-        reservas[index].fecha = item.querySelector(".input-fecha").value;
-        reservas[index].hora = item.querySelector(".input-hora").value;
+        reservas[index].hora = e.target.value;
         guardarCarrito();
     }
 });
@@ -266,11 +306,23 @@ async function cargarReservasConfirmadas() {
 
         listaConfirmadas.innerHTML = confirmadas.map(reserva => `
             <article class="reserva-confirmada">
-                <div>
-                    <h5>${reserva.nombrePlan || "Plan"}</h5>
-                    <p><strong>Fecha:</strong> ${formatoFechaReserva(reserva.fecha)}</p>
-                    <p><strong>Personas:</strong> ${reserva.cantidadPersonas} | <strong>Total:</strong> $${formatoPrecio(reserva.total || 0)}</p>
-                    <span class="estado-reserva ${String(reserva.estado || "").toLowerCase()}">${reserva.estado}</span>
+                <div class="reserva-confirmada__body">
+                    <div class="reserva-confirmada__top">
+                        <span class="estado-reserva ${String(reserva.estado || "").toLowerCase()}">${reserva.estado}</span>
+                    </div>
+                    <h5 class="reserva-confirmada__nombre">${reserva.nombrePlan || "Plan"}</h5>
+                    <div class="reserva-confirmada__fila">
+                        <span class="reserva-confirmada__label">Fecha</span>
+                        <span class="reserva-confirmada__valor">${formatoFechaReserva(reserva.fecha)}</span>
+                    </div>
+                    <div class="reserva-confirmada__fila">
+                        <span class="reserva-confirmada__label">Personas</span>
+                        <span class="reserva-confirmada__valor">${reserva.cantidadPersonas}</span>
+                    </div>
+                    <div class="reserva-confirmada__fila">
+                        <span class="reserva-confirmada__label">Total</span>
+                        <span class="reserva-confirmada__valor reserva-confirmada__total">$${formatoPrecio(reserva.total || 0)}</span>
+                    </div>
                 </div>
                 <button class="btn-cancelar-reserva" type="button" data-id="${reserva.id}" ${reserva.estado === "CANCELADA" ? "disabled" : ""}>
                     Cancelar
@@ -287,7 +339,8 @@ async function cancelarReservaUsuario(id) {
     const confirmado = await confirmarAccion({
         titulo: "Cancelar reserva",
         mensaje: "Esta reserva quedará marcada como cancelada.",
-        confirmar: "Cancelar reserva"
+        confirmar: "Cancelar reserva",
+        cancelar: "Volver"
     });
     if (!confirmado) return;
 
@@ -299,7 +352,7 @@ async function cancelarReservaUsuario(id) {
         });
 
         if (!response.ok) throw await apiError(response, "No se pudo cancelar la reserva");
-        mostrarAlerta("Reserva cancelada correctamente.", "ok");
+        mostrarToast("Reserva cancelada correctamente.", "ok");
         await cargarReservasConfirmadas();
     } catch (error) {
         console.error(error);

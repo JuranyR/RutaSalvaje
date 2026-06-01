@@ -174,12 +174,164 @@ body {
     background-color: #1A1A1A !important;
 }
 
-/* Cambia el color del icono nativo de calendario si no usas flatpickr ahí */
-.input-fecha::-webkit-calendar-picker-indicator {
-    cursor: pointer;
-    filter: invert(1); 
-    opacity: 0.7;
-    padding: 6px;
+/* ── Flatpickr — tema naranja sobre dark ── */
+.flatpickr-calendar {
+    background: #141414 !important;
+    border: 1px solid rgba(255, 69, 0, 0.35) !important;
+    border-radius: 6px !important;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.7) !important;
+    font-family: 'Montserrat', sans-serif !important;
+}
+
+.flatpickr-months,
+.flatpickr-weekdays,
+span.flatpickr-weekday {
+    background: #1A0A00 !important;
+    color: #888 !important;
+    font-size: 0.72rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 1px !important;
+}
+
+.flatpickr-current-month .flatpickr-monthDropdown-months,
+.flatpickr-current-month input.cur-year {
+    background: transparent !important;
+    color: #FF8C00 !important;
+    font-family: 'Montserrat', sans-serif !important;
+    font-weight: 700 !important;
+}
+
+.flatpickr-prev-month svg,
+.flatpickr-next-month svg {
+    fill: #FF8C00 !important;
+}
+
+.flatpickr-prev-month:hover svg,
+.flatpickr-next-month:hover svg {
+    fill: #FF4500 !important;
+}
+
+.flatpickr-day {
+    color: #F0F0F0 !important;
+    border-radius: 4px !important;
+}
+
+.flatpickr-day:hover {
+    background: rgba(255,140,0,0.15) !important;
+    border-color: rgba(255,140,0,0.3) !important;
+}
+
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+    background: linear-gradient(135deg, #FF4500, #FF8C00) !important;
+    border-color: #FF4500 !important;
+    color: #fff !important;
+    font-weight: 700 !important;
+}
+
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.prevMonthDay,
+.flatpickr-day.nextMonthDay {
+    color: #333 !important;
+}
+
+.flatpickr-day.today {
+    border-color: rgba(255,140,0,0.4) !important;
+}
+
+/* ── Modal de confirmación ── */
+.rs-modal-content {
+    background: #141414;
+    border: 1px solid rgba(255,69,0,0.35);
+    border-radius: 6px;
+    color: #F0F0F0;
+}
+
+.rs-modal-header {
+    border-bottom: 1px solid rgba(255,69,0,0.2);
+    background: linear-gradient(135deg, #1A0A00, #141414);
+}
+
+.rs-modal-title {
+    color: #FF8C00;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1rem;
+}
+
+.rs-modal-seccion-label {
+    color: #888;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+}
+
+.rs-modal-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,69,0,0.12);
+    gap: 12px;
+}
+
+.rs-modal-item:last-child {
+    border-bottom: none;
+}
+
+.rs-modal-item-nombre {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: #F0F0F0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.rs-modal-item-detalle {
+    font-size: 0.75rem;
+    color: #888;
+    margin-top: 2px;
+}
+
+.rs-modal-item-precio {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #FF8C00;
+    white-space: nowrap;
+}
+
+.rs-modal-fila {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255,69,0,0.15);
+}
+
+.rs-modal-key {
+    font-size: 0.72rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.rs-modal-val-naranja {
+    font-weight: 700;
+    color: #FF8C00;
+    font-size: 0.88rem;
+}
+
+.rs-modal-total {
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: #FF8C00;
+}
+
+.rs-modal-footer {
+    border-top: 1px solid rgba(255,69,0,0.2);
 }
 
 /* ==========================================
@@ -417,18 +569,49 @@ body {
     border-color: rgba(255, 140, 0, 0.2);
 }
 
-.reserva-confirmada h5 {
-    color: #F0F0F0;
-    font-size: .95rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.reserva-confirmada__body {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
 }
 
-.reserva-confirmada p {
-    color: #888888;
-    font-size: .82rem;
-    margin-bottom: 5px;
+.reserva-confirmada__top {
+    margin-bottom: 4px;
+}
+
+.reserva-confirmada__nombre {
+    color: #F0F0F0;
+    font-size: 0.88rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 6px;
+}
+
+.reserva-confirmada__fila {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.reserva-confirmada__label {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #555555;
+}
+
+.reserva-confirmada__valor {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: #F0F0F0;
+}
+
+.reserva-confirmada__total {
+    color: #FF8C00;
+    font-weight: 800;
 }
 
 /* Badges de Estados */

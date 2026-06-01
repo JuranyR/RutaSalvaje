@@ -187,16 +187,36 @@ function asegurarUiFeedback() {
 
             .rs-empty-state {
                 text-align: center;
-                color: #66736A;
+                background: transparent;
+                border: 1px dashed #2a2a2a;
+                border-left: 1px dashed #2a2a2a;
+                border-radius: 12px;
                 box-shadow: none;
-                background: #fbfaf6;
+                padding: 60px 24px;
+                grid-column: 1 / -1;
+            }
+
+            .rs-empty-icon {
+                display: block;
+                font-size: 3rem;
+                color: #2e2e2e;
+                margin-bottom: 16px;
+            }
+
+            .rs-empty-text {
+                color: #444;
+                font-size: 0.82rem;
+                font-weight: 700;
+                letter-spacing: 1px;
+                text-transform: uppercase;
+                margin: 0;
             }
 
             .rs-confirm-backdrop {
                 position: fixed;
                 inset: 0;
                 z-index: 2100;
-                background: rgba(20, 31, 24, .46);
+                background: rgba(0, 0, 0, 0.75);
                 display: grid;
                 place-items: center;
                 padding: 18px;
@@ -204,48 +224,82 @@ function asegurarUiFeedback() {
 
             .rs-confirm-card {
                 width: min(420px, 100%);
-                border-radius: 8px;
-                background: #fff;
-                box-shadow: 0 24px 60px rgba(20, 31, 24, .28);
-                padding: 22px;
+                border-radius: 6px;
+                background: #141414;
+                border: 1px solid rgba(255, 69, 0, 0.35);
+                box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+                padding: 24px;
                 font-family: "Montserrat", Arial, sans-serif;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .rs-confirm-card::before {
+                content: '';
+                position: absolute;
+                top: 0; left: 0; right: 0;
+                height: 3px;
+                background: linear-gradient(to right, #FF4500, #FF8C00);
             }
 
             .rs-confirm-card h3 {
                 margin: 0 0 8px;
-                color: #243629;
-                font-size: 1.12rem;
-                font-weight: 700;
+                color: #FF8C00;
+                font-size: 0.95rem;
+                font-weight: 900;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
             }
 
             .rs-confirm-card p {
                 margin: 0;
-                color: #66736A;
-                font-size: .95rem;
+                color: #888888;
+                font-size: 0.85rem;
+                line-height: 1.5;
             }
 
             .rs-confirm-actions {
                 display: flex;
                 justify-content: flex-end;
                 gap: 10px;
-                margin-top: 20px;
+                margin-top: 22px;
+                border-top: 1px solid rgba(255, 69, 0, 0.15);
+                padding-top: 16px;
             }
 
             .rs-confirm-actions button {
                 border: 0;
-                border-radius: 7px;
-                padding: 9px 15px;
+                border-radius: 4px;
+                padding: 9px 18px;
                 font-weight: 700;
+                font-family: "Montserrat", Arial, sans-serif;
+                font-size: 0.78rem;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+                cursor: pointer;
+                transition: all 0.2s ease;
             }
 
             .rs-confirm-cancel {
-                background: #F1EFE7;
-                color: #3A5A40;
+                background: transparent;
+                color: #888888;
+                border: 1px solid rgba(255,255,255,0.1) !important;
+            }
+
+            .rs-confirm-cancel:hover {
+                border-color: rgba(255,69,0,0.3) !important;
+                color: #FF4500;
             }
 
             .rs-confirm-ok {
-                background: #B23A2F;
+                background: linear-gradient(135deg, #FF4500, #FF8C00);
                 color: #fff;
+                box-shadow: 0 4px 14px rgba(255, 69, 0, 0.4);
+            }
+
+            .rs-confirm-ok:hover {
+                filter: brightness(1.1);
+                box-shadow: 0 6px 20px rgba(255, 69, 0, 0.6);
             }
         `;
         document.head.appendChild(style);
@@ -285,7 +339,11 @@ function mostrarMensajeInline(destino, mensaje, tipo = "info") {
 }
 
 function estadoVacioHtml(mensaje) {
-    return `<div class="rs-empty-state">${mensaje}</div>`;
+    return `
+        <div class="rs-empty-state">
+            <i class="bi bi-inbox rs-empty-icon"></i>
+            <p class="rs-empty-text">${mensaje}</p>
+        </div>`;
 }
 
 function confirmarAccion({

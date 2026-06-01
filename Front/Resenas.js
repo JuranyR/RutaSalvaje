@@ -3,8 +3,7 @@
 }
 
 const listaResenas = document.getElementById("listaResenas");
-const inputBuscarResena = document.querySelector("input[type='search']");
-const btnBuscarResena = document.querySelector(".btn-outline-success");
+const inputBuscarResena = document.getElementById("buscarResena");
 
 let resenas = [];
 let filtroResena = "";
@@ -54,16 +53,22 @@ function mostrarResenasAdmin() {
 
     listaResenas.innerHTML = resultado.map(resena => `
         <div class="col-md-4">
-            <div class="card shadow-sm h-100">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between gap-2 mb-2">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column gap-2">
+                    <div class="d-flex justify-content-between align-items-start gap-2">
                         <h5 class="mb-0">${resena.nombrePlan || "Plan"}</h5>
                         <span class="review-stars">${estrellasResena(resena.calificacion)}</span>
                     </div>
-                    <p class="mb-1"><strong>Usuario:</strong> ${resena.nombreUsuario || "Sin usuario"}</p>
-                    <p class="mb-1"><strong>Fecha:</strong> ${fechaResena(resena.fechaCreacion)}</p>
-                    <p class="text-muted">${resena.comentario || ""}</p>
-                    <button class="btn btn-sm btn-eliminar" type="button" data-id="${resena.id}">Eliminar</button>
+                    <div class="resena-meta">
+                        <span><i class="bi bi-person-fill me-1"></i>${resena.nombreUsuario || "Sin usuario"}</span>
+                        <span><i class="bi bi-clock me-1"></i>${fechaResena(resena.fechaCreacion)}</span>
+                    </div>
+                    <p class="resena-comentario mb-0">${resena.comentario || ""}</p>
+                    <div class="mt-auto pt-2">
+                        <button class="btn btn-sm btn-eliminar" type="button" data-id="${resena.id}">
+                            <i class="bi bi-trash me-1"></i>Eliminar
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -94,12 +99,6 @@ async function eliminarResena(id) {
 }
 
 inputBuscarResena?.addEventListener("input", () => {
-    filtroResena = inputBuscarResena.value;
-    mostrarResenasAdmin();
-});
-
-btnBuscarResena?.addEventListener("click", (event) => {
-    event.preventDefault();
     filtroResena = inputBuscarResena.value;
     mostrarResenasAdmin();
 });

@@ -69,45 +69,57 @@
             </div>
         </div>
     </nav>
-<div class="offcanvas offcanvas-start shadow text-white" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" style="background-color: #141414; width: 300px; border-right: 1px solid #2d2d2d;">
-        <div class="offcanvas-header justify-content-between align-items-center py-3" style="border-bottom: 1px solid #2d2d2d;">
-            <div class="d-flex align-items-center">
-                <img class="logo me-2" src="./imagenes/Image20260417121620.png" alt="Logo" width="35" height="35" />
-                <h5 class="offcanvas-title fw-bold" style="color: #FF8C00; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; letter-spacing: 1px;">RUTA SALVAJE</h5>
+    <header class="admin-header">
+
+        <!-- FILA 1: tabs de navegación -->
+        <div class="admin-tabs-bar">
+            <div class="container px-3">
+                <nav class="admin-tabs">
+                    <a href="panel-de-control.html" class="admin-tab">
+                        <i class="bi bi-map-fill"></i>
+                        <span>Planes</span>
+                    </a>
+                    <a href="Reservas.html" class="admin-tab">
+                        <i class="bi bi-calendar-check-fill"></i>
+                        <span>Reservas</span>
+                    </a>
+                    <a href="Resenas.html" class="admin-tab">
+                        <i class="bi bi-star-fill"></i>
+                        <span>Reseñas</span>
+                    </a>
+                    <a href="Contactos.html" class="admin-tab active">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Contactos</span>
+                    </a>
+                </nav>
             </div>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
         </div>
-        <div class="offcanvas-body px-0 d-flex flex-column justify-content-between" style="font-family: 'Montserrat', sans-serif;">
-            <ul class="nav flex-column mb-auto w-100">
-                <li class="nav-item"><a href="panel-de-control.html" class="nav-link d-flex align-items-center px-4 py-3 text-white fw-bold" style="font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid #2d2d2d; gap: 12px;"><i class="bi bi-tools" style="font-size: 1.1rem;"></i> GESTIONAR PLANES</a></li>
-                <li class="nav-item"><a href="Reservas.html" class="nav-link d-flex align-items-center px-4 py-3 text-white fw-bold" style="font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid #2d2d2d; gap: 12px;"><i class="bi bi-calendar-check-fill" style="font-size: 1.1rem;"></i> RESERVAS</a></li>
-                <li class="nav-item"><a href="Resenas.html" class="nav-link d-flex align-items-center px-4 py-3 text-white fw-bold" style="font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid #2d2d2d; gap: 12px;"><i class="bi bi-star-fill" style="font-size: 1.1rem;"></i> RESEÑAS</a></li>
-                <li class="nav-item"><a href="Contactos.html" class="nav-link d-flex align-items-center px-4 py-3 text-white fw-bold" style="background: linear-gradient(90deg, #FF4500, #FF8C00); font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid #2d2d2d; gap: 12px; box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);"><i class="bi bi-envelope-fill" style="font-size: 1.1rem;"></i> CONTACTOS</a></li>
-            </ul>
-            <div class="px-4 py-3" style="border-top: 1px solid #2d2d2d;"><a href="javascript:void(0)" onclick="cerrarSesion()" class="d-flex align-items-center gap-2 fw-bold text-decoration-none" style="color: #FF4500; font-size: 0.85rem; letter-spacing: 0.5px;"><i class="bi bi-box-arrow-left" style="font-size: 1.2rem; transform: scaleX(-1);"></i> CERRAR SESIÓN</a></div>
-        </div>
-    </div>
-    <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom shadow-sm py-2 alk">
-            <div class="container px-3 py-3">
-                <button class="btn btn-panel me-3 d-flex align-items-center shadow-sm" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop">
-                    <i class="bi bi-layout-sidebar-inset me-2"></i> Panel de Control
-                </button>
+
+        <!-- FILA 2: toolbar vacío para mantener altura consistente -->
+        <div class="admin-toolbar">
+            <div class="container px-3 d-flex align-items-center gap-3">
+                <div class="admin-search-wrap">
+                    <i class="bi bi-search admin-search-icon"></i>
+                    <input class="admin-search-input" type="search" id="buscarContacto" placeholder="Buscar mensaje..." aria-label="Buscar contacto" />
+                </div>
             </div>
-        </nav>
+        </div>
+
     </header>
-    <main><section class="container px-3 mt-5 mb-5" id="mensajes-contacto">
-            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-3">
+    <main>
+        <section class="container px-3 mt-4" id="mensajes-contacto">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-4">
                 <div>
                     <h3 class="mb-0 fw-bold">Mensajes de Contacto</h3>
-                    <small class="text-muted">Aquí llegan los mensajes enviados desde la página de contacto</small>
+                    <small class="text-muted">Mensajes enviados desde la página de contacto</small>
                 </div>
-                <button class="btn btn-panel" type="button" id="btnActualizarContactos">
+                <button class="btn btn-agregar" type="button" id="btnActualizarContactos">
                     <i class="bi bi-arrow-clockwise me-1"></i> Actualizar
                 </button>
             </div>
             <div id="listaContactos" class="contactos-admin"></div>
-        </section></main>
+        </section>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="config.js"></script>
     <script src="api.js"></script>

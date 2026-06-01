@@ -136,6 +136,22 @@ html, body {
     font-size: 0.8rem;
 }
 
+.campo__input[type="password"]::-ms-reveal,
+.campo__input[type="password"]::-ms-clear {
+    display: none;
+}
+
+.campo__input:-webkit-autofill,
+.campo__input:-webkit-autofill:hover,
+.campo__input:-webkit-autofill:focus,
+.campo__input:-webkit-autofill:active {
+    -webkit-text-fill-color: var(--texto-blanco) !important;
+    -webkit-box-shadow: 0 0 0 1000px var(--fondo-input) inset !important;
+    box-shadow: 0 0 0 1000px var(--fondo-input) inset !important;
+    border-color: var(--borde-input);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
 .campo__error {
     display: block;
     font-size: 0.72rem;

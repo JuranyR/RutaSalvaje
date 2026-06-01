@@ -6,6 +6,8 @@ if (!requireAdmin()) {
 const offcanvasElement = document.getElementById("offcanvasNuevoPlan");
 const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
 
+offcanvasElement.addEventListener("hidden.bs.offcanvas", () => limpiarFormulario(false));
+
 const form = document.getElementById("formActividad");
 const categoria = document.getElementById("categoria");
 const nuevaCategoriaContainer = document.getElementById("nuevaCategoriaContainer");
@@ -27,10 +29,35 @@ let filtroDificultad = "";
 let filtroEstado = "";
 
 document.getElementById("imagen")?.addEventListener("change", (e) => {
-    const labelText = e.target.nextElementSibling?.nextElementSibling;
-    if (labelText && e.target.files[0]) {
-        labelText.textContent = e.target.files[0].name;
+    const file = e.target.files[0];
+    const errorImagen = document.getElementById("errorImagen");
+    const dropzone = document.getElementById("dropzoneImagen");
+    const preview = document.getElementById("previewImagen");
+    const icono = document.getElementById("iconoImagen");
+    const textoImagen = document.getElementById("textoImagen");
+
+    if (!file) return;
+
+    if (file.size > 1 * 1024 * 1024) {
+        if (errorImagen) { errorImagen.innerHTML = '<i class="bi bi-exclamation-circle-fill me-1"></i>La imagen no debe superar 1 MB.'; errorImagen.style.display = "block"; }
+        if (dropzone) dropzone.style.borderColor = "#ff4d4d";
+        if (preview) { preview.src = ""; preview.style.display = "none"; }
+        if (icono) icono.style.display = "";
+        if (textoImagen) textoImagen.textContent = "Haz clic para seleccionar una imagen";
+        return;
     }
+
+    // Archivo válido
+    if (errorImagen) errorImagen.style.display = "none";
+    if (dropzone) dropzone.style.borderColor = "#443022";
+    if (textoImagen) textoImagen.textContent = file.name;
+
+    const reader = new FileReader();
+    reader.onload = ev => {
+        if (preview) { preview.src = ev.target.result; preview.style.display = "block"; }
+        if (icono) icono.style.display = "none";
+    };
+    reader.readAsDataURL(file);
 });
 
 function tipoPlanDesdeCategoria(valor) {
@@ -44,11 +71,11 @@ function tipoPlanDesdeCategoria(valor) {
 
 function categoriaDesdeTipoPlan(valor) {
     const tipo = String(valor || "AVENTURA").toUpperCase();
-    if (tipo === "AVENTURA") return "Aventura";
-    if (tipo === "ROMANTICO") return "Romántico";
-    if (tipo === "FAMILIAR") return "Familiar";
-    if (tipo === "EXTREMO") return "Extremo";
-    return "Aventura";
+    if (tipo === "AVENTURA") return "AVENTURA";
+    if (tipo === "ROMANTICO") return "ROMANTICO";
+    if (tipo === "FAMILIAR") return "FAMILIAR";
+    if (tipo === "EXTREMO") return "EXTREMO";
+    return "AVENTURA";
 }
 
 function actividadesTexto(plan) {
@@ -176,37 +203,51 @@ function mostrarPlanes() {
             <div class="col-md-4">
                 <div class="card shadow-sm h-100">
                     <img src="${planImagen(plan)}" alt="${plan.nombre}">
-                    <div class="card-body">
+                    <div class="card-body d-flex flex-column">
                         <h5>${plan.nombre}</h5>
                         <p>${plan.descripcion}</p>
                         <p><strong>Incluye:</strong> ${actividadesTexto(plan)}</p>
                         <span class="badge bg-success">${categoriaDesdeTipoPlan(plan.tipoPlan)}</span>
                         <br><br>
-                        <strong>Dificultad:</strong> ${formatoEnum(planDificultad(plan))}<br>
-                        <strong>Estado:</strong> ${planEstadoTexto(plan)}<br>
-                        <strong>Precio:</strong> $${formatoPrecio(precioPlan(plan))}<br>
-                        <strong>Descuento:</strong> ${Number(plan.descuentoPorcentaje || 0)}%
-                        <hr>
-                        <button class="btn btn-sm me-1 btn-editar" type="button" data-id="${plan.id}">Editar</button>
-                        <button class="btn btn-sm me-1 btn-toggle-estado" type="button" data-id="${plan.id}">
-                            ${plan.estado === false ? "Activar" : "Inactivar"}
-                        </button>
-                        <button class="btn btn-sm btn-eliminar" type="button" data-id="${plan.id}">Eliminar</button>
+                        <div style="display:grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size:0.85rem;">
+                            <strong>Dificultad:</strong><span>${formatoEnum(planDificultad(plan))}</span>
+                            <strong>Estado:</strong><span>${planEstadoTexto(plan)}</span>
+                            <strong>Precio:</strong><span>$${formatoPrecio(precioPlan(plan))}</span>
+                            <strong>Descuento:</strong><span>${Number(plan.descuentoPorcentaje || 0)}%</span>
+                        </div>
+                        <div class="mt-auto">
+                            <hr>
+                            <button class="btn btn-sm me-1 btn-editar" type="button" data-id="${plan.id}">Editar</button>
+                            <button class="btn btn-sm me-1 btn-toggle-estado" type="button" data-id="${plan.id}">${plan.estado === false ? "Activar" : "Desactivar"}</button>
+                            <button class="btn btn-sm btn-eliminar" type="button" data-id="${plan.id}">Eliminar</button>
+                        </div>
                     </div>
                 </div>
             </div>`;
     });
 }
 
-function limpiarFormulario() {
+function limpiarFormulario(cerrar = true) {
     editarPlan = null;
     form.reset();
     document.getElementById("imagen").required = true;
-    
+
     const labelText = document.querySelector("#offcanvasNuevoPlan .fw-bold.d-block");
     if (labelText) labelText.textContent = "Haz clic para seleccionar una imagen";
 
-    bsOffcanvas.hide();
+    const preview = document.getElementById("previewImagen");
+    if (preview) { preview.src = ""; preview.style.display = "none"; }
+
+    const icono = document.getElementById("iconoImagen");
+    if (icono) icono.style.display = "";
+
+    const errorImagen = document.getElementById("errorImagen");
+    if (errorImagen) errorImagen.style.display = "none";
+
+    const dropzone = document.getElementById("dropzoneImagen");
+    if (dropzone) dropzone.style.borderColor = "#443022";
+
+    if (cerrar) bsOffcanvas.hide();
 }
 
 function planDesdeFormulario(imagenActual = "") {
@@ -229,9 +270,17 @@ function planDesdeFormulario(imagenActual = "") {
 
 async function crearPlan() {
     const file = document.getElementById("imagen").files[0];
+    const errorImagen = document.getElementById("errorImagen");
+    const dropzone = document.getElementById("dropzoneImagen");
     if (!file) {
-        mostrarToast("Selecciona una imagen para crear el plan.", "info");
-        return;
+        if (errorImagen) { errorImagen.innerHTML = '<i class="bi bi-exclamation-circle-fill me-1"></i>La imagen del plan es obligatoria.'; errorImagen.style.display = "block"; }
+        if (dropzone) dropzone.style.borderColor = "#ff4d4d";
+        throw new Error("Debes seleccionar una imagen para el plan.");
+    }
+    if (file.size > 1 * 1024 * 1024) {
+        if (errorImagen) { errorImagen.innerHTML = '<i class="bi bi-exclamation-circle-fill me-1"></i>La imagen no debe superar 1 MB.'; errorImagen.style.display = "block"; }
+        if (dropzone) dropzone.style.borderColor = "#ff4d4d";
+        throw new Error("La imagen no debe superar 1 MB.");
     }
 
     const plan = planDesdeFormulario();
@@ -256,88 +305,54 @@ async function crearPlan() {
 }
 
 async function actualizarPlan() {
-
-    const file = document.getElementById("imagen").files[0];
-
-    const planActual = planes.find(
-        plan => String(plan.id) === String(editarPlan)
-    );
-
+    const planActual = planes.find(plan => String(plan.id) === String(editarPlan));
     const plan = planDesdeFormulario(planActual?.imagen || "");
 
-    const formData = new FormData();
-
-    if (file) {
-        formData.append("file", file);
-    }
-
-    formData.append("nombre", plan.nombre);
-    formData.append("descripcion", plan.descripcion);
-    formData.append("precio", plan.precio);
-    formData.append("descuentoPorcentaje", plan.descuentoPorcentaje);
-    formData.append("tipoPlan", plan.tipoPlan);
-    formData.append("dificultad", plan.dificultad);
-    formData.append("estado", plan.estado);
-    formData.append("actividades", plan.actividades);
+    const body = {
+        nombre: plan.nombre,
+        descripcion: plan.descripcion,
+        precio: plan.precio,
+        descuentoPorcentaje: plan.descuentoPorcentaje,
+        tipoPlan: plan.tipoPlan,
+        dificultad: plan.dificultad,
+        estado: plan.estado,
+        actividades: plan.actividades,
+        imagen: plan.imagen
+    };
 
     const response = await fetch(`${RUTA_API_URL}/planes/${editarPlan}`, {
         method: "PUT",
-        headers: getAuthHeaders(),
-        body: formData
+        headers: getAuthHeaders({ "Content-Type": "application/json" }),
+        body: JSON.stringify(body)
     });
 
-    if (!response.ok) {
-        throw await apiError(response, "No se pudo actualizar el plan");
-    }
+    if (!response.ok) throw await apiError(response, "No se pudo actualizar el plan");
 }
 
 async function cambiarEstadoPlan(id) {
-
-    const planActual = planes.find(
-        plan => String(plan.id) === String(id)
-    );
-
+    const planActual = planes.find(plan => String(plan.id) === String(id));
     if (!planActual) return;
 
-    const formData = new FormData();
-
-    formData.append("nombre", planActual.nombre);
-    formData.append("descripcion", planActual.descripcion);
-    formData.append("precio", planActual.precio);
-
-    formData.append(
-        "descuentoPorcentaje",
-        planActual.descuentoPorcentaje || 0
-    );
-
-    formData.append("tipoPlan", planActual.tipoPlan);
-
-    formData.append(
-        "dificultad",
-        planActual.dificultad
-    );
-
-    formData.append(
-        "estado",
-        !planActual.estado
-    );
-
-    formData.append(
-        "actividades",
-        planActual.actividades
-    );
+    const body = {
+        nombre: planActual.nombre,
+        descripcion: planActual.descripcion,
+        precio: planActual.precio,
+        descuentoPorcentaje: planActual.descuentoPorcentaje || 0,
+        tipoPlan: planActual.tipoPlan,
+        dificultad: planActual.dificultad,
+        estado: !planActual.estado,
+        actividades: actividadesTexto(planActual),
+        imagen: planActual.imagen || ""
+    };
 
     const response = await fetch(`${RUTA_API_URL}/planes/${id}`, {
         method: "PUT",
-        headers: getAuthHeaders(),
-        body: formData
+        headers: getAuthHeaders({ "Content-Type": "application/json" }),
+        body: JSON.stringify(body)
     });
 
     if (!response.ok) {
-        throw await apiError(
-            response,
-            "No se pudo cambiar el estado del plan"
-        );
+        throw await apiError(response, "No se pudo cambiar el estado del plan");
     }
 
     await cargarPlanes();
@@ -379,8 +394,17 @@ function editandoPlan(id) {
     document.getElementById("actividades").value = actividadesTexto(plan);
     document.getElementById("imagen").required = false;
 
+    const preview = document.getElementById("previewImagen");
+    const icono = document.getElementById("iconoImagen");
+    const textoImagen = document.getElementById("textoImagen");
+    if (plan.imagen) {
+        if (preview) { preview.src = plan.imagen; preview.style.display = "block"; }
+        if (icono) icono.style.display = "none";
+        if (textoImagen) textoImagen.textContent = "Imagen actual del plan";
+    }
+
     editarPlan = id;
-    
+
     // Muestra el Offcanvas con los datos mapeados
     bsOffcanvas.show();
 }
@@ -405,7 +429,9 @@ form?.addEventListener("submit", async (evento) => {
         await cargarPlanes();
     } catch (error) {
         console.error(error);
-        mostrarToast(error.message, "error");
+        if (error.message !== "Debes seleccionar una imagen para el plan.") {
+            mostrarToast(error.message, "error");
+        }
     }
 });
 
@@ -422,16 +448,43 @@ btnBuscar?.addEventListener("click", (e) => {
 
 filtroCategoriaSelect?.addEventListener("change", () => {
     filtroCategoria = filtroCategoriaSelect.value;
+    document.getElementById("filtroCategoriaMovil").value = filtroCategoria;
     mostrarPlanes();
 });
 
 filtroDificultadSelect?.addEventListener("change", () => {
     filtroDificultad = filtroDificultadSelect.value;
+    document.getElementById("filtroDificultadMovil").value = filtroDificultad;
     mostrarPlanes();
 });
 
 filtroEstadoSelect?.addEventListener("change", () => {
     filtroEstado = filtroEstadoSelect.value;
+    document.getElementById("filtroEstadoMovil").value = filtroEstado;
+    mostrarPlanes();
+});
+
+// Filtros móvil — se aplican al pulsar el botón
+document.getElementById("btnAplicarFiltros")?.addEventListener("click", () => {
+    filtroCategoria = document.getElementById("filtroCategoriaMovil").value;
+    filtroDificultad = document.getElementById("filtroDificultadMovil").value;
+    filtroEstado = document.getElementById("filtroEstadoMovil").value;
+    filtroCategoriaSelect.value = filtroCategoria;
+    filtroDificultadSelect.value = filtroDificultad;
+    filtroEstadoSelect.value = filtroEstado;
+    mostrarPlanes();
+});
+
+document.getElementById("btnLimpiarFiltros")?.addEventListener("click", () => {
+    filtroCategoria = "";
+    filtroDificultad = "";
+    filtroEstado = "";
+    document.getElementById("filtroCategoriaMovil").value = "";
+    document.getElementById("filtroDificultadMovil").value = "";
+    document.getElementById("filtroEstadoMovil").value = "";
+    filtroCategoriaSelect.value = "";
+    filtroDificultadSelect.value = "";
+    filtroEstadoSelect.value = "";
     mostrarPlanes();
 });
 

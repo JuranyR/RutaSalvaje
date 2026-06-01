@@ -6,8 +6,7 @@ const btnMostrarForm = document.getElementById("btnFormAct");
 const formContainer = document.getElementById("offcanvasReserva");
 const form = document.getElementById("formReserva");
 const lista = document.getElementById("listaReservas");
-const inputBuscar = document.querySelector("input[type='search']");
-const btnBuscar = document.querySelector(".btn-outline-success");
+const inputBuscar = document.getElementById("buscarReserva");
 const clienteNombreInput = document.getElementById("clienteNombre");
 const clienteEmailInput = document.getElementById("clienteEmail");
 const planSelect = document.getElementById("planId");
@@ -29,6 +28,14 @@ function fechaMinima() {
     manana.setDate(manana.getDate() + 1);
     return manana.toISOString().split("T")[0];
 }
+
+const fpFecha = flatpickr("#fecha", {
+    locale: "es",
+    minDate: fechaMinima(),
+    dateFormat: "Y-m-d",
+    disableMobile: true,
+    theme: "dark"
+});
 
 function formatoFecha(fecha) {
     if (!fecha) return "Sin fecha";
@@ -52,7 +59,7 @@ function planDeReserva(reserva) {
 }
 
 async function cargarDatosIniciales() {
-    fechaInput.min = fechaMinima();
+    fpFecha?.set("minDate", fechaMinima());
     lista.innerHTML = `<div class="col-12"><p class="text-muted">Cargando reservas...</p></div>`;
 
     try {
@@ -194,12 +201,10 @@ function mostrarReservas() {
                     </div>
 
                     <button
-                        class="btn-cancelar-reserva btn-cancelar"
+                        class="btn-cancelar-reserva"
                         data-id="${reserva.id}"
                         ${estado === "CANCELADA" ? "disabled" : ""}>
-
                         Cancelar
-
                     </button>
 
                 </div>
@@ -213,9 +218,10 @@ function mostrarReservas() {
 
 async function cancelarReserva(id) {
     const confirmado = await confirmarAccion({
-        titulo: "Cancelar reserva",
-        mensaje: "La reserva quedará marcada como cancelada.",
-        confirmar: "Cancelar reserva"
+        titulo: "¿Cancelar esta reserva?",
+        mensaje: "La reserva quedará marcada como cancelada. Esta acción no se puede deshacer.",
+        confirmar: "Cancelar",
+        cancelar: "Volver"
     });
     if (!confirmado) return;
 
@@ -314,6 +320,13 @@ btnMostrarForm?.addEventListener("click", () => {
     offcanvas.toggle();
 });
 
+formContainer?.addEventListener("hidden.bs.offcanvas", () => {
+    form.reset();
+    fpFecha?.clear();
+    fpFecha?.set("minDate", fechaMinima());
+    actualizarValoresCalculados();
+});
+
 form?.addEventListener("submit", async (event) => {
     event.preventDefault();
 
@@ -341,7 +354,8 @@ form?.addEventListener("submit", async (event) => {
         if (!response.ok) throw await apiError(response, "No se pudo crear la reserva");
 
         form.reset();
-        fechaInput.min = fechaMinima();
+        fpFecha?.clear();
+        fpFecha?.set("minDate", fechaMinima());
         actualizarValoresCalculados();
         const offcanvas = bootstrap.Offcanvas.getOrCreateInstance(formContainer);
         offcanvas.hide();
@@ -353,34 +367,54 @@ form?.addEventListener("submit", async (event) => {
     }
 });
 
-inputBuscar?.addEventListener("input", () => {
-    filtroBuscar = inputBuscar.value;
-    mostrarReservas();
-});
-
-btnBuscar?.addEventListener("click", (e) => {
-    e.preventDefault();
-    filtroBuscar = inputBuscar.value;
-    mostrarReservas();
-});
-
 filtroCategoriaSelect?.addEventListener("change", () => {
     filtroCategoria = filtroCategoriaSelect.value;
+    document.getElementById("filtroCategoriaMovil").value = filtroCategoria;
     mostrarReservas();
 });
 
 filtroDificultadSelect?.addEventListener("change", () => {
     filtroDificultad = filtroDificultadSelect.value;
+    document.getElementById("filtroDificultadMovil").value = filtroDificultad;
     mostrarReservas();
 });
 
 filtroEstadoSelect?.addEventListener("change", () => {
     filtroEstado = filtroEstadoSelect.value;
+    document.getElementById("filtroEstadoMovil").value = filtroEstado;
+    mostrarReservas();
+});
+
+document.getElementById("btnAplicarFiltros")?.addEventListener("click", () => {
+    filtroCategoria = document.getElementById("filtroCategoriaMovil").value;
+    filtroDificultad = document.getElementById("filtroDificultadMovil").value;
+    filtroEstado = document.getElementById("filtroEstadoMovil").value;
+    filtroCategoriaSelect.value = filtroCategoria;
+    filtroDificultadSelect.value = filtroDificultad;
+    filtroEstadoSelect.value = filtroEstado;
+    mostrarReservas();
+});
+
+document.getElementById("btnLimpiarFiltros")?.addEventListener("click", () => {
+    filtroCategoria = "";
+    filtroDificultad = "";
+    filtroEstado = "";
+    ["filtroCategoriaMovil", "filtroDificultadMovil", "filtroEstadoMovil"].forEach(id => {
+        document.getElementById(id).value = "";
+    });
+    filtroCategoriaSelect.value = "";
+    filtroDificultadSelect.value = "";
+    filtroEstadoSelect.value = "";
+    mostrarReservas();
+});
+
+inputBuscar?.addEventListener("input", () => {
+    filtroBuscar = inputBuscar.value;
     mostrarReservas();
 });
 
 lista?.addEventListener("click", (e) => {
-    const btnCancelar = e.target.closest(".btn-cancelar");
+    const btnCancelar = e.target.closest(".btn-cancelar-reserva");
     if (btnCancelar) cancelarReserva(btnCancelar.dataset.id);
 });
 

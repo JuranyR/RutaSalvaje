@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="footer.css">
     <link rel="stylesheet" href="panel-de-control.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/themes/dark.css">
 </head>
 
 <body class="admin-page">
@@ -71,139 +73,77 @@
             </div>
         </div>
     </nav>
-<div class="offcanvas offcanvas-start shadow text-white" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" style="background-color: #141414; width: 300px; border-right: 1px solid #2d2d2d;">
-    <div class="offcanvas-header justify-content-between align-items-center py-3" style="border-bottom: 1px solid #2d2d2d;">
-        <div class="d-flex align-items-center">
-            <img class="logo me-2" src="./imagenes/Image20260417121620.png" alt="Logo" width="35" height="35" />
-            <h5 class="offcanvas-title fw-bold" style="color: #FF8C00; font-family: 'Montserrat', sans-serif; font-size: 1.1rem; letter-spacing: 1px;">RUTA SALVAJE</h5>
-        </div>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" style="font-size: 0.8rem;"></button>
-    </div>
-    
-    <div class="offcanvas-body px-0 d-flex flex-column justify-content-between" style="font-family: 'Montserrat', sans-serif;">
-        
-        <ul class="nav flex-column mb-auto w-100">
-            <li class="nav-item">
-                <a href="panel-de-control.html" class="nav-link d-flex align-items-center px-4 py-3 text-white fw-bold" style="font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid #2d2d2d; gap: 12px;">
-                    <i class="bi bi-tools" style="font-size: 1.1rem;"></i> GESTIONAR PLANES
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="Reservas.html" class="nav-link d-flex align-items-center px-4 py-3 text-white fw-bold" style="background: linear-gradient(90deg, #FF4500, #FF8C00); font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid #2d2d2d; gap: 12px; box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);">
-                    <i class="bi bi-calendar-check-fill" style="font-size: 1.1rem;"></i> RESERVAS
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="Resenas.html" class="nav-link d-flex align-items-center px-4 py-3 text-white fw-bold" style="font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid #2d2d2d; gap: 12px;">
-                    <i class="bi bi-star-fill" style="font-size: 1.1rem;"></i> RESEÑAS
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="Contactos.html" class="nav-link d-flex align-items-center px-4 py-3 text-white fw-bold" style="font-size: 0.85rem; letter-spacing: 0.5px; border-bottom: 1px solid #2d2d2d; gap: 12px;">
-                    <i class="bi bi-envelope-fill" style="font-size: 1.1rem;"></i> CONTACTOS
-                </a>
-            </li>
-        </ul>
-        
-        <div class="border-top mt-auto">
-                    <a href="javascript:void(0)" onclick="cerrarSesion()" class="nav-link text-danger py-3 px-3 d-flex align-items-center gap-2">
-                        <i class="bi bi-box-arrow-right"></i> Cerrar sesi&oacute;n
+    <header class="admin-header">
+
+        <!-- FILA 1: tabs de navegación -->
+        <div class="admin-tabs-bar">
+            <div class="container px-3">
+                <nav class="admin-tabs">
+                    <a href="panel-de-control.html" class="admin-tab">
+                        <i class="bi bi-map-fill"></i>
+                        <span>Planes</span>
                     </a>
-                </div>
-    </div>
-</div>
+                    <a href="Reservas.html" class="admin-tab active">
+                        <i class="bi bi-calendar-check-fill"></i>
+                        <span>Reservas</span>
+                    </a>
+                    <a href="Resenas.html" class="admin-tab">
+                        <i class="bi bi-star-fill"></i>
+                        <span>Reseñas</span>
+                    </a>
+                    <a href="Contactos.html" class="admin-tab">
+                        <i class="bi bi-envelope-fill"></i>
+                        <span>Contactos</span>
+                    </a>
+                </nav>
+            </div>
+        </div>
 
-    <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary border-bottom shadow-sm py-2 alk">
-
-        <div class="container px-3 py-3">
-
-            <!-- BOTON PANEL -->
-            <button class="btn btn-panel me-3 d-flex align-items-center shadow-sm text-nowrap"
-                type="button"
-                data-bs-toggle="offcanvas"
-                data-bs-target="#staticBackdrop">
-
-                <i class="bi bi-layout-sidebar-inset me-2"></i>
-                Panel de Control
-
-            </button>
-
-            <!-- CONTENIDO -->
-            <div class="d-flex flex-column flex-lg-row align-items-stretch align-items-lg-center w-100 gap-3">
+        <!-- FILA 2: buscador y filtros -->
+        <div class="admin-toolbar">
+            <div class="container px-3 d-flex align-items-center gap-3 flex-wrap">
 
                 <!-- BUSCADOR -->
-                <form class="d-flex w-100 my-2 my-lg-0 flex-grow-1"
-                    style="max-width:420px">
-
-                    <div class="input-group">
-
-                        <input class="form-control border-start-0"
-                            type="search"
-                            placeholder="Buscar reserva..."
-                            aria-label="Buscar reserva" />
-
-                        <button class="btn btn-outline-success" type="submit">
-                            <i class="bi bi-search" style="color: #ff8c00;"></i>
-                        </button>
-
-                    </div>
-
-                </form>
+                <div class="admin-search-wrap">
+                    <i class="bi bi-search admin-search-icon"></i>
+                    <input class="admin-search-input" type="search" id="buscarReserva" placeholder="Buscar reserva..." aria-label="Buscar reserva" />
+                </div>
 
                 <!-- FILTROS DESKTOP -->
-                <div class="admin-filtros d-none d-lg-flex gap-2">
-
-                    <select id="filtroCategoria"
-                        class="form-select form-select-sm">
-
+                <div class="admin-filtros d-none d-lg-flex gap-2 ms-auto">
+                    <select id="filtroCategoria" class="admin-select">
                         <option value="">Todas las categorías</option>
                         <option value="EXTREMO">Extremo</option>
                         <option value="FAMILIAR">Familiar</option>
                         <option value="ROMANTICO">Romántico</option>
                         <option value="AVENTURA">Aventura</option>
-
                     </select>
-
-                    <select id="filtroDificultad"
-                        class="form-select form-select-sm">
-
+                    <select id="filtroDificultad" class="admin-select">
                         <option value="">Todas las dificultades</option>
                         <option value="BAJA">Baja</option>
                         <option value="MEDIA">Media</option>
                         <option value="ALTA">Alta</option>
-
                     </select>
-
-                    <select id="filtroEstado"
-                        class="form-select form-select-sm">
-
+                    <select id="filtroEstado" class="admin-select">
                         <option value="">Todos los estados</option>
                         <option value="PENDIENTE">Pendiente</option>
                         <option value="AGENDADA">Agendada</option>
                         <option value="CANCELADA">Cancelada</option>
-
                     </select>
-
                 </div>
 
-                <!-- BOTON FILTROS MOVIL -->
-                <button class="btn btn-outline-warning d-lg-none w-100"
+                <!-- FILTROS MOBILE -->
+                <button class="admin-btn-filtros d-lg-none ms-auto"
                     type="button"
                     data-bs-toggle="offcanvas"
                     data-bs-target="#filtrosMovil">
-
-                    <i class="bi bi-sliders me-2"></i>
-                    Filtros
-
+                    <i class="bi bi-sliders2"></i> Filtros
                 </button>
 
             </div>
-
         </div>
 
-    </nav>
-</header>
+    </header>
 
 
 
@@ -219,118 +159,161 @@
                 </button>
             </div>
             
-            <div id="listaReservas" class="row g-3"></div>
+            <div id="listaReservas"></div>
         </section>
     </main>
 
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasReserva" style="background-color: #141414; color: white; width: 450px;">
-        <div class="offcanvas-header border-bottom border-secondary">
-            <h5 class="offcanvas-title fw-bold">NUEVA RESERVA</h5>
-            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+    <div class="offcanvas offcanvas-end text-white" tabindex="-1" id="offcanvasReserva" style="background-color: #121212; width: 440px; border-left: 1px solid #242424;">
+
+        <div class="offcanvas-header py-2" style="border-bottom: 1px solid #242424;">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-calendar-plus-fill" style="font-size: 1.1rem; color: #ff8c00;"></i>
+                <h6 class="offcanvas-title fw-bold m-0" style="font-family: 'Montserrat', sans-serif; font-size: 0.95rem; letter-spacing: 1px; color: #ff8c00;">NUEVA RESERVA</h6>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" style="font-size: 0.7rem;"></button>
         </div>
-        <div class="offcanvas-body">
+
+        <div class="offcanvas-body px-3 py-3" style="font-family: 'Montserrat', sans-serif; background-color: #121212;">
             <form id="formReserva">
+
                 <div class="mb-3">
-                    <label class="form-label">Nombre del cliente</label>
-                    <input type="text" id="clienteNombre" class="form-control" placeholder="Ej: Juan Perez" required>
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">NOMBRE DEL CLIENTE</label>
+                    <input type="text" id="clienteNombre" class="form-control" placeholder="Ej: Juan Pérez" required
+                        style="background-color: #1a1a1a; border: 1px solid #2c2c2c; color: #fff; padding: 0.45rem 0.7rem; font-size: 0.85rem; border-radius: 4px;">
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">Correo del cliente</label>
-                    <input type="email" id="clienteEmail" class="form-control" placeholder="ejemplo@correo.com" required>
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">CORREO DEL CLIENTE</label>
+                    <input type="email" id="clienteEmail" class="form-control" placeholder="ejemplo@correo.com" required
+                        style="background-color: #1a1a1a; border: 1px solid #2c2c2c; color: #fff; padding: 0.45rem 0.7rem; font-size: 0.85rem; border-radius: 4px;">
                 </div>
+
                 <div class="mb-3">
-                    <label class="form-label">Plan activo</label>
-                    <select id="planId" class="form-select" required>
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">PLAN</label>
+                    <select id="planId" class="form-select" required
+                        style="background-color: #1a1a1a; border: 1px solid #2c2c2c; color: #fff; padding: 0.45rem 0.7rem; font-size: 0.85rem; border-radius: 4px;">
                         <option value="">Seleccionar plan</option>
                     </select>
                 </div>
-                <div class="row">
-                    <div class="col-6 mb-3">
-                        <label class="form-label">Personas</label>
-                        <input type="number" id="personas" class="form-control" value="1" min="1">
+
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">PERSONAS</label>
+                        <input type="number" id="personas" class="form-control" value="1" min="1"
+                            style="background-color: #1a1a1a; border: 1px solid #2c2c2c; color: #fff; padding: 0.45rem 0.7rem; font-size: 0.85rem; border-radius: 4px;">
                     </div>
-                    <div class="col-6 mb-3">
-                        <label class="form-label">Fecha</label>
-                        <input type="date" id="fecha" class="form-control" required>
+                    <div class="col-6">
+                        <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">FECHA</label>
+                        <input type="text" id="fecha" class="form-control" placeholder="Selecciona fecha" required
+                            style="background-color: #1a1a1a; border: 1px solid #2c2c2c; color: #fff; padding: 0.45rem 0.7rem; font-size: 0.85rem; border-radius: 4px;">
                     </div>
                 </div>
-                <div class="mb-4">
-                    <label class="form-label">Hora</label>
-                    <select id="hora" class="form-select">
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">HORA</label>
+                    <select id="hora" class="form-select"
+                        style="background-color: #1a1a1a; border: 1px solid #2c2c2c; color: #fff; padding: 0.45rem 0.7rem; font-size: 0.85rem; border-radius: 4px;">
                         <option value="08:00">08:00</option>
                         <option value="10:00">10:00</option>
                         <option value="12:00">12:00</option>
                     </select>
                 </div>
 
-                <div class="d-flex gap-2">
-                    <button type="submit" class="btn btn-guardar flex-grow-1">GUARDAR RESERVA</button>
-                    <button type="button" class="btn btn-cancelar" data-bs-dismiss="offcanvas">CANCELAR</button>
+                <!-- CAMPOS CALCULADOS AUTOMÁTICAMENTE -->
+                <div class="row mb-4" style="border: 1px solid #2c2c2c; border-radius: 6px; padding: 10px 8px; background-color: #161616;">
+                    <div class="col-4">
+                        <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.65rem; letter-spacing: 0.5px;">DIFICULTAD</label>
+                        <input type="text" id="dificultadAuto" class="form-control" readonly value="—"
+                            style="background-color: transparent; border: none; color: #ff8c00; font-size: 0.82rem; font-weight: 700; padding: 0.3rem 0.5rem; border-radius: 4px;">
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.65rem; letter-spacing: 0.5px;">PRECIO / PERSONA</label>
+                        <input type="text" id="precioUnitarioAuto" class="form-control" readonly value="0"
+                            style="background-color: transparent; border: none; color: #ff8c00; font-size: 0.82rem; font-weight: 700; padding: 0.3rem 0.5rem; border-radius: 4px;">
+                    </div>
+                    <div class="col-4">
+                        <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.65rem; letter-spacing: 0.5px;">TOTAL</label>
+                        <input type="text" id="totalAuto" class="form-control" readonly value="0"
+                            style="background-color: transparent; border: none; color: #ff8c00; font-size: 0.9rem; font-weight: 800; padding: 0.3rem 0.5rem; border-radius: 4px;">
+                    </div>
                 </div>
+
+                <div class="d-flex gap-2 pt-1">
+                    <button type="submit" class="btn text-white fw-bold d-flex align-items-center justify-content-center gap-2 py-2"
+                        style="background: linear-gradient(90deg, #ff4500, #ff8c00); border: none; font-size: 0.8rem; letter-spacing: 0.5px; width: 65%; border-radius: 4px;">
+                        <i class="bi bi-check-lg"></i> GUARDAR RESERVA
+                    </button>
+                    <button type="button" class="btn text-secondary fw-bold" data-bs-dismiss="offcanvas"
+                        style="background-color: #1a1a1a; border: 1px solid #242424; font-size: 0.8rem; letter-spacing: 0.5px; width: 35%; border-radius: 4px;">
+                        CANCELAR
+                    </button>
+                </div>
+
             </form>
         </div>
     </div>
 
-    <!-- OFFCANVAS FILTROS MOVIL -->
-<div class="offcanvas offcanvas-end text-bg-dark"
-    tabindex="-1"
-    id="filtrosMovil">
+    <!-- OFFCANVAS FILTROS MOBILE -->
+    <div class="offcanvas offcanvas-end text-white" tabindex="-1" id="filtrosMovil"
+        style="background-color: #121212; border-left: 1px solid #242424;">
 
-    <div class="offcanvas-header border-bottom border-secondary">
-
-        <h5 class="offcanvas-title text-warning fw-bold">
-            FILTROS
-        </h5>
-
-        <button type="button"
-            class="btn-close btn-close-white"
-            data-bs-dismiss="offcanvas">
-        </button>
-
-    </div>
-
-    <div class="offcanvas-body">
-
-        <div class="d-flex flex-column gap-3">
-
-            <select id="filtroCategoriaMovil"
-                class="form-select">
-
-                <option value="">Todas las categorías</option>
-                <option value="EXTREMO">Extremo</option>
-                <option value="FAMILIAR">Familiar</option>
-                <option value="ROMANTICO">Romántico</option>
-                <option value="AVENTURA">Aventura</option>
-
-            </select>
-
-            <select id="filtroDificultadMovil"
-                class="form-select">
-
-                <option value="">Todas las dificultades</option>
-                <option value="BAJA">Baja</option>
-                <option value="MEDIA">Media</option>
-                <option value="ALTA">Alta</option>
-
-            </select>
-
-            <select id="filtroEstadoMovil"
-                class="form-select">
-
-                <option value="">Todos los estados</option>
-                <option value="PENDIENTE">Pendiente</option>
-                <option value="AGENDADA">Agendada</option>
-                <option value="CANCELADA">Cancelada</option>
-
-            </select>
-
+        <div class="offcanvas-header" style="border-bottom: 1px solid #242424;">
+            <div class="d-flex align-items-center gap-2">
+                <i class="bi bi-sliders2" style="color: #ff8c00; font-size: 1rem;"></i>
+                <h6 class="offcanvas-title fw-bold m-0" style="font-family: 'Montserrat', sans-serif; font-size: 0.95rem; letter-spacing: 1px; color: #ff8c00;">FILTROS</h6>
+            </div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" style="font-size: 0.7rem;"></button>
         </div>
 
+        <div class="offcanvas-body px-3 py-4 d-flex flex-column gap-3" style="font-family: 'Montserrat', sans-serif; background-color: #121212;">
+
+            <div>
+                <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">CATEGORÍA</label>
+                <select id="filtroCategoriaMovil" class="admin-select w-100">
+                    <option value="">Todas</option>
+                    <option value="EXTREMO">Extremo</option>
+                    <option value="FAMILIAR">Familiar</option>
+                    <option value="ROMANTICO">Romántico</option>
+                    <option value="AVENTURA">Aventura</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">DIFICULTAD</label>
+                <select id="filtroDificultadMovil" class="admin-select w-100">
+                    <option value="">Todas</option>
+                    <option value="BAJA">Baja</option>
+                    <option value="MEDIA">Media</option>
+                    <option value="ALTA">Alta</option>
+                </select>
+            </div>
+
+            <div>
+                <label class="form-label fw-bold text-secondary mb-1" style="font-size: 0.7rem; letter-spacing: 0.5px;">ESTADO</label>
+                <select id="filtroEstadoMovil" class="admin-select w-100">
+                    <option value="">Todos</option>
+                    <option value="PENDIENTE">Pendiente</option>
+                    <option value="AGENDADA">Agendada</option>
+                    <option value="CANCELADA">Cancelada</option>
+                </select>
+            </div>
+
+            <div class="d-flex gap-2 mt-2">
+                <button id="btnAplicarFiltros" class="btn btn-agregar w-100 btn-sm py-2" type="button" data-bs-dismiss="offcanvas">
+                    <i class="bi bi-check-lg me-1"></i> Aplicar
+                </button>
+                <button id="btnLimpiarFiltros" class="btn w-100 btn-sm py-2 text-secondary fw-bold" type="button" data-bs-dismiss="offcanvas"
+                    style="background-color: #1a1a1a; border: 1px solid #242424; font-size: 0.8rem; letter-spacing: 0.5px; border-radius: 4px;">
+                    <i class="bi bi-x-lg me-1"></i> Limpiar
+                </button>
+            </div>
+
+        </div>
     </div>
 
-</div>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/es.js"></script>
     <script src="config.js"></script>
     <script src="api.js"></script>
     <script src="Reservas.js"></script>

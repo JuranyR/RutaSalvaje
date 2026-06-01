@@ -247,61 +247,178 @@ main h2::after {
     filter: invert(1) !important; /* Para que la X de cerrar sea blanca */
 }
 
-/* Panel de Reseñas en Modal */
-.resenas-panel {
-    background: #1A0A00;
-    border: 1px solid rgba(255, 69, 0, 0.2);
-    border-radius: 12px;
-    padding: 16px;
+/* Separador precio */
+.modal-precio-row {
+    border-top: 1px solid rgba(255, 69, 0, 0.2);
+    margin-top: 1rem;
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
 }
 
-.resenas-lista {
-    max-height: 220px;
+.modal-precio-label {
+    font-size: 1.1rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-secundario);
+    margin-bottom: 2px;
+}
+
+#modalPrecio {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--color-cuarto);
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+/* Panel de Reseñas en Modal */
+.reseñas-panel {
+    border-top: 1px solid rgba(255, 69, 0, 0.2);
+    padding-top: 1.2rem;
+}
+
+.reseñas-header {
+    margin-bottom: 14px;
+}
+
+.reseñas-titulo {
+    display: block;
+    font-size: 1rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-secundario);
+    margin-bottom: 4px;
+}
+
+.reseñas-subtitulo {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-secundario);
+    line-height: 1.4;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.reseñas-lista {
+    max-height: 200px;
     overflow-y: auto;
+    margin-bottom: 14px;
 }
 
 .resena-item {
-    border-bottom: 1px solid rgba(255, 69, 0, 0.2);
+    border-bottom: 1px solid rgba(255, 69, 0, 0.15);
     padding: 10px 0;
-    font-size: 0.9rem;
-    color: #DDDDDD;
+}
+
+.resena-item:last-child {
+    border-bottom: none;
+}
+
+.resena-item__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.resena-item__usuario {
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    color: var(--color-cuarto);
+}
+
+.resena-item__estrellas {
+    font-size: 0.85rem;
+    color: var(--color-secundario);
+    letter-spacing: 1px;
+}
+
+.resena-item__comentario {
+    font-size: 0.83rem;
+    color: #AAAAAA;
+    line-height: 1.5;
+    margin: 0;
 }
 
 /* Formulario de Reseñas */
-.resena-form .form-control,
-.resena-form .form-select {
+.reseña-campos {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.reseña-label {
+    display: block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: var(--color-sexto);
+    margin-bottom: 5px;
+}
+
+.reseña-form .form-control,
+.reseña-form .form-select {
+    background-color: #0D0D0D !important;
+    color: #F0F0F0 !important;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 140, 0, 0.3) !important;
+    font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.reseña-form .form-control::placeholder {
+    color: #555555;
+}
+
+.reseña-form .form-select option {
     background-color: #0D0D0D;
     color: #F0F0F0;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 140, 0, 0.4);
-    font-size: 0.9rem;
 }
 
-.resena-form .form-control::placeholder {
-    color: #888888;
-}
-
-.resena-form .form-control:focus,
-.resena-form .form-select:focus {
-    background-color: #141414;
-    color: #F0F0F0;
-    border-color: var(--color-quinto);
-    box-shadow: 0 0 0 0.25rem rgba(255, 140, 0, 0.25);
+.reseña-form .form-control:focus,
+.reseña-form .form-select:focus {
+    background-color: #141414 !important;
+    color: #F0F0F0 !important;
+    border-color: var(--color-quinto) !important;
+    box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.2) !important;
     outline: none;
 }
 
-.resena-mensaje {
-    font-size: 0.84rem;
+.reseña-form .form-control:-webkit-autofill,
+.reseña-form .form-control:-webkit-autofill:hover,
+.reseña-form .form-control:-webkit-autofill:focus,
+.reseña-form .form-control:-webkit-autofill:active {
+    -webkit-text-fill-color: #F0F0F0 !important;
+    -webkit-box-shadow: 0 0 0 1000px #0D0D0D inset !important;
+    box-shadow: 0 0 0 1000px #0D0D0D inset !important;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.reseña-btn-publicar {
+    align-self: flex-end;
+}
+
+.reseña-login-prompt {
+    text-align: center;
+    padding: 14px 0 4px;
+    font-size: 0.82rem;
+    color: var(--color-sexto);
+}
+
+.reseña-mensaje {
+    font-size: 0.82rem;
     font-weight: 700;
 }
 
-.resena-mensaje.ok {
-    color: var(--color-octavo); /* Verde para éxito */
-}
-
-.resena-mensaje.error {
-    color: var(--color-tercero); /* Rojo para error */
-}
+.reseña-mensaje.ok  { color: var(--color-octavo); }
+.reseña-mensaje.error { color: var(--color-tercero); }
 
 /* Responsive */
 @media (max-width: 767px) {

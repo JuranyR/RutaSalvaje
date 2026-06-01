@@ -39,11 +39,11 @@ function resenasHtml(planId) {
 
     return resenas.map(resena => `
         <article class="resena-item">
-            <div class="d-flex justify-content-between gap-2">
-                <strong>${escaparHtml(resena.nombreUsuario || "Usuario")}</strong>
-                <span class="resena-estrellas">${estrellasHtml(resena.calificacion)}</span>
+            <div class="resena-item__header">
+                <span class="resena-item__usuario">${escaparHtml(resena.nombreUsuario || "Usuario")}</span>
+                <span class="resena-item__estrellas">${estrellasHtml(resena.calificacion)}</span>
             </div>
-            <p class="mb-0">${escaparHtml(resena.comentario)}</p>
+            <p class="resena-item__comentario">${escaparHtml(resena.comentario)}</p>
         </article>
     `).join("");
 }
@@ -97,7 +97,6 @@ async function cargarPlanes() {
                     <img src="${planImagen(plan)}" class="card-img-top" alt="${plan.nombre}" style="height:200px; object-fit:cover;">
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">${plan.nombre}</h5>
-                        <p class="card-text descripcion">${plan.descripcion}</p>
                         <p class="card-text small text-muted mb-1">${formatoEnum(planCategoria(plan))} | ${formatoEnum(planDificultad(plan))}</p>
                         ${precioHtml(plan)}
                         ${resumenResenas(plan.id)}
@@ -155,11 +154,22 @@ document.addEventListener("click", function (e) {
         document.getElementById("modalPrecio").textContent = `$${formatoPrecio(precioPlan(plan))}`;
         document.getElementById("modalImagen").src = planImagen(plan);
         document.getElementById("modalResenas").innerHTML = resenasHtml(plan.id);
-        document.getElementById("resenaPlanId").value = plan.id;
-        document.getElementById("resenaComentario").value = "";
-        document.getElementById("resenaCalificacion").value = "5";
-        document.getElementById("resenaMensaje").textContent = "";
         window.planTemporalModal = plan;
+
+        const formResena = document.getElementById("formResena");
+        const loginPrompt = document.getElementById("resenaLoginPrompt");
+
+        if (getUsuario() && getToken()) {
+            formResena.classList.remove("d-none");
+            if (loginPrompt) loginPrompt.classList.add("d-none");
+            document.getElementById("resenaPlanId").value = plan.id;
+            document.getElementById("resenaComentario").value = "";
+            document.getElementById("resenaCalificacion").value = "5";
+            document.getElementById("resenaMensaje").textContent = "";
+        } else {
+            formResena.classList.add("d-none");
+            if (loginPrompt) loginPrompt.classList.remove("d-none");
+        }
     }
 
     if (btnReservar) {
@@ -210,8 +220,9 @@ document.getElementById("formResena")?.addEventListener("submit", async (event) 
         await cargarResenas();
         document.getElementById("modalResenas").innerHTML = resenasHtml(planId);
         document.getElementById("resenaComentario").value = "";
-        mensaje.textContent = "Rese\u00f1a publicada correctamente.";
-        mensaje.className = "resena-mensaje ok";
+        document.getElementById("resenaCalificacion").value = "5";
+        mensaje.textContent = "";
+        mostrarToast("\u00a1Rese\u00f1a publicada correctamente!", "success");
         cargarPlanes();
     } catch (error) {
         console.error(error);

@@ -29,45 +29,49 @@ function aplicarEstadoSesion() {
             el.avatarTexto.textContent = inicialesUsuario(usuario);
         }
 
-        const avatarLink = el.avatar?.querySelector("a");
-        if (avatarLink) {
-            avatarLink.href = "javascript:void(0)";
+        const avatarToggle = el.avatar?.querySelector("a");
+
+        if (usuario.rol === "ADMIN") {
+            // Avatar solo decorativo — sin dropdown
+            if (avatarToggle) {
+                avatarToggle.removeAttribute("data-bs-toggle");
+                avatarToggle.classList.remove("dropdown-toggle");
+                avatarToggle.style.pointerEvents = "none";
+                avatarToggle.href = "javascript:void(0)";
+            }
+        } else {
+            // Usuario normal — avatar sin dropdown tampoco
+            if (avatarToggle) {
+                avatarToggle.removeAttribute("data-bs-toggle");
+                avatarToggle.classList.remove("dropdown-toggle");
+                avatarToggle.style.pointerEvents = "none";
+            }
         }
-
-        if (!el.avatarMenu) return;
-
-        const links = usuario.rol === "ADMIN"
-            ? [
-                { href: "panel-de-control.html", icon: "bi-tools", text: "Panel de control" },
-                { href: "Reservas.html", icon: "bi-calendar-check-fill", text: "Reservas" },
-                { href: "Contactos.html", icon: "bi-envelope-fill", text: "Contactos" }
-            ]
-            : [
-                { href: "Reservas-Usuario.html", icon: "bi-bag-check-fill", text: "Mis reservas" }
-            ];
-
-        el.avatarMenu.innerHTML = links.map(item => `
-            <li>
-                <a class="dropdown-item" href="${item.href}">
-                    <i class="bi ${item.icon} me-2"></i>${item.text}
-                </a>
-            </li>
-        `).join("");
     }
 
     if (usuario && token) {
         el.login?.classList.add("d-none");
         el.logout?.classList.remove("d-none");
-        el.planes?.classList.remove("d-none");
         el.avatar?.classList.remove("d-none");
         configurarAvatar(usuario);
 
         if (usuario.rol === "ADMIN") {
+            // Ocultar links de usuario y navegación pública
             el.planes?.classList.add("d-none");
-            el.reservasAdmin?.classList.remove("d-none");
             el.reservas?.classList.add("d-none");
             el.contacto?.classList.add("d-none");
             el.navLoggedIn?.classList.add("d-none");
+            document.querySelector('.navbar-nav a[href="index.html"]')?.closest(".nav-item")?.classList.add("d-none");
+            document.querySelector('.navbar-nav a[href="Sobre_Nosotros.html"]')?.closest(".nav-item")?.classList.add("d-none");
+            // Mostrar "Panel de control" en el navbar
+            if (el.reservasAdmin) {
+                el.reservasAdmin.classList.remove("d-none");
+                const link = el.reservasAdmin.querySelector("a");
+                if (link) {
+                    link.href = "panel-de-control.html";
+                    link.innerHTML = '<i class="bi bi-tools me-1"></i> Panel de control';
+                }
+            }
         } else {
             el.planes?.classList.remove("d-none");
             el.reservasAdmin?.classList.add("d-none");
