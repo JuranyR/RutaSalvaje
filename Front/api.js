@@ -1,6 +1,6 @@
 var RUTA_API_URL = window.RUTA_API_URL
     || localStorage.getItem("RUTA_API_URL")
-    || "http://localhost:8080";
+    || "https://back-ruta-salvaje-nos6.onrender.com";
 var KEY_USUARIO = "usuarioLogueado";
 var KEY_TOKEN = "token";
 

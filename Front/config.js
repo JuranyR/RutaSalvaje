@@ -1,1 +1,1 @@
-window.RUTA_API_URL = "http://localhost:8080";
+window.RUTA_API_URL = "https://back-ruta-salvaje-nos6.onrender.com";
